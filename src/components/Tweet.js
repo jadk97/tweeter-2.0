@@ -3,10 +3,23 @@ import "./Tweet.css";
 const Tweet = (props) => {
   return (
     <div className="tweet-container">
-    <h2>{props.creatorName} {props.creatorHandle}</h2>
-    <p>{props.content}</p>
-    <p>{props.reply_count} {props.retweets} {props.likes}</p>
-    <p>{new Date(props.posted_at).toDateString()}</p>
+   
+
+      <div className="tweet-content">
+        <div className="tweet-avatar">
+          <img className="avatar" src={props.avatar} />
+        </div>
+        <div className="tweet-text">
+          <div className="creator-name">
+            {props.creatorName}
+            <span className="creator-handle"> {props.creatorHandle}</span>
+            <span className="time-tweeted"> - {new Date(props.posted_at).toDateString()}</span>
+          </div>
+          <div>{props.content}</div>
+        </div>
+
+      </div>
+      <p>{props.reply_count} {props.retweets} {props.likes}</p>
     </div>
   )
 }

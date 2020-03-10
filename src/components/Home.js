@@ -3,7 +3,7 @@ import "./Home.css";
 const Home = (props) => {
   return (
     <div className="home">
-      <h1>Home</h1>
+      <h1 className="home-title">Home</h1>
       {props.children}
     </div>
   )

@@ -1,3 +1,47 @@
 .tweet-container{
   border: solid;
+  padding: 15px;
+  text-align: left;
+  
+}
+
+.creator-name{
+ padding-right: 1%;
+ padding-bottom: 2%;
+}
+
+.creator-handle{
+  color:lightslategray;
+}
+
+.avatar {
+  
+  border-radius: 50%;
+  width: 4rem;
+  height: 4rem;
+  object-fit: cover;
+  margin-right: 1%;
+}
+
+.tweet-author{
+  height: 100%;
+  width: 10%;
+}
+
+.tweet-text{
+  width: 85%;
+  padding-left: 2%;
+}
+
+.tweet-content{
+  
+  display:flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  height: 100px;
+}
+
+.time-tweeted{
+  color:lightslategray;
 }
