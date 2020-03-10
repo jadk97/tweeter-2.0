@@ -1,20 +1,11 @@
 span.logo{
   font-family: "Bungee", cursive;
+  font-size: 2em;
+  color: white;
 }
 
 nav {
-  font-family: "Bungee", cursive;
-  position: fixed;
-  top: 0;
-  font-size: 1em;
-  height: 2vh;
-  background-color: #121212;
-  z-index: 1024;
-  color: white;
-  padding: 1.7em;
-  margin-bottom: 1em;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  width: 100vw;
+  width: 20%;
+  order: 1;
+
 }
