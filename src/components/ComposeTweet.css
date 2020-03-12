@@ -42,3 +42,14 @@
   margin-top: 1%;
   margin-left: 10%;
 }
+
+.tweet-submit-button{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.character-counter p{
+  font-size: 1em;
+ margin-right: 2em;
+}
