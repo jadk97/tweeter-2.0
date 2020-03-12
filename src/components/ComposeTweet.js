@@ -34,7 +34,7 @@ const ComposeTweet = (props) => {
             <FontAwesomeIcon icon={faImages} size="2x" color="#1da1f2" />
           </div>
           <div className="tweet-submit-button">
-            <div className="character-counter">
+            <div className={`character-counter ${tweet.length > 140 ? "__limit-reached" : " "}`}>
               <p>
                 {140 - tweet.length}
               </p>

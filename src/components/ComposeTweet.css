@@ -52,7 +52,11 @@
   justify-content: space-between;
 }
 
-.character-counter p{
+.character-counter{
   font-size: 1em;
  margin-right: 2em;
+}
+
+.__limit-reached{
+  color: red;
 }
