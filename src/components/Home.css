@@ -1,5 +1,5 @@
 .home{
-  border: solid;
+  border: 1px solid lightslategray;
   flex: 1;
   order: 2;
   color: white;

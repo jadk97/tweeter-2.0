@@ -1,5 +1,5 @@
 .tweet-container{
-  border: solid;
+  border-bottom: 1px solid lightslategray;
   padding: 15px;
   text-align: left;
   
