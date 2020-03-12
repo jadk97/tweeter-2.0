@@ -1,9 +1,15 @@
 import React from "react";
 import "./Button.css"
 const Button = (props) => {
+  let classes = [];
+
+  if(props.disabled){
+    classes.push("__disabled");
+    console.log(classes.join(" "));
+  }
   return(
     <React.Fragment>
-    <button className="button">{props.children}</button>
+    <button {...props} className={"button" + " " + classes.join(" ")}>{props.children}</button>
     </React.Fragment>
   )
 }

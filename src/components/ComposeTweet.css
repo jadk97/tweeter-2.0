@@ -31,6 +31,9 @@
   sans-serif;
 }
 
+.__filled {
+  color: white
+}
 .tweet-submit-options{
   display: flex;
   flex-direction: row;

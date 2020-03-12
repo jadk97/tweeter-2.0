@@ -18,3 +18,8 @@
   background-color: #4095c6;
 }
 
+.__disabled{
+  opacity: 0.5;
+  pointer-events: none;
+}
+
