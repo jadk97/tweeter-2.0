@@ -7,7 +7,7 @@
 
 .creator-name{
  padding-right: 1%;
- padding-bottom: 2%;
+ padding-bottom: 1%;
 }
 
 .creator-handle{
@@ -29,8 +29,7 @@
 }
 
 .tweet-text{
-  width: 85%;
-  padding-left: 2%;
+  width: 92%;
 }
 
 .tweet-content{

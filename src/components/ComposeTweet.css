@@ -1,0 +1,32 @@
+.compose-tweet {
+  width: 100%;
+}
+
+.tweet-box{
+  width: 95%;
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.tweet-box .avatar{
+  position: sticky;
+  align-self: flex-start;
+}
+
+
+.tweet-input {
+  background-color: #15202B;
+  min-width: 0;
+  border: none;
+  width: 564px; height: 32px;
+  resize: none;
+  width: 100%;
+  flex: 1;
+  color: lightslategray;
+  font-size: 1.5em;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+}
+
