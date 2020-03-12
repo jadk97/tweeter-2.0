@@ -8,12 +8,12 @@ const ComposeTweet = (props) => {
   const [tweet, setTweet] = useState("");
 
   const handleChange = (e) => {
-    console.log(e.target.value);
     setTweet(e.target.value);
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    props.handleTweetSubmit(tweet);
   }
 
   return (
