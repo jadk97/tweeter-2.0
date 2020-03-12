@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImages } from '@fortawesome/free-solid-svg-icons'
 const ComposeTweet = (props) => {
   const [tweet, setTweet] = useState("");
+  const [disabled, setDisabled] = useState(true);
 
   const handleChange = (e) => {
     setTweet(e.target.value);
@@ -38,7 +39,7 @@ const ComposeTweet = (props) => {
                 {140 - tweet.length}
               </p>
             </div>
-            <Button disabled={tweet.length === 0}>Tweet</Button>
+            <Button disabled={tweet.length === 0 || (tweet.length > 140 || false)}>Tweet</Button>
           </div>
         </div>
       </form>
