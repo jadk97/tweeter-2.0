@@ -6,26 +6,25 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImages } from '@fortawesome/free-solid-svg-icons'
 const ComposeTweet = (props) => {
   const [tweet, setTweet] = useState("");
-  // const [isFocused, setIsFocused] = useState(false);
+
   const handleChange = (e) => {
     console.log(e.target.value);
     setTweet(e.target.value);
   }
 
-  const handleFocus = () => {
-
+  const handleSubmit = (e) => {
+    e.preventDefault();
   }
 
   return (
     <div className="compose-tweet">
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="tweet-box">
           <img className="avatar" src={"https://www.deccanherald.com/sites/dh/files/styles/article_detail/public/article_images/2017/04/04/604513.jpg?itok=FqqfYOfA"} />
           <TextareaAutosize
             className={`tweet-input${tweet.length > 0 ? " __filled" : "" }`}
             placeholder="What's on your mind?"
             onChange={handleChange}
-            onFocus={handleFocus}
           ></TextareaAutosize>
 
         </div>
