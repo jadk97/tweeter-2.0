@@ -26,7 +26,7 @@ function App() {
 
   useEffect(() => {
     setTimeline(TWEETS);
-  }, [timeline]);
+  }, []);
 
   return (
     <div className="App">
