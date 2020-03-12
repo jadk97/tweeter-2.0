@@ -5,6 +5,8 @@
   
 }
 
+
+
 .creator-name{
  padding-right: 1%;
  padding-bottom: 1%;
@@ -20,7 +22,7 @@
   width: 3.5rem;
   height: 3.5rem;
   object-fit: cover;
-  margin-right: 1%;
+  margin-right: 2%;
 }
 
 .tweet-author{
@@ -30,6 +32,7 @@
 
 .tweet-text{
   width: 92%;
+  margin-left: 2%;
 }
 
 .tweet-content{

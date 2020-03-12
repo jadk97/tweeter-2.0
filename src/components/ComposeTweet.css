@@ -4,7 +4,7 @@
 }
 
 .tweet-box{
-  width: 95%;
+  width: 96.5%;
   display: inline-flex;
   align-items: center;
   margin-bottom: 1rem;
@@ -31,3 +31,14 @@
   sans-serif;
 }
 
+.tweet-submit-options{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 2%;
+}
+
+.tweet-submit-image-icon {
+  margin-top: 1%;
+  margin-left: 10%;
+}
