@@ -19,6 +19,17 @@ function App() {
       replyCount: 345,
       retweets: 500,
       likes: 120
+    },
+    {
+      id: 2,
+      content: "I like apples, but not oranges.",
+      posted_at: Date.now(),
+      creatorName: "Ayn Rand",
+      creatorHandle: "@AtlasShrugged",
+      avatar: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg",
+      replyCount: 345,
+      retweets: 500,
+      likes: 120
     }
   ];
 
