@@ -5,20 +5,23 @@ import { faComment, faHeart, faBookmark } from '@fortawesome/free-regular-svg-ic
 import { faRetweet, faCircle } from "@fortawesome/free-solid-svg-icons";
 const Tweet = (props) => {
   const [heartClicked, setHeartClicked] = useState(false);
+  const [retweetClicked, setRetweetClicked] = useState(false);
   const clickHandler = (e) => {
     e.stopPropagation();
 
     let clickedElement = e.currentTarget.classList;
     if (clickedElement[1] === "heart-button") {
-      console.log(clickedElement)
       setHeartClicked((prev) => !prev);
+    }
+
+    if (clickedElement[1] === "retweet-button") {
+      setRetweetClicked((prev) => !prev);
     }
 
   }
 
   return (
     <div className="tweet-container" onClick={(event) => clickHandler(event)}>
-      {console.log(heartClicked)}
 
       <div className="tweet-content">
         <div className="tweet-avatar">
@@ -51,7 +54,7 @@ const Tweet = (props) => {
           />
         </span>
 
-        <span className="fa-layers retweet-button" onClick={clickHandler}>
+        <span className={`fa-layers retweet-button ${retweetClicked ? "__clicked" : ""}`} onClick={clickHandler}>
           <FontAwesomeIcon
             icon={faRetweet}
             size="lg"
@@ -81,7 +84,8 @@ const Tweet = (props) => {
             className="heart-circle-icon"
             transform="left-4.2"
           />
-        </span>
+          
+          </span>
 
         <span className="fa-layers bookmark-button" onClick={clickHandler}>
           <FontAwesomeIcon
@@ -99,8 +103,6 @@ const Tweet = (props) => {
           />
         </span>
       </div>
-
-      <p>{props.reply_count} {props.retweets} {props.likes}</p>
     </div>
   )
 }
