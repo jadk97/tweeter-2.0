@@ -131,3 +131,27 @@
   opacity: 0%;
 }
 
+.like-counter{
+left: 200%;
+top: -10%;
+
+display: inline-block;
+position: relative;
+text-align: right;
+}
+
+.retweet-counter{
+  left: 275%;
+  top: -10%;
+  display: inline-block;
+  position: relative;
+  text-align: right;
+  }
+
+.reply-counter{
+  left: 250%;
+  top: -10%;
+  display: inline-block;
+  position: relative;
+  text-align: right;
+  }

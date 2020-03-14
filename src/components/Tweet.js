@@ -6,6 +6,7 @@ import { faRetweet, faCircle } from "@fortawesome/free-solid-svg-icons";
 const Tweet = (props) => {
   const [heartClicked, setHeartClicked] = useState(false);
   const [retweetClicked, setRetweetClicked] = useState(false);
+
   const clickHandler = (e) => {
     e.stopPropagation();
 
@@ -52,6 +53,7 @@ const Tweet = (props) => {
             className="reply-circle-icon"
             transform="left-4.5"
           />
+          <span class="reply-counter">{props.replyCount}</span>
         </span>
 
         <span className={`fa-layers retweet-button ${retweetClicked ? "__clicked" : ""}`} onClick={clickHandler}>
@@ -68,6 +70,7 @@ const Tweet = (props) => {
             className="retweet-circle-icon"
             transform="left-3.5"
           />
+          <span class="retweet-counter">{props.retweets}</span>
         </span>
 
         <span className={`fa-layers heart-button ${heartClicked ? "__clicked" : ""}`} onClick={clickHandler}>
@@ -84,7 +87,7 @@ const Tweet = (props) => {
             className="heart-circle-icon"
             transform="left-4.2"
           />
-          
+          <span class="like-counter">{props.likes}</span>
           </span>
 
         <span className="fa-layers bookmark-button" onClick={clickHandler}>

@@ -12,6 +12,8 @@ const TweetList = (props) => (
       posted_at={tweet.posted_at}
       creatorHandle={tweet.creatorHandle}
       likes={tweet.likes}
+      retweets={tweet.retweets}
+      replyCount={tweet.replyCount}
       />
   ))
 )
