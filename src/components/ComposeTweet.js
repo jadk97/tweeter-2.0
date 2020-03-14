@@ -3,7 +3,7 @@ import "./ComposeTweet.css";
 import TextareaAutosize from 'react-textarea-autosize';
 import Button from "./Button";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faImages } from '@fortawesome/free-solid-svg-icons'
+import { faImages } from '@fortawesome/free-solid-svg-icons';
 const ComposeTweet = (props) => {
   const [tweet, setTweet] = useState("");
   const [disabled, setDisabled] = useState(true);
