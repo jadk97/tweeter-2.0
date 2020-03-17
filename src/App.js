@@ -13,6 +13,8 @@ import MainNavigation from './components/MainNavigation';
 import { useTweetInteract } from "./hooks/tweet-interact-hook";
 import Explore from './components/Explore';
 import Notifications from "./components/Notifications";
+import Messages from "./components/Messages";
+import Bookmarks from "./components/Bookmarks";
 function App() {
   const [timeline, handleTweetSubmit, userProfile] = useTweetInteract();
 
@@ -30,6 +32,12 @@ function App() {
               </Route>
               <Route path="/notifications">
               <Notifications />
+              </Route>
+              <Route path="/messages">
+              <Messages/>
+              </Route>
+              <Route path="/bookmarks">
+              <Bookmarks/>
               </Route>
             </Switch>
           </MainNavigation>
