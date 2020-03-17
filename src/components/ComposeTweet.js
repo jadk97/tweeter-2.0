@@ -17,6 +17,7 @@ const ComposeTweet = (props) => {
     // console.log(timeline)
     e.preventDefault();
     props.handleTweetSubmit(tweet);
+    setTweet("");
   }
 
   return (
@@ -25,6 +26,7 @@ const ComposeTweet = (props) => {
         <div className="tweet-box">
           <img className="avatar" src={"https://www.deccanherald.com/sites/dh/files/styles/article_detail/public/article_images/2017/04/04/604513.jpg?itok=FqqfYOfA"} />
           <TextareaAutosize
+            value={tweet}
             className={`tweet-input${tweet.length > 0 ? " __filled" : "" }`}
             placeholder="What's on your mind?"
             onChange={handleChange}
