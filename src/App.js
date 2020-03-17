@@ -22,10 +22,10 @@ function App() {
   if(userProfile){
     console.log(userProfile);
     routes = (
-      <MainNavigation avatar={userProfile.avatar} timeline={timeline} creatorHandle={userProfile.creatorHandle}>
+      <MainNavigation avatar={userProfile.avatar} creatorHandle={userProfile.creatorHandle}>
       <Switch>
         <Route path="/home">
-          <Home handleTweetSubmit={handleTweetSubmit} />
+          <Home />
         </Route>
         <Route path="/explore">
         <Explore/>
