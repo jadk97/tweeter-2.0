@@ -8,6 +8,7 @@ import NavBar from "./components/NavBar";
 import SideBar from "./components/SideBar";
 import ComposeTweet from "./components/ComposeTweet";
 import Header from "./components/Header";
+import MainNavigation from './components/MainNavigation';
 function App() {
   const TWEETS = [
     {
@@ -58,13 +59,15 @@ function App() {
     };
     setTimeline((prev) => [tweet, ...prev])
   }
+
+
   return (
     <Router>
       <div className="App">
         <Switch>
           <Route path="/home">
             <div className="layout">
-              <NavBar avatar={userProfile.avatar}/>
+              <MainNavigation avatar ={userProfile.avatar}>
               <Home>
                 <Header title={"Home"} />
                 <ComposeTweet handleTweetSubmit={handleTweetSubmit} />
@@ -72,7 +75,8 @@ function App() {
                   timeline && <TweetList timeline={timeline} />
                 }
               </Home>
-              <SideBar />
+              
+              </MainNavigation>
             </div>
           </Route>
         </Switch>
