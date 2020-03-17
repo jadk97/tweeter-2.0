@@ -12,27 +12,23 @@ import MainNavigation from './components/MainNavigation';
 
 import { useTweetInteract } from "./hooks/tweet-interact-hook";
 function App() {
-const [timeline, handleTweetSubmit, userProfile] = useTweetInteract();
+  const [timeline, handleTweetSubmit, userProfile] = useTweetInteract();
 
   return (
     <Router>
       <div className="App">
-        <Switch>
-          <Route path="/home">
-            <div className="layout">
-              <MainNavigation avatar ={userProfile.avatar}>
-              <Home>
-                <Header title={"Home"} />
-                <ComposeTweet handleTweetSubmit={handleTweetSubmit} />
-                {
-                  timeline && <TweetList timeline={timeline} />
-                }
-              </Home>
-              
-              </MainNavigation>
-            </div>
-          </Route>
-        </Switch>
+        <div className="layout">
+          <MainNavigation avatar={userProfile.avatar}>
+            <Switch>
+              <Route path="/home">
+                <Home />
+
+
+
+              </Route>
+            </Switch>
+          </MainNavigation>
+        </div>
       </div>
     </Router>
   );
