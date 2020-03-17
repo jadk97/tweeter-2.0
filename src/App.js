@@ -11,6 +11,8 @@ import Header from "./components/Header";
 import MainNavigation from './components/MainNavigation';
 
 import { useTweetInteract } from "./hooks/tweet-interact-hook";
+import Explore from './components/Explore';
+import Notifications from "./components/Notifications";
 function App() {
   const [timeline, handleTweetSubmit, userProfile] = useTweetInteract();
 
@@ -22,9 +24,12 @@ function App() {
             <Switch>
               <Route path="/home">
                 <Home />
-
-
-
+              </Route>
+              <Route path="/explore">
+              <Explore/>
+              </Route>
+              <Route path="/notifications">
+              <Notifications />
               </Route>
             </Switch>
           </MainNavigation>
