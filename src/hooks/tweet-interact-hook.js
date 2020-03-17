@@ -3,7 +3,7 @@ import { useState, useCallback, useEffect } from "react";
 
 
 export const useTweetInteract = (() => {
-  const userProfile = {
+  const TEMP_PROFILE = {
     id: "12345",
     creatorName: "John Doe",
     avatar: "https://www.deccanherald.com/sites/dh/files/styles/article_detail/public/article_images/2017/04/04/604513.jpg?itok=FqqfYOfA",
@@ -35,9 +35,11 @@ export const useTweetInteract = (() => {
     }
   ];
   const [timeline, setTimeline] = useState();
+  const [userProfile, setUserProfile] = useState();
 
   useEffect(() => {
     setTimeline(TWEETS);
+    setUserProfile(TEMP_PROFILE);
   }, []);
 
 

@@ -15,32 +15,41 @@ import Explore from './components/Explore';
 import Notifications from "./components/Notifications";
 import Messages from "./components/Messages";
 import Bookmarks from "./components/Bookmarks";
+import Profile from "./components/Profile";
 function App() {
   const [timeline, handleTweetSubmit, userProfile] = useTweetInteract();
-
+  let routes;
+  if(userProfile){
+    routes = (
+      <MainNavigation avatar={userProfile.avatar} creatorHandle={userProfile.creatorHandle}>
+      <Switch>
+        <Route path="/home">
+          <Home />
+        </Route>
+        <Route path="/explore">
+        <Explore/>
+        </Route>
+        <Route path="/notifications">
+        <Notifications />
+        </Route>
+        <Route path="/messages">
+        <Messages/>
+        </Route>
+        <Route path="/bookmarks">
+        <Bookmarks/>
+        </Route>
+        <Route path="/:creatorHandle">
+          <Profile />
+        </Route>
+      </Switch>
+    </MainNavigation>
+    )
+  }
   return (
     <Router>
       <div className="App">
         <div className="layout">
-          <MainNavigation avatar={userProfile.avatar}>
-            <Switch>
-              <Route path="/home">
-                <Home />
-              </Route>
-              <Route path="/explore">
-              <Explore/>
-              </Route>
-              <Route path="/notifications">
-              <Notifications />
-              </Route>
-              <Route path="/messages">
-              <Messages/>
-              </Route>
-              <Route path="/bookmarks">
-              <Bookmarks/>
-              </Route>
-            </Switch>
-          </MainNavigation>
+         {routes}
         </div>
       </div>
     </Router>
