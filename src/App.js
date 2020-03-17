@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import logo from './logo.svg';
 import './App.css';
 import Home from "./components/Home";
@@ -58,19 +59,25 @@ function App() {
     setTimeline((prev) => [tweet, ...prev])
   }
   return (
-    <div className="App">
-      <div className="layout">
-        <NavBar />
-        <Home>
-          <Header title={"Home"} />
-          <ComposeTweet handleTweetSubmit={handleTweetSubmit} />
-          {
-            timeline && <TweetList timeline={timeline} />
-          }
-        </Home>
-        <SideBar />
+    <Router>
+      <div className="App">
+        <Switch>
+          <Route path="/home">
+            <div className="layout">
+              <NavBar />
+              <Home>
+                <Header title={"Home"} />
+                <ComposeTweet handleTweetSubmit={handleTweetSubmit} />
+                {
+                  timeline && <TweetList timeline={timeline} />
+                }
+              </Home>
+              <SideBar />
+            </div>
+          </Route>
+        </Switch>
       </div>
-    </div>
+    </Router>
   );
 }
 
