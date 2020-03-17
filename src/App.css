@@ -10,3 +10,9 @@
   flex: 1;
 }
 
+.center-view{
+border: 1px solid lightslategray;
+flex: 1;
+order: 2;
+color: white;  
+}
