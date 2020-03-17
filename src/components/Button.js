@@ -7,6 +7,10 @@ const Button = (props) => {
     classes.push("__disabled");
     console.log(classes.join(" "));
   }
+
+  if (props.fullWidth){
+    classes.push("__fullwidth");
+  }
   return(
     <React.Fragment>
     <button {...props} className={"button" + " " + classes.join(" ")}>{props.children}</button>

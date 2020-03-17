@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faHashtag, faBell, faEnvelope, faBookmark, faCircle } from "@fortawesome/free-solid-svg-icons";
+import Button from "./Button";
 import "./NavBar.css";
 const NavBar = (props) => {
   return (
@@ -43,6 +44,9 @@ const NavBar = (props) => {
             <img src={props.avatar} className="fa-li navbar-avatar"/>
             <span>Profile</span>
           </NavLink>
+        </li>
+        <li className="fa-li">
+        <Button fullWidth>Tweet</Button>
         </li>
       </ul>
     </nav>

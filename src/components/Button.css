@@ -16,6 +16,7 @@
 
 .button:hover{
   background-color: #4095c6;
+  cursor: pointer;
 }
 
 .__disabled{
@@ -23,3 +24,6 @@
   pointer-events: none;
 }
 
+.__fullwidth{
+  padding: 0.6em 3em;
+}
