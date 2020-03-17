@@ -8,7 +8,7 @@ const Button = (props) => {
     console.log(classes.join(" "));
   }
 
-  if (props.fullWidth){
+  if (props.fullwidth){
     classes.push("__fullwidth");
   }
   return(

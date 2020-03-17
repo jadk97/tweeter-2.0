@@ -20,11 +20,12 @@ function App() {
   const [timeline, handleTweetSubmit, userProfile] = useTweetInteract();
   let routes;
   if(userProfile){
+    console.log(userProfile);
     routes = (
-      <MainNavigation avatar={userProfile.avatar} creatorHandle={userProfile.creatorHandle}>
+      <MainNavigation avatar={userProfile.avatar} timeline={timeline} creatorHandle={userProfile.creatorHandle}>
       <Switch>
         <Route path="/home">
-          <Home />
+          <Home handleTweetSubmit={handleTweetSubmit} />
         </Route>
         <Route path="/explore">
         <Explore/>

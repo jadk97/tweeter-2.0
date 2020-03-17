@@ -47,7 +47,7 @@ const NavBar = (props) => {
           </NavLink>
         </li>
         <li className="fa-li">
-          <Button fullWidth>Tweet</Button>
+          <Button fullwidth>Tweet</Button>
         </li>
       </ul>
     </nav>

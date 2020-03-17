@@ -4,15 +4,17 @@ import TextareaAutosize from 'react-textarea-autosize';
 import Button from "./Button";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImages } from '@fortawesome/free-solid-svg-icons';
+import { useTweetInteract } from "../hooks/tweet-interact-hook";
+
 const ComposeTweet = (props) => {
   const [tweet, setTweet] = useState("");
   const [disabled, setDisabled] = useState(true);
-
   const handleChange = (e) => {
     setTweet(e.target.value);
   }
 
   const handleSubmit = (e) => {
+    // console.log(timeline)
     e.preventDefault();
     props.handleTweetSubmit(tweet);
   }
