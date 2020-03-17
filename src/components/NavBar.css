@@ -2,6 +2,7 @@ span.logo{
   font-family: "Bungee", cursive;
   font-size: 2em;
   color: white;
+
 }
 
 nav {
@@ -10,17 +11,21 @@ nav {
 
 }
 
-nav ul{
+nav .fa-ul{
   list-style: none;
   text-align: left;
-  padding-left: 70%;
+  padding-left: 60%;
 }
 
 nav ul li {
   text-decoration: none;
-  font-size: 1.5em;
   font-weight: 500;
-  margin-top: 15%;
+  margin-top: 20%;
+  font-size: 1.5em;
+}
+
+nav ul li span{
+  padding-left: 10%;
 }
 
 nav ul a {
@@ -32,3 +37,10 @@ nav ul a.__selected{
   color: #1da1f2;
 }
 
+.navbar-avatar{
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  object-fit: cover;
+ 
+}

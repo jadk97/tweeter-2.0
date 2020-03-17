@@ -64,7 +64,7 @@ function App() {
         <Switch>
           <Route path="/home">
             <div className="layout">
-              <NavBar />
+              <NavBar avatar={userProfile.avatar}/>
               <Home>
                 <Header title={"Home"} />
                 <ComposeTweet handleTweetSubmit={handleTweetSubmit} />
