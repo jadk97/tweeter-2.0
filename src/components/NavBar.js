@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faHashtag, faBell, faEnvelope, faBookmark, faCircle } from "@fortawesome/free-solid-svg-icons";
 import Button from "./Button";
 import "./NavBar.css";
-import { useTweetInteract } from "../hooks/tweet-interact-hook";
+
 const NavBar = (props) => {
   return (
     <nav>

@@ -3,10 +3,12 @@ import "./Tweet.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment, faHeart, faBookmark } from '@fortawesome/free-regular-svg-icons';
 import { faRetweet, faCircle } from "@fortawesome/free-solid-svg-icons";
+import Modal from "./Modal";
+import Button from "./Button";
 const Tweet = (props) => {
   const [heartClicked, setHeartClicked] = useState(false);
   const [retweetClicked, setRetweetClicked] = useState(false);
-
+  const [replyClicked, setReplyClicked] = useState(false);
   const clickHandler = (e) => {
     e.stopPropagation();
 
@@ -19,12 +21,23 @@ const Tweet = (props) => {
       setRetweetClicked((prev) => !prev);
     }
 
+    if (clickedElement[1] ==="reply-button"){
+      setReplyClicked ((prev) => !prev);
+    }
   }
 
   return (
     <div className="tweet-container" onClick={(event) => clickHandler(event)}>
-
-      <div className="tweet-content">
+    <Modal 
+    show={replyClicked}
+    onCancel={() => setReplyClicked(setReplyClicked ((prev) => !prev))}
+    header={"tweet"}
+    contentClass="tweet__modal-content"
+    footerClass="tweet__modal-actions"
+    >
+    <p>FGSFDSS</p>
+    </Modal>  
+    <div className="tweet-content">
         <div className="tweet-avatar">
           <img className="avatar" src={props.avatar} />
         </div>

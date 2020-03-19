@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import "./Home.css";
 import Header from "./Header";
@@ -9,7 +9,7 @@ import { selectTimeline } from "../reducers/timelineSlice";
 
 const Home = (props) => {
   const timeline = useSelector(selectTimeline);
- 
+  
   return (
     <div className="center-view">
       <Header title={"Home"} />
