@@ -1,23 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import logo from './logo.svg';
+import { useSelector, useDispatch } from "react-redux";
+
 import './App.css';
 import Home from "./components/Home";
-import TweetList from "./components/TweetList";
-import NavBar from "./components/NavBar";
-import SideBar from "./components/SideBar";
-import ComposeTweet from "./components/ComposeTweet";
-import Header from "./components/Header";
 import MainNavigation from './components/MainNavigation';
 
-import { useTweetInteract } from "./hooks/tweet-interact-hook";
+// import { useTweetInteract } from "./hooks/tweet-interact-hook";
+
 import Explore from './components/Explore';
 import Notifications from "./components/Notifications";
 import Messages from "./components/Messages";
 import Bookmarks from "./components/Bookmarks";
 import Profile from "./components/Profile";
+import { selectUserProfile } from './reducers/userProfileSlice';
 function App() {
-  const [timeline, handleTweetSubmit, userProfile] = useTweetInteract();
+  // const [timeline, handleTweetSubmit, userProfile] = useTweetInteract();
+  const userProfile = useSelector(selectUserProfile);
+  const dispatch = useDispatch();
+  
+  
   let routes;
   if(userProfile){
     console.log(userProfile);
