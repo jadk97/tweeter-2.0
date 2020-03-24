@@ -35,7 +35,7 @@ const Tweet = (props) => {
         header={"tweet"}
         contentClass="tweet__modal-content"
         footerClass="tweet__modal-actions"
-        footer={<ComposeTweet type="reply"></ComposeTweet>}
+        footer={<ComposeTweet type="reply" replyingTo={props.id}></ComposeTweet>}
       >
         <div className="tweet-content">
           <div className="tweet-avatar">
@@ -44,7 +44,7 @@ const Tweet = (props) => {
           </div>
           <div className="tweet-text">
             <div className="creator-name">
-              {props.creatorName}
+              {props.creatorName} 
               <span className="creator-handle"> {props.creatorHandle}</span>
               <span className="time-tweeted"> - {new Date(props.posted_at).toDateString()}</span>
             </div>

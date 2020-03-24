@@ -32,11 +32,23 @@ export const slice = createSlice({
   reducers: {
     submitTweet: (state, action) => {
       state.unshift(action.payload);
+    },
+    replyTweet: (state, action) => {
+      console.log(action.payload.replyingTo);
+      // console.log(state[action.payload.replyingTo])
+      let tweetRepliedTo = state.findIndex((tweet) => tweet.id === action.payload.replyingTo);
+      console.log("State index found:", tweetRepliedTo)
+      // console.log(state);
+      // console.log(state.id)?
+      // console.log(tweetRepliedTo);
+      state[tweetRepliedTo].replies.push(action.payload);
+      state[tweetRepliedTo].replyCount++;
+      // console.log(state[action.payload.replyingTo].replies);
     }
   }
 });
 
-export const { submitTweet } = slice.actions;
+export const { submitTweet, replyTweet } = slice.actions;
 
 
 export const selectTimeline = state => state.timeline;
