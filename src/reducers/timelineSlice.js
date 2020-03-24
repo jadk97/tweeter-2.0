@@ -18,7 +18,7 @@ export const slice = createSlice({
     },
     {
       id: 2,
-      content: "I like apples, but not oranges.",
+      content: "I LIKE APPPLES AND APPLES AND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND",
       posted_at: Date.now(),
       creatorName: "Ayn Rand",
       creatorHandle: "@AtlasShrugged",
@@ -35,15 +35,9 @@ export const slice = createSlice({
     },
     replyTweet: (state, action) => {
       console.log(action.payload.replyingTo);
-      // console.log(state[action.payload.replyingTo])
       let tweetRepliedTo = state.findIndex((tweet) => tweet.id === action.payload.replyingTo);
-      console.log("State index found:", tweetRepliedTo)
-      // console.log(state);
-      // console.log(state.id)?
-      // console.log(tweetRepliedTo);
       state[tweetRepliedTo].replies.push(action.payload);
       state[tweetRepliedTo].replyCount++;
-      // console.log(state[action.payload.replyingTo].replies);
     }
   }
 });

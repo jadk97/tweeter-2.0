@@ -44,7 +44,7 @@
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: space-between;
-  height: 50px;
+  max-height: 100px;
   margin-bottom: 20px;
 }
 
@@ -161,7 +161,7 @@ text-align: right;
     height: 3rem;
     margin-left: 26px;
     margin-top: 5px;
-    
+    align-self: center;
   }
 
   .tweet__modal-content {
