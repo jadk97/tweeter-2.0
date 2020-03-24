@@ -40,6 +40,7 @@ const Tweet = (props) => {
         <div className="tweet-content">
           <div className="tweet-avatar">
             <img className="avatar" src={props.avatar} />
+            <div className="reply-line"></div>
           </div>
           <div className="tweet-text">
             <div className="creator-name">
@@ -48,7 +49,9 @@ const Tweet = (props) => {
               <span className="time-tweeted"> - {new Date(props.posted_at).toDateString()}</span>
             </div>
             <div>{props.content}</div>
+            <div className="replying-to">Replying to <span>{props.creatorHandle}</span></div>
           </div>
+          
         </div>
       </Modal>
       <div className="tweet-content">

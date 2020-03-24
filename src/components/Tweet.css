@@ -154,3 +154,24 @@ text-align: right;
   position: relative;
   text-align: right;
   }
+
+  .reply-line{
+    background-color: lightslategray;
+    width: 2px;
+    height: 3rem;
+    margin-left: 26px;
+    margin-top: 5px;
+    
+  }
+
+  .tweet__modal-content {
+    margin-bottom: 20px;
+  }
+
+  .replying-to{
+    margin-top: 3rem;
+  }
+
+  .replying-to span{
+    color: #1da1f2;
+  }
