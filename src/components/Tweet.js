@@ -40,7 +40,8 @@ const Tweet = (props) => {
         <div className="tweet-content">
           <div className="tweet-avatar">
             <img className="avatar" src={props.avatar} />
-            <div className="reply-line"></div>
+            <div className="reply-line">
+            </div>
           </div>
           <div className="tweet-text">
             <div className="creator-name">
