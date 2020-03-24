@@ -14,6 +14,7 @@ const Home = (props) => {
     <div className="center-view">
       <Header title={"Home"} />
       <ComposeTweet />
+      <div className="divider"></div>
       {
         timeline && <TweetList timeline={timeline} />
       }

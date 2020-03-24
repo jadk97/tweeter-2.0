@@ -11,9 +11,10 @@ export const slice = createSlice({
       creatorName: "Ayn Rand",
       creatorHandle: "@AtlasShrugged",
       avatar: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg",
-      replyCount: 4,
+      replyCount: 0,
       retweets: 5,
-      likes: 120
+      likes: 120,
+      replies: []
     },
     {
       id: 2,
@@ -22,9 +23,10 @@ export const slice = createSlice({
       creatorName: "Ayn Rand",
       creatorHandle: "@AtlasShrugged",
       avatar: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg",
-      replyCount: 345,
+      replyCount: 0,
       retweets: 500,
-      likes: 2
+      likes: 2,
+      replies: []
     }
   ],
   reducers: {

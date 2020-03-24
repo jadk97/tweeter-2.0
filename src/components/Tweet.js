@@ -5,6 +5,7 @@ import { faComment, faHeart, faBookmark } from '@fortawesome/free-regular-svg-ic
 import { faRetweet, faCircle } from "@fortawesome/free-solid-svg-icons";
 import Modal from "./Modal";
 import Button from "./Button";
+import ComposeTweet from "./ComposeTweet";
 const Tweet = (props) => {
   const [heartClicked, setHeartClicked] = useState(false);
   const [retweetClicked, setRetweetClicked] = useState(false);
@@ -21,23 +22,36 @@ const Tweet = (props) => {
       setRetweetClicked((prev) => !prev);
     }
 
-    if (clickedElement[1] ==="reply-button"){
-      setReplyClicked ((prev) => !prev);
+    if (clickedElement[1] === "reply-button") {
+      setReplyClicked((prev) => !prev);
     }
   }
 
   return (
     <div className="tweet-container" onClick={(event) => clickHandler(event)}>
-    <Modal 
-    show={replyClicked}
-    onCancel={() => setReplyClicked(setReplyClicked ((prev) => !prev))}
-    header={"tweet"}
-    contentClass="tweet__modal-content"
-    footerClass="tweet__modal-actions"
-    >
-    <p>FGSFDSS</p>
-    </Modal>  
-    <div className="tweet-content">
+      <Modal
+        show={replyClicked}
+        onCancel={() => setReplyClicked(setReplyClicked((prev) => !prev))}
+        header={"tweet"}
+        contentClass="tweet__modal-content"
+        footerClass="tweet__modal-actions"
+        footer={<ComposeTweet type="reply"></ComposeTweet>}
+      >
+        <div className="tweet-content">
+          <div className="tweet-avatar">
+            <img className="avatar" src={props.avatar} />
+          </div>
+          <div className="tweet-text">
+            <div className="creator-name">
+              {props.creatorName}
+              <span className="creator-handle"> {props.creatorHandle}</span>
+              <span className="time-tweeted"> - {new Date(props.posted_at).toDateString()}</span>
+            </div>
+            <div>{props.content}</div>
+          </div>
+        </div>
+      </Modal>
+      <div className="tweet-content">
         <div className="tweet-avatar">
           <img className="avatar" src={props.avatar} />
         </div>
@@ -101,7 +115,7 @@ const Tweet = (props) => {
             transform="left-4.2"
           />
           <span className="like-counter">{props.likes}</span>
-          </span>
+        </span>
 
         <span className="fa-layers bookmark-button" onClick={clickHandler}>
           <FontAwesomeIcon

@@ -60,7 +60,7 @@ const ComposeTweet = (props) => {
                 {140 - tweet.length}
               </p>
             </div>
-            <Button disabled={tweet.length === 0 || (tweet.length > 140)}>Tweet</Button>
+            <Button disabled={tweet.length === 0 || (tweet.length > 140)}>{props.type === "reply" ? "Reply" : "Tweet"}</Button>
           </div>
         </div>
       </form>
