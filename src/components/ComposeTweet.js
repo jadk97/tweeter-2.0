@@ -27,12 +27,14 @@ const ComposeTweet = (props) => {
       // console.log(props.replyingTo);
       dispatch(replyTweet({
         id: uuid(),
+        type: "child",
         content: tweet,
         posted_at: Date.now(),
         creatorName: userProfile.creatorName,
         creatorHandle: userProfile.creatorHandle,
         avatar: userProfile.avatar,
         replyCount: 0,
+        replies:[],
         retweets: 0,
         likes: 0,
         replyingTo: props.replyingTo
@@ -41,12 +43,14 @@ const ComposeTweet = (props) => {
     else{
       dispatch(submitTweet({
         id: uuid(),
+        type: "parent",
         content: tweet,
         posted_at: Date.now(),
         creatorName: userProfile.creatorName,
         creatorHandle: userProfile.creatorHandle,
         avatar: userProfile.avatar,
         replyCount: 0,
+        replies: [],
         retweets: 0,
         likes: 0
       }));

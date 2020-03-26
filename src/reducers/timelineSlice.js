@@ -6,6 +6,7 @@ export const slice = createSlice({
   initialState: [
     {
       id: 1,
+      type: "parent",
       content: "What tweeterific tweet",
       posted_at: Date.now(),
       creatorName: "Ayn Rand",
@@ -18,6 +19,7 @@ export const slice = createSlice({
     },
     {
       id: 2,
+      type: "parent",
       content: "I LIKE APPPLES AND APPLES AND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND",
       posted_at: Date.now(),
       creatorName: "Ayn Rand",
