@@ -10,6 +10,7 @@ const Tweet = (props) => {
   const [heartClicked, setHeartClicked] = useState(false);
   const [retweetClicked, setRetweetClicked] = useState(false);
   const [replyClicked, setReplyClicked] = useState(false);
+  console.log(props.replies);
   const clickHandler = (e) => {
     e.stopPropagation();
 
@@ -28,7 +29,7 @@ const Tweet = (props) => {
   }
 
   return (
-    <div className="tweet-container" onClick={(event) => clickHandler(event)}>
+    <div className={`tweet-container ${props.replies && props.replies.length > 0 ? "__replied" : ""}`} onClick={(event) => clickHandler(event)}>
       <Modal
         show={replyClicked}
         onCancel={() => setReplyClicked(setReplyClicked((prev) => !prev))}
@@ -58,6 +59,9 @@ const Tweet = (props) => {
       <div className="tweet-content">
         <div className="tweet-avatar">
           <img className="avatar" src={props.avatar} />
+          {props.replies && props.replies.length > 0 && (
+            <div className="reply-line"></div>
+          )}
         </div>
         <div className="tweet-text">
           <div className="creator-name">

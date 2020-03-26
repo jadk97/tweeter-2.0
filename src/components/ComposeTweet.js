@@ -24,7 +24,7 @@ const ComposeTweet = (props) => {
     // console.log(timeline)
     e.preventDefault();
     if (props.type === "reply") {
-      console.log(props.replyinTo);
+      // console.log(props.replyingTo);
       dispatch(replyTweet({
         id: uuid(),
         content: tweet,

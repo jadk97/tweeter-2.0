@@ -4,7 +4,9 @@
   text-align: left;
   cursor: pointer;
 }
-
+.tweet-container.__replied{
+ border-bottom: none;
+}
 .tweet-container:hover{
   background-color: #253341;
   transition: all 0.2s;
