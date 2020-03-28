@@ -7,13 +7,14 @@ import { faImages } from '@fortawesome/free-solid-svg-icons';
 import { useTweetInteract } from "../hooks/tweet-interact-hook";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUserProfile } from '../reducers/userProfileSlice';
-import { submitTweet, replyTweet } from "../reducers/timelineSlice";
+import { submitTweet, replyTweet, selectTimeline } from "../reducers/timelineSlice";
 import { v4 as uuid } from "uuid";
 
 
 const ComposeTweet = (props) => {
   const [tweet, setTweet] = useState("");
   const userProfile = useSelector(selectUserProfile);
+  // const timeline = useSelector(selectTimeline);
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -23,8 +24,15 @@ const ComposeTweet = (props) => {
   const handleSubmit = (e) => {
     // console.log(timeline)
     e.preventDefault();
-    if (props.type === "reply") {
-      // console.log(props.replyingTo);
+    console.log("This is props.replyingTo:", props.replyingTo);
+    if (props.mode === "reply") {
+      if (props.type === "child") {
+        let replies = []
+        // let parent = timeline.filter((parentTweet) => {
+        //  return parentTweet.id === props.replyingTo[0];
+        // });
+        // console.log("This is the parent: ", parent);
+      }
       dispatch(replyTweet({
         id: uuid(),
         type: "child",
@@ -34,13 +42,13 @@ const ComposeTweet = (props) => {
         creatorHandle: userProfile.creatorHandle,
         avatar: userProfile.avatar,
         replyCount: 0,
-        replies:[],
+        replies: [],
         retweets: 0,
         likes: 0,
-        replyingTo: props.replyingTo
+        replyingTo: [...props.replyingTo]
       }))
     }
-    else{
+    else {
       dispatch(submitTweet({
         id: uuid(),
         type: "parent",

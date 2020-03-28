@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { v4 as uuid } from "uuid";
+
 
 export const slice = createSlice({
   name: "timeline",
   initialState: [
     {
-      id: 1,
+      id: "tweet1",
       type: "parent",
       content: "What tweeterific tweet",
       posted_at: Date.now(),
@@ -18,7 +18,7 @@ export const slice = createSlice({
       replies: []
     },
     {
-      id: 2,
+      id: "tweet2",
       type: "parent",
       content: "I LIKE APPPLES AND APPLES AND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND",
       posted_at: Date.now(),
@@ -37,9 +37,19 @@ export const slice = createSlice({
     },
     replyTweet: (state, action) => {
       console.log(action.payload.replyingTo);
-      let tweetRepliedTo = state.findIndex((tweet) => tweet.id === action.payload.replyingTo);
-      state[tweetRepliedTo].replies.push(action.payload);
-      state[tweetRepliedTo].replyCount++;
+      state.unshift(action.payload);
+      let replyChain = action.payload.replyingTo;
+      console.log("This is the replyChain", replyChain);
+      for (let reply of replyChain){
+        let tweetRepliedTo= state.findIndex((tweet) => tweet.id === reply);
+        state[tweetRepliedTo].replies.push(action.payload);
+        state[tweetRepliedTo].replyCount++;
+      }
+      console.log("THIS IS THE CURRENT STATE", state);
+      // let tweetRepliedTo = state.findIndex((tweet) => tweet.id === action.payload.replyingTo[0]);
+      // console.log("This is tweetReplidTo inside timelineSlice.js", tweetRepliedTo);
+      // state[tweetRepliedTo].replies.push(action.payload);
+      // state[tweetRepliedTo].replyCount++;
     }
   }
 });
