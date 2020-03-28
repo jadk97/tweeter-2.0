@@ -66,11 +66,15 @@ export const slice = createSlice({
 
       _.set(state, pathToTweet, [..._.get(state, pathToTweet), action.payload]);
       pathToTweet[pathToTweet.length - 1] = "replyCount";
-      _.set(state, pathToTweet, _.get(state, pathToTweet) + 1)
-      // if(parentTweet)
+      _.set(state, pathToTweet, _.get(state, pathToTweet) + 1);
+
     },
     likeTweet: (state, action) => {
-      console.log(action.payload);
+      let tweetLiked = action.payload.id;
+      let pathToTweet = findPath(tweetLiked, state).split(".");
+      pathToTweet[pathToTweet.length - 1] = "likes";
+
+      _.set(state, pathToTweet, _.get(state, pathToTweet) + 1);
     }
   }
 });
