@@ -14,7 +14,7 @@ export const slice = createSlice({
       creatorName: "Ayn Rand",
       creatorHandle: "@AtlasShrugged",
       avatar: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg",
-      replyCount: 0,
+      replyCount: 1,
       retweets: 5,
       likes: 120,
       replies: [{
@@ -54,25 +54,20 @@ export const slice = createSlice({
       let tweetRepliedTo = action.payload.replyingTo[action.payload.replyingTo.length - 1];
 
       let pathToTweet = findPath(tweetRepliedTo, state).split(".");
+      console.log("THE CURRENT PATH TO TWEET IS:", _.get(state, pathToTweet));
+      let parentTweet = state.findIndex((tweet) => tweet.id === action.payload.replyingTo[0]);
+      console.log("THIS IS THE PARENT TWEET: ", parentTweet);
+      if(state[parentTweet].id !== _.get(state, pathToTweet)){
+        state[parentTweet].replyCount++;
+  
+      }
       pathToTweet[pathToTweet.length - 1] = "replies";
-      console.log(pathToTweet)
- 
+   
+      
      _.set(state, pathToTweet, [..._.get(state, pathToTweet), action.payload]);
-    //   console.log(action.payload.replyingTo);
-    //   state.unshift(action.payload);
-    //   let replyChain = action.payload.replyingTo;
-    //   console.log("This is the replyChain", replyChain);
-    //   for (let reply of replyChain){
-    //     let tweetRepliedTo= state.findIndex((tweet) => tweet.id === reply);
-    //     state[tweetRepliedTo].replies.push(action.payload);
-    //     state[tweetRepliedTo].replyCount++;
-    //   }
-    //   console.log("THIS IS THE CURRENT STATE", state);
-    //   // let tweetRepliedTo = state.findIndex((tweet) => tweet.id === action.payload.replyingTo[0]);
-    //   // console.log("This is tweetReplidTo inside timelineSlice.js", tweetRepliedTo);
-    //   // state[tweetRepliedTo].replies.push(action.payload);
-    //   // state[tweetRepliedTo].replyCount++;
-    // }
+     pathToTweet[pathToTweet.length - 1] = "replyCount";
+     _.set(state, pathToTweet, _.get(state, pathToTweet)+1)
+    // if(parentTweet)
   }
 }
 });
