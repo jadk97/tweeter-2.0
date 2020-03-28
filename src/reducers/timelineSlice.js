@@ -57,22 +57,25 @@ export const slice = createSlice({
       console.log("THE CURRENT PATH TO TWEET IS:", _.get(state, pathToTweet));
       let parentTweet = state.findIndex((tweet) => tweet.id === action.payload.replyingTo[0]);
       console.log("THIS IS THE PARENT TWEET: ", parentTweet);
-      if(state[parentTweet].id !== _.get(state, pathToTweet)){
+      if (state[parentTweet].id !== _.get(state, pathToTweet)) {
         state[parentTweet].replyCount++;
-  
+
       }
       pathToTweet[pathToTweet.length - 1] = "replies";
-   
-      
-     _.set(state, pathToTweet, [..._.get(state, pathToTweet), action.payload]);
-     pathToTweet[pathToTweet.length - 1] = "replyCount";
-     _.set(state, pathToTweet, _.get(state, pathToTweet)+1)
-    // if(parentTweet)
+
+
+      _.set(state, pathToTweet, [..._.get(state, pathToTweet), action.payload]);
+      pathToTweet[pathToTweet.length - 1] = "replyCount";
+      _.set(state, pathToTweet, _.get(state, pathToTweet) + 1)
+      // if(parentTweet)
+    },
+    likeTweet: (state, action) => {
+      console.log(action.payload);
+    }
   }
-}
 });
 
-export const { submitTweet, replyTweet } = slice.actions;
+export const { submitTweet, replyTweet, likeTweet } = slice.actions;
 
 
 export const selectTimeline = state => state.timeline;
