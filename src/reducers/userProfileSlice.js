@@ -16,12 +16,16 @@ export const slice = createSlice({
     getUser: state => state,
     addLikedTweet: (state, action) => {
       state.likedTweets.push(action.payload);
+    },
+    removeLikedTweet: (state, action) => {
+      let tweetToRemove = state.likedTweets.findIndex((tweet) => tweet.id === action.payload.id);
+      console.log("THIS IS THE TWEET TO REMOVE", tweetToRemove);
+      state.likedTweets.splice(tweetToRemove, 1);
     }
-
   }
 });
 
-export const { getUser, addLikedTweet } = slice.actions;
+export const { getUser, addLikedTweet, removeLikedTweet } = slice.actions;
 
 
 export const selectUserProfile = state => state.userProfile;
