@@ -75,6 +75,9 @@ export const slice = createSlice({
       pathToTweet[pathToTweet.length - 1] = "likes";
 
       _.set(state, pathToTweet, _.get(state, pathToTweet) + 1);
+    },
+    unlikeTweet: (state, action) => {
+      
     }
   }
 });

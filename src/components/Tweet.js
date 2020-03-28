@@ -9,7 +9,7 @@ import ComposeTweet from "./ComposeTweet";
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectUserProfile } from '../reducers/userProfileSlice';
-import { likeTweet } from "../reducers/timelineSlice";
+import { likeTweet, unlikeTweet } from "../reducers/timelineSlice";
 import { selectTimeline } from "../reducers/timelineSlice";
 
 const Tweet = ({ tweet }) => {
@@ -26,7 +26,9 @@ const Tweet = ({ tweet }) => {
     let clickedElement = e.currentTarget.classList;
     if (clickedElement[1] === "heart-button") {
       setHeartClicked((prev) => !prev);
-      dispatch(likeTweet({ ...tweet }))
+      if(!heartClicked){
+        dispatch(likeTweet({ ...tweet }));
+      }
     }
 
     if (clickedElement[1] === "retweet-button") {
