@@ -77,12 +77,16 @@ export const slice = createSlice({
       _.set(state, pathToTweet, _.get(state, pathToTweet) + 1);
     },
     unlikeTweet: (state, action) => {
-      
+      let tweetUnliked = action.payload.id;
+      let pathToTweet = findPath(tweetUnliked, state).split(".");
+      pathToTweet[pathToTweet.length - 1] = "likes";
+
+      _.set(state, pathToTweet, _.get(state, pathToTweet) - 1);
     }
   }
 });
 
-export const { submitTweet, replyTweet, likeTweet } = slice.actions;
+export const { submitTweet, replyTweet, likeTweet, unlikeTweet } = slice.actions;
 
 
 export const selectTimeline = state => state.timeline;

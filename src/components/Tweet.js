@@ -26,9 +26,13 @@ const Tweet = ({ tweet }) => {
     let clickedElement = e.currentTarget.classList;
     if (clickedElement[1] === "heart-button") {
       setHeartClicked((prev) => !prev);
-      if(!heartClicked){
-        dispatch(likeTweet({ ...tweet }));
-      }
+      // if(!heartClicked){
+      //   dispatch(likeTweet({ ...tweet }));
+      // }
+      // else{
+
+      // }
+      heartClicked ? dispatch(unlikeTweet({ ...tweet })) : dispatch(likeTweet({ ...tweet }));
     }
 
     if (clickedElement[1] === "retweet-button") {
