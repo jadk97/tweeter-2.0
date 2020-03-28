@@ -15,7 +15,7 @@ export const slice = createSlice({
   reducers: {
     getUser: state => state,
     addLikedTweet: (state, action) => {
-      
+      state.likedTweets.push(action.payload);
     }
 
   }
