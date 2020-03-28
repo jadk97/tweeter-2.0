@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 
-  
+
 
 export const slice = createSlice({
   name: "userProfile",
-  initialState:  {
+  initialState: {
     creatorName: "John Doe",
     avatar: "https://www.deccanherald.com/sites/dh/files/styles/article_detail/public/article_images/2017/04/04/604513.jpg?itok=FqqfYOfA",
     creatorHandle: "@JohnDoe",
@@ -13,11 +13,15 @@ export const slice = createSlice({
     tweets: []
   },
   reducers: {
-    getUser: state => state
+    getUser: state => state,
+    addLikedTweet: (state, action) => {
+      
+    }
+
   }
 });
 
-export const { getUser } = slice.actions;
+export const { getUser, addLikedTweet } = slice.actions;
 
 
 export const selectUserProfile = state => state.userProfile;
