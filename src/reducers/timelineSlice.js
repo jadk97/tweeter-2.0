@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import findPath from "../helpers/findPath";
 
+import _ from "lodash";
 
 export const slice = createSlice({
   name: "timeline",
@@ -51,6 +53,11 @@ export const slice = createSlice({
     replyTweet: (state, action) => {
       let tweetRepliedTo = action.payload.replyingTo[action.payload.replyingTo.length - 1];
 
+      let pathToTweet = findPath(tweetRepliedTo, state).split(".");
+      pathToTweet[pathToTweet.length - 1] = "replies";
+      console.log(pathToTweet)
+ 
+     _.set(state, pathToTweet, [..._.get(state, pathToTweet), action.payload]);
     //   console.log(action.payload.replyingTo);
     //   state.unshift(action.payload);
     //   let replyChain = action.payload.replyingTo;
