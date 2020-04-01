@@ -5,7 +5,7 @@ const Profile = (props) => {
   let { creatorHandle } = useParams();
   return (
     <div className="center-view">
-      <Header title={creatorHandle} />
+      <Header title={"@"+creatorHandle} />
     </div>
   )
 }

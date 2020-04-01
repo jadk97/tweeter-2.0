@@ -8,7 +8,7 @@ export const slice = createSlice({
   initialState: {
     creatorName: "John Doe",
     avatar: "https://www.deccanherald.com/sites/dh/files/styles/article_detail/public/article_images/2017/04/04/604513.jpg?itok=FqqfYOfA",
-    creatorHandle: "@JohnDoe",
+    creatorHandle: "JohnDoe",
     likedTweets: [],
     tweets: []
   },

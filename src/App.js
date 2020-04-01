@@ -14,6 +14,8 @@ import Messages from "./components/Messages";
 import Bookmarks from "./components/Bookmarks";
 import Profile from "./components/Profile";
 import { selectUserProfile } from './reducers/userProfileSlice';
+import Tweet from "./components/Tweet";
+
 function App() {
   // const [timeline, handleTweetSubmit, userProfile] = useTweetInteract();
   const userProfile = useSelector(selectUserProfile);
@@ -40,6 +42,9 @@ function App() {
         </Route>
         <Route path="/bookmarks">
         <Bookmarks/>
+        </Route>
+        <Route path="/:creatorHandle/status/:id">
+          <Tweet />
         </Route>
         <Route path="/:creatorHandle">
           <Profile />

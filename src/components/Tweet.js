@@ -74,11 +74,11 @@ const Tweet = ({ tweet }) => {
             <div className="tweet-text">
               <div className="creator-name">
                 {tweet.creatorName}
-                <span className="creator-handle"> {tweet.creatorHandle}</span>
+                <span className="creator-handle"> @{tweet.creatorHandle}</span>
                 <span className="time-tweeted"> - {new Date(tweet.posted_at).toDateString()}</span>
               </div>
               <div>{tweet.content}</div>
-              <div className="replying-to">Replying to <span>{tweet.creatorHandle}</span></div>
+              <div className="replying-to">Replying to <span>@{tweet.creatorHandle}</span></div>
             </div>
 
           </div>
@@ -95,7 +95,7 @@ const Tweet = ({ tweet }) => {
           <div className="tweet-text">
             <div className="creator-name">
               {tweet.creatorName}
-              <span className="creator-handle"> {tweet.creatorHandle}</span>
+              <span className="creator-handle"> @{tweet.creatorHandle}</span>
               <span className="time-tweeted"> - {new Date(tweet.posted_at).toDateString()}</span>
             </div>
             <div>{tweet.content}</div>
