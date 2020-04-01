@@ -24,9 +24,14 @@ const Tweet = ({ tweet }) => {
 
   const clickHandler = (e) => {
     e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
 
     let clickedElement = e.currentTarget.classList;
     console.log(clickedElement);
+    if(clickedElement[0] === "tweet-container"){
+      console.log("Tweet container clicked");
+      history.push(`/${tweet.creatorHandle}/status/${tweet.id}`);
+    }
     if (clickedElement[1] === "heart-button") {
       setHeartClicked((prev) => !prev);
       if (!heartClicked) {
@@ -48,10 +53,6 @@ const Tweet = ({ tweet }) => {
     if (clickedElement[1] === "reply-button") {
       setReplyClicked((prev) => !prev);
     }
-    if(clickedElement[0] === "tweet-container"){
-      console.log("Tweet container clicked");
-      history.push(`/${tweet.creatorHandle}/status/${tweet.id}`);
-    }
   }
 
   const handleModalSubmit = () => {
@@ -63,33 +64,33 @@ const Tweet = ({ tweet }) => {
   })
   return (
     <React.Fragment>
-      <div className={`tweet-container ${tweet.replies && tweet.replies.length > 0 ? "__replied" : ""}`} onClick={(event) => clickHandler(event)}>
-        <Modal
-          show={replyClicked}
-          onCancel={() => setReplyClicked(setReplyClicked((prev) => !prev))}
-          header={"tweet"}
-          contentClass="tweet__modal-content"
-          footerClass="tweet__modal-actions"
-          footer={<ComposeTweet type={tweet.type} mode="reply" modalSubmit = {handleModalSubmit} replyingTo={tweet.type === "parent" ? [tweet.id] : [...tweet.replyingTo, tweet.id]}></ComposeTweet>}
-        >
-          <div className="tweet-content">
-            <div className="tweet-avatar">
-              <img className="avatar" src={tweet.avatar} />
-              <div className="reply-line">
-              </div>
-            </div>
-            <div className="tweet-text">
-              <div className="creator-name">
-                {tweet.creatorName}
-                <span className="creator-handle"> @{tweet.creatorHandle}</span>
-                <span className="time-tweeted"> - {new Date(tweet.posted_at).toDateString()}</span>
-              </div>
-              <div>{tweet.content}</div>
-              <div className="replying-to">Replying to <span>@{tweet.creatorHandle}</span></div>
-            </div>
-
+    <Modal
+      show={replyClicked}
+      onCancel={() => setReplyClicked(setReplyClicked((prev) => !prev))}
+      header={"tweet"}
+      contentClass="tweet__modal-content"
+      footerClass="tweet__modal-actions"
+      footer={<ComposeTweet type={tweet.type} mode="reply" modalSubmit = {handleModalSubmit} replyingTo={tweet.type === "parent" ? [tweet.id] : [...tweet.replyingTo, tweet.id]}></ComposeTweet>}
+    >
+      <div className="tweet-content">
+        <div className="tweet-avatar">
+          <img className="avatar" src={tweet.avatar} />
+          <div className="reply-line">
           </div>
-        </Modal>
+        </div>
+        <div className="tweet-text">
+          <div className="creator-name">
+            {tweet.creatorName}
+            <span className="creator-handle"> @{tweet.creatorHandle}</span>
+            <span className="time-tweeted"> - {new Date(tweet.posted_at).toDateString()}</span>
+          </div>
+          <div>{tweet.content}</div>
+          <div className="replying-to">Replying to <span>@{tweet.creatorHandle}</span></div>
+        </div>
+
+      </div>
+    </Modal>
+      <div className={`tweet-container ${tweet.replies && tweet.replies.length > 0 ? "__replied" : ""}`} onClick={(event) => clickHandler(event)}>
 
 
         <div className="tweet-content">
