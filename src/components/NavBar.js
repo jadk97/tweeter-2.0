@@ -1,13 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faHashtag, faBell, faEnvelope, faBookmark, faCircle } from "@fortawesome/free-solid-svg-icons";
 import Button from "./Button";
+import Modal from "./Modal";
 import "./NavBar.css";
+import ComposeTweet from "./ComposeTweet";
 
 const NavBar = (props) => {
+
+  const [showModal, setShowModal] = useState(false);
+
+  const handleModalSubmit = () => {
+    setShowModal(false);
+  }
+
   return (
     <nav>
+      <Modal
+        show={showModal}
+        onCancel={() => setShowModal(false)}
+        header={"tweet"}
+        className={"navbar"}
+        contentClass="tweet__modal-content-navbar"
+        footerClass="tweet__modal-footer-navbar"
+        footer={<ComposeTweet modalSubmit={handleModalSubmit} />}
+      >
+      </Modal>
       <ul className="fa-ul">
         <span className="logo">Tweeter</span>
         <li>
@@ -47,7 +66,7 @@ const NavBar = (props) => {
           </NavLink>
         </li>
         <li className="fa-li">
-          <Button fullwidth={"fullwidth" ? 1 : 0}>Tweet</Button>
+          <Button fullwidth={"fullwidth" ? 1 : 0} onClick={() => setShowModal(true)}>Tweet</Button>
         </li>
       </ul>
     </nav>

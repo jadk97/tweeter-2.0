@@ -44,3 +44,11 @@ nav ul a.__selected{
   object-fit: cover;
  
 }
+
+.modal__footer.tweet__modal-footer-navbar .tweet-submit-options{
+  padding-top: 10%;
+}
+
+.modal__content.tweet__modal-content-navbar{
+  display:none;
+}
