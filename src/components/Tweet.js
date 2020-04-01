@@ -121,11 +121,11 @@ const Tweet = ({ tweet, focusedView }) => {
             {tweet.content}
             <div className="time-tweeted"> {new Date(tweet.posted_at).toDateString()}</div>
             </div>
-            <div className="tweet-stats">
-                {tweet.likes && <div>
+            <div className={`tweet-stats ${tweet.likes === 0 && tweet.retweets === 0 ? "__none" : ""}`}>
+                {tweet.likes > 0 && <div>
                   <span>{tweet.likes}</span> Likes
                   </div>}
-                  {tweet.retweets && <div>
+                  {tweet.retweets > 0 && <div>
                     <span>{tweet.retweets}</span> Retweets
                     </div>}
             </div>

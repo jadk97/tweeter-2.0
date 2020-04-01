@@ -196,21 +196,19 @@ text-align: right;
 
   .tweet-container.__focused .tweet-body{
     font-size: 1.4em;
-    padding-left: 1%;
-    margin-bottom: 4%;
+   
   }
 
   .tweet-container.__focused .time-tweeted{
     margin-top: 5%;
-    padding-left: 0.5%;
+    
     font-size: 0.7em;
-    margin-bottom: 4%;
   }
 
   .tweet-container.__focused .tweet-stats{
    display: flex;
    flex-direction: row;
-   
+   margin-top: 3%;
    justify-content: flex-start;
    border: 1px solid lightslategray;
    border-left:none;
@@ -218,6 +216,12 @@ text-align: right;
    padding-top: 15px;
    padding-bottom: 15px;
    margin-bottom: 4%;
+  }
+
+  .tweet-container.__focused .tweet-stats.__none{
+    border-top: none;
+    margin-top: 0px;
+    padding-top: 0px;
   }
 
   .tweet-container.__focused .tweet-stats div{
@@ -229,3 +233,4 @@ text-align: right;
   .tweet-container.__focused .tweet-stats span{
     color: white;
   }
+
