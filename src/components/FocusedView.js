@@ -19,10 +19,11 @@ const FocusedView = (props) => {
   // console.log(_.get(timeline, pathToTweet));
   let tweetToFocus = _.get(timeline, pathToTweet);
   console.log("TWEET TO FOCUS: ", tweetToFocus);
+  let focusedView=true;
   return(
     <div className="center-view">
       <Header title={"Tweet"} />
-        <Tweet focusedView={true} id={id} tweet={tweetToFocus} />
+        <Tweet focusedView={focusedView} id={id} tweet={tweetToFocus} />
     </div>
   )
 }

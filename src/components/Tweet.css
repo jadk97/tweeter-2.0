@@ -177,3 +177,55 @@ text-align: right;
   .replying-to span{
     color: #1da1f2;
   }
+
+  .tweet-container.__focused{
+    border-bottom: 1px solid lightslategray;
+    padding: 15px 15px 20px 15px;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .tweet-container.__focused .tweet-content .tweet-avatar .reply-line{
+    display:none;
+    
+  }
+
+  .tweet-container.__focused .tweet-content{
+    font-size: 1.1em;
+  }
+
+  .tweet-container.__focused .tweet-body{
+    font-size: 1.4em;
+    padding-left: 1%;
+    margin-bottom: 4%;
+  }
+
+  .tweet-container.__focused .time-tweeted{
+    margin-top: 5%;
+    padding-left: 0.5%;
+    font-size: 0.7em;
+    margin-bottom: 4%;
+  }
+
+  .tweet-container.__focused .tweet-stats{
+   display: flex;
+   flex-direction: row;
+   
+   justify-content: flex-start;
+   border: 1px solid lightslategray;
+   border-left:none;
+   border-right: none;
+   padding-top: 15px;
+   padding-bottom: 15px;
+   margin-bottom: 4%;
+  }
+
+  .tweet-container.__focused .tweet-stats div{
+    color: lightslategray;
+    margin-left: 1.4%;
+    padding-right: 4%;
+  }
+
+  .tweet-container.__focused .tweet-stats span{
+    color: white;
+  }
