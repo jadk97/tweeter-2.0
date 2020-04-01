@@ -90,7 +90,7 @@ const Tweet = ({ tweet }) => {
 
       </div>
     </Modal>
-      <div className={`tweet-container ${tweet.replies && tweet.replies.length > 0 ? "__replied" : ""}`} onClick={(event) => clickHandler(event)}>
+      <div className={`tweet-container ${tweet.focusedView ? "__focused" : ""} ${tweet.replies && tweet.replies.length > 0 ? "__replied" : ""}`} onClick={(event) => clickHandler(event)}>
 
 
         <div className="tweet-content">
