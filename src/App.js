@@ -14,7 +14,7 @@ import Messages from "./components/Messages";
 import Bookmarks from "./components/Bookmarks";
 import Profile from "./components/Profile";
 import { selectUserProfile } from './reducers/userProfileSlice';
-import Tweet from "./components/Tweet";
+import FocusedView from "./components/FocusedView";
 
 function App() {
   // const [timeline, handleTweetSubmit, userProfile] = useTweetInteract();
@@ -44,7 +44,7 @@ function App() {
         <Bookmarks/>
         </Route>
         <Route path="/:creatorHandle/status/:id">
-          <Tweet />
+          <FocusedView />
         </Route>
         <Route path="/:creatorHandle">
           <Profile />

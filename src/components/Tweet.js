@@ -7,6 +7,7 @@ import Modal from "./Modal";
 import Button from "./Button";
 import ComposeTweet from "./ComposeTweet";
 
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUserProfile, addLikedTweet, removeLikedTweet } from '../reducers/userProfileSlice';
 import { likeTweet, unlikeTweet } from "../reducers/timelineSlice";
@@ -17,6 +18,7 @@ const Tweet = ({ tweet }) => {
   const [retweetClicked, setRetweetClicked] = useState(false);
   const [replyClicked, setReplyClicked] = useState(false);
   const dispatch = useDispatch();
+  let history = useHistory();
   // console.log(tweet.replies);
   // let hasReplies = tweet.replies && tweet.replies.length > 0;
 
@@ -24,6 +26,7 @@ const Tweet = ({ tweet }) => {
     e.stopPropagation();
 
     let clickedElement = e.currentTarget.classList;
+    console.log(clickedElement);
     if (clickedElement[1] === "heart-button") {
       setHeartClicked((prev) => !prev);
       if (!heartClicked) {
@@ -44,6 +47,10 @@ const Tweet = ({ tweet }) => {
 
     if (clickedElement[1] === "reply-button") {
       setReplyClicked((prev) => !prev);
+    }
+    if(clickedElement[0] === "tweet-container"){
+      console.log("Tweet container clicked");
+      history.push(`/${tweet.creatorHandle}/status/${tweet.id}`);
     }
   }
 
