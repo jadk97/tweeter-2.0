@@ -47,6 +47,10 @@ const Tweet = ({ tweet }) => {
     }
   }
 
+  const handleModalSubmit = () => {
+    setReplyClicked(false);
+  }
+
   const tweetChain = (tweet.replies || []).map(tweet => {
     return <Tweet key={tweet.id} tweet={tweet} type="child" />
   })
@@ -59,7 +63,7 @@ const Tweet = ({ tweet }) => {
           header={"tweet"}
           contentClass="tweet__modal-content"
           footerClass="tweet__modal-actions"
-          footer={<ComposeTweet type={tweet.type} mode="reply" replyingTo={tweet.type === "parent" ? [tweet.id] : [...tweet.replyingTo, tweet.id]}></ComposeTweet>}
+          footer={<ComposeTweet type={tweet.type} mode="reply" modalSubmit = {handleModalSubmit} replyingTo={tweet.type === "parent" ? [tweet.id] : [...tweet.replyingTo, tweet.id]}></ComposeTweet>}
         >
           <div className="tweet-content">
             <div className="tweet-avatar">

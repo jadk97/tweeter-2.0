@@ -46,7 +46,8 @@ const ComposeTweet = (props) => {
         retweets: 0,
         likes: 0,
         replyingTo: [...props.replyingTo]
-      }))
+      }));
+      props.modalSubmit();
     }
     else {
       dispatch(submitTweet({
@@ -65,6 +66,7 @@ const ComposeTweet = (props) => {
       setTweet("");
     }
   }
+
 
   return (
     <div className="compose-tweet">
