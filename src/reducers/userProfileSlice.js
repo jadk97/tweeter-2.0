@@ -21,6 +21,9 @@ export const slice = createSlice({
       let tweetToRemove = state.likedTweets.findIndex((tweet) => tweet.id === action.payload.id);
       console.log("THIS IS THE TWEET TO REMOVE", tweetToRemove);
       state.likedTweets.splice(tweetToRemove, 1);
+    },
+    addTweet: (state, action) => {
+      state.tweets.push(action.payload);
     }
   }
 });

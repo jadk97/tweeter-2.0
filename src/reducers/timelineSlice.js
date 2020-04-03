@@ -44,6 +44,32 @@ export const slice = createSlice({
       retweets: 500,
       likes: 2,
       replies: []
+    },
+    {
+      id: "tweet4",
+      type: "parent",
+      content: "Bananas",
+      posted_at: Date.now(),
+      creatorName: "Ernest Hemingway",
+      creatorHandle: "EHemWay",
+      avatar: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/ErnestHemingway.jpg/220px-ErnestHemingway.jpg",
+      replyCount: 0,
+      retweets: 500,
+      likes: 2,
+      replies: []
+    },
+    {
+      id: "tweet5",
+      type: "parent",
+      content: "But also pineapples.",
+      posted_at: Date.now(),
+      creatorName: "ErnestHemingway",
+      creatorHandle: "EHemWay",
+      avatar: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/ErnestHemingway.jpg/220px-ErnestHemingway.jpg",
+      replyCount: 0,
+      retweets: 500,
+      likes: 2,
+      replies: []
     }
   ],
   reducers: {
