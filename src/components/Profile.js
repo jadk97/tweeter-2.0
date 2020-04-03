@@ -16,7 +16,10 @@ const Profile = (props) => {
       creatorName: "Ayn Rand",
       creatorHandle: "AynRand",
       avatar: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg",
-      description: "I wrote The Fountainhead and Atlas Shrugged",
+      bio: "I wrote The Fountainhead and Atlas Shrugged",
+      joined: Date.now(),
+      website: "https://en.wikipedia.org/wiki/Ayn_Rand",
+      location: null,
       likedTweets: [],
       tweets: [{
         id: "tweet1",
@@ -56,13 +59,31 @@ const Profile = (props) => {
         retweets: 500,
         likes: 2,
         replies: []
-      }]
+      },
+      {
+        id: "tweet3",
+        type: "child",
+        content: "Oranges.",
+        posted_at: Date.now(),
+        creatorName: "Ayn Rand",
+        creatorHandle: "AtlasShrugged",
+        avatar: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg",
+        replyCount: 0,
+        retweets: 500,
+        likes: 2,
+        replies: [],
+        replyingTo: ["tweet1"]
+      }
+    ]
     },
     {
       creatorName: "Ernest Hemingway",
       creatorHandle: "EHemWay",
       avatar: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/ErnestHemingway.jpg/220px-ErnestHemingway.jpg",
-      description: "I wrote For Whom the Bell Tolls",
+      bio: "I wrote For Whom the Bell Tolls",
+      joined: Date.now(),
+      website: null,
+      location: "Oak Park, Illinois, U.S.",
       likedTweets: [],
       tweets: [ {
         id: "tweet4",
@@ -99,8 +120,8 @@ const Profile = (props) => {
     <div className="center-view">
       <Header title={"@"+creatorHandle} />
       <div>
-
-        {renderedUser[0].description}
+        Date joined: {new Date(renderedUser[0].joined).toDateString()}
+        {renderedUser[0].bio}
       </div>
       <TweetList timeline={renderedUser[0].tweets} />
     </div>
