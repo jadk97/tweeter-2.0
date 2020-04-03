@@ -1,8 +1,16 @@
 import React from "react";
 import Header from "./Header";
+import TweetList from "../components/TweetList";
+
 import { useParams } from "react-router-dom";
+import { selectUserProfile } from "../reducers/userProfileSlice";
+import { useSelector } from "react-redux";
+
+
 const Profile = (props) => {
   let { creatorHandle } = useParams();
+  const userProfile = useSelector(selectUserProfile);
+
   let userList = [
     {
       creatorName: "Ayn Rand",
@@ -83,13 +91,18 @@ const Profile = (props) => {
         replies: []
       }]
     }
-  ]
+  ];
+
+  let renderedUser = userList.filter((user) => user.creatorHandle === creatorHandle);
+  console.log(renderedUser);
   return (
     <div className="center-view">
       <Header title={"@"+creatorHandle} />
       <div>
-      
+
+        {renderedUser[0].description}
       </div>
+      <TweetList timeline={renderedUser[0].tweets} />
     </div>
   )
 }

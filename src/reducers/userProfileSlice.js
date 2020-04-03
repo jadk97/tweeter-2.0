@@ -9,6 +9,7 @@ export const slice = createSlice({
     creatorName: "John Doe",
     avatar: "https://www.deccanherald.com/sites/dh/files/styles/article_detail/public/article_images/2017/04/04/604513.jpg?itok=FqqfYOfA",
     creatorHandle: "JohnDoe",
+    description: "I am but a simple test user",
     likedTweets: [],
     tweets: []
   },
