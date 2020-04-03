@@ -1,0 +1,52 @@
+.profile-header{
+  display: flex;
+  flex-direction: column;
+  padding-left: 15px;
+  padding-bottom: 5%;
+  border-bottom: 1px solid lightslategray;
+}
+
+.profile-header .profile-text-content .creator-name{
+  font-size: 1.5em;
+  padding-bottom: 0%;
+}
+.profile-interactables{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 2%;
+  margin-right: 2%;
+}
+.profile-avatar{
+  border-radius: 50%;
+  border: 5px solid black;
+  width: 9rem;
+  height: 9rem;
+  object-fit: cover;
+  margin-right: 2%;
+  position: absolute;
+  left: 15px;
+  bottom: -25%;
+  z-index: 2;
+}
+
+.profile-text-content{
+  text-align: left;
+}
+
+.profile-banner{
+  display: inline-block;
+  width: 100%;
+}
+
+
+
+.profile-images{
+  position: relative;
+
+}
+
+.profile-text-content .bio{
+  margin-top: 1%;
+  margin-bottom: 1%;
+}

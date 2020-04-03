@@ -11,6 +11,10 @@ const Button = (props) => {
   if (props.fullwidth){
     classes.push("__fullwidth");
   }
+
+  if (props.transparent){
+    classes.push("__transparent")
+  }
   return(
     <React.Fragment>
     <button {...props} className={"button" + " " + classes.join(" ")}>{props.children}</button>

@@ -5,7 +5,8 @@ import TweetList from "../components/TweetList";
 import { useParams } from "react-router-dom";
 import { selectUserProfile } from "../reducers/userProfileSlice";
 import { useSelector } from "react-redux";
-
+import Button from "../components/Button";
+import "./Profile.css";
 
 const Profile = (props) => {
   let { creatorHandle } = useParams();
@@ -74,7 +75,7 @@ const Profile = (props) => {
         replies: [],
         replyingTo: ["tweet1"]
       }
-    ]
+      ]
     },
     {
       creatorName: "Ernest Hemingway",
@@ -85,7 +86,7 @@ const Profile = (props) => {
       website: null,
       location: "Oak Park, Illinois, U.S.",
       likedTweets: [],
-      tweets: [ {
+      tweets: [{
         id: "tweet4",
         type: "parent",
         content: "Bananas",
@@ -119,9 +120,28 @@ const Profile = (props) => {
   return (
     <div className="center-view">
       <Header title={renderedUser[0].creatorName} />
+      <div className="profile-images">
+      <img className="profile-avatar" src={renderedUser[0].avatar} />
+      <img className="profile-banner" src={"https://gethope.net/wp-content/uploads/2019/07/Why-How-and-What-Slider-Background-1500x500.jpg"} />
+      </div>
       <div className="profile-header">
+        <div className="profile-interactables">
+          <div>
+          <Button>Follow</Button>
+          </div>
+        </div>
+        <div className="profile-text-content">
+          <div className="creator-name">
+            {renderedUser[0].creatorName}
+          </div>
+          <div className="creator-handle">
+            {"@" + renderedUser[0].creatorHandle}
+          </div>
+          <div className="bio">
+            {renderedUser[0].bio}
+          </div>
         Date joined: {new Date(renderedUser[0].joined).toDateString()}
-        {renderedUser[0].bio}
+        </div>
       </div>
       <TweetList timeline={renderedUser[0].tweets} />
     </div>
