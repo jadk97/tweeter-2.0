@@ -121,13 +121,13 @@ const Profile = (props) => {
     <div className="center-view">
       <Header title={renderedUser[0].creatorName} />
       <div className="profile-images">
-      <img className="profile-avatar" src={renderedUser[0].avatar} />
-      <img className="profile-banner" src={"https://gethope.net/wp-content/uploads/2019/07/Why-How-and-What-Slider-Background-1500x500.jpg"} />
+        <img className="profile-avatar" src={renderedUser[0].avatar} />
+        <img className="profile-banner" src={"https://gethope.net/wp-content/uploads/2019/07/Why-How-and-What-Slider-Background-1500x500.jpg"} />
       </div>
       <div className="profile-header">
         <div className="profile-interactables">
           <div>
-          <Button>Follow</Button>
+            <Button>Follow</Button>
           </div>
         </div>
         <div className="profile-text-content">
@@ -140,7 +140,7 @@ const Profile = (props) => {
           <div className="bio">
             {renderedUser[0].bio}
           </div>
-        Date joined: {new Date(renderedUser[0].joined).toDateString()}
+          Date joined: {new Date(renderedUser[0].joined).toDateString()}
         </div>
       </div>
       <TweetList timeline={renderedUser[0].tweets} />
