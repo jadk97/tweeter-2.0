@@ -118,8 +118,8 @@ const Profile = (props) => {
   console.log(renderedUser);
   return (
     <div className="center-view">
-      <Header title={"@"+creatorHandle} />
-      <div>
+      <Header title={renderedUser[0].creatorName} />
+      <div className="profile-header">
         Date joined: {new Date(renderedUser[0].joined).toDateString()}
         {renderedUser[0].bio}
       </div>
