@@ -15,7 +15,12 @@ import { selectTimeline } from "../reducers/timelineSlice";
 import { useParams } from "react-router-dom";
 
 const Tweet = ({ tweet, focusedView }) => {
-  const [heartClicked, setHeartClicked] = useState(false);
+  const userProfile = useSelector(selectUserProfile);
+  let likedUserTweets = userProfile.likedTweets.some(likedTweet => likedTweet.id === tweet.id);
+  console.log("likedUserTweets: ", likedUserTweets);
+  // console.log("Has the user liked this tweet? ", likedUserTweets.
+  // console.log("tweet being passed into Tweet component", tweet);
+  const [heartClicked, setHeartClicked] = useState(likedUserTweets);
   const [retweetClicked, setRetweetClicked] = useState(false);
   const [replyClicked, setReplyClicked] = useState(false);
   const dispatch = useDispatch();
@@ -62,7 +67,6 @@ const Tweet = ({ tweet, focusedView }) => {
     setReplyClicked(false);
   }
 
-  let directReplies = 0;
   const tweetChain = (tweet.replies || []).map( (tweet, i) => {   
     if( i === 0){
       console.log("this is the index of the tweet: ", tweet);
