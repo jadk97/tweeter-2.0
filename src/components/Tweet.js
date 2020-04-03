@@ -62,16 +62,28 @@ const Tweet = ({ tweet, focusedView }) => {
     setReplyClicked(false);
   }
 
-  const tweetChain = (tweet.replies || []).map(tweet => {
+  let directReplies = 0;
+  const tweetChain = (tweet.replies || []).map( (tweet, i) => {   
+    if( i === 0){
+      console.log("this is the index of the tweet: ", tweet);
+    }
     return <Tweet key={tweet.id} tweet={tweet} type="child" />
   })
+
   if (tweet.id === id) {
     console.log("THE IDS MATCH");
   }
+
+  const abridgedTweetChain = (tweet.replies || []).map( (tweet, i) => {   
+    if( i === 0){
+      return <Tweet key={tweet.id} tweet={tweet} type="child" />
+    }
+  })
+
   console.log("THIS IS ME LOGGING THE tweet VARIABLE INSIDE TWEET.JS: ", focusedView)
+  console.log("THIS IS THE TWEETCHAIN:", tweetChain);
   return (
     <React.Fragment>
-      {}
       <Modal
         show={replyClicked}
         onCancel={() => setReplyClicked(setReplyClicked((prev) => !prev))}
@@ -224,7 +236,7 @@ const Tweet = ({ tweet, focusedView }) => {
           </span>
         </div>
       </div>
-      {tweetChain}
+      {focusedView ? tweetChain : abridgedTweetChain}
     </React.Fragment>
   )
 }

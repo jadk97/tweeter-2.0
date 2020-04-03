@@ -8,7 +8,8 @@ const TweetList = (props) => (
 
   props.timeline.map((tweet) => {
     console.log("THIS IS TWEET: ", tweet);
-    if(tweet.type === "parent"){
+    console.log("This is the type of the TWEET: ",tweet.type)
+    if(tweet.type==="parent"){
       return (
         
           <Tweet
