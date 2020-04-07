@@ -20,7 +20,7 @@ const Profile = (props) => {
       bio: "I wrote The Fountainhead and Atlas Shrugged",
       joined: Date.now(),
       website: "https://en.wikipedia.org/wiki/Ayn_Rand",
-      location: null,
+      location: "Ontario, Canada",
       likedTweets: [],
       tweets: [{
         id: "tweet1",
@@ -140,7 +140,24 @@ const Profile = (props) => {
           <div className="bio">
             {renderedUser[0].bio}
           </div>
-          Date joined: {new Date(renderedUser[0].joined).toDateString()}
+          <div className="profile-details">
+            {renderedUser[0].joined && (
+              <div className="profile-date-joined">
+                Date joined: {new Date(renderedUser[0].joined).toDateString()}
+              </div>
+            )}
+            {renderedUser[0].location && (
+              <div className="profile-location">
+                {renderedUser[0].location}
+              </div>
+            )}
+            {renderedUser[0].website && (
+              <div className="profile-website">
+              {renderedUser[0].website}
+              </div>
+            )}
+
+          </div>
         </div>
       </div>
       <TweetList timeline={renderedUser[0].tweets} />
