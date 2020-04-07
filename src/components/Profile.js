@@ -118,8 +118,13 @@ const Profile = (props) => {
       }]
     }
   ];
-
-  let renderedUser = userList.filter((user) => user.creatorHandle === creatorHandle);
+  let renderedUser;
+  if(creatorHandle === userProfile.creatorHandle){
+    renderedUser = [userProfile];
+  }
+  else{
+    renderedUser = userList.filter((user) => user.creatorHandle === creatorHandle);
+  }
   console.log(renderedUser);
   return (
     <div className="center-view">
