@@ -6,7 +6,9 @@ import { useParams } from "react-router-dom";
 import { selectUserProfile } from "../reducers/userProfileSlice";
 import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faCalendarAlt} from "@fortawesome/free-regular-svg-icons";
+import { faCalendarAlt } from "@fortawesome/free-regular-svg-icons";
+import { faMapMarkerAlt, faLink } from "@fortawesome/free-solid-svg-icons";
+
 import Button from "../components/Button";
 import "./Profile.css";
 
@@ -22,7 +24,7 @@ const Profile = (props) => {
       bio: "I wrote The Fountainhead and Atlas Shrugged",
       joined: Date.now(),
       website: "https://en.wikipedia.org/wiki/Ayn_Rand",
-      location: "Ontario, Canada",
+      location: null,
       likedTweets: [],
       tweets: [{
         id: "tweet1",
@@ -143,28 +145,37 @@ const Profile = (props) => {
             {renderedUser[0].bio}
           </div>
           <div className="profile-details">
-            {renderedUser[0].joined && (
-              <div className="profile-date-joined">
-              <FontAwesomeIcon
-              icon={faCalendarAlt}
-              color="#778899"
-              size="lg"
-              className="calendar-icon"
-              />
-                Joined: {new Date(renderedUser[0].joined).toLocaleString("default", {month: "long", year: "numeric"})}
-              </div>
-            )}
             {renderedUser[0].location && (
               <div className="profile-location">
+                <FontAwesomeIcon
+                  icon={faMapMarkerAlt}
+                  className="profile-icon"
+                  size="lg"
+                />
                 {renderedUser[0].location}
               </div>
             )}
             {renderedUser[0].website && (
               <div className="profile-website">
-              {renderedUser[0].website}
+                <FontAwesomeIcon
+                  icon={faLink}
+                  className="profile-icon"
+                  size="lg"
+                />
+                {renderedUser[0].website}
               </div>
             )}
-
+            {renderedUser[0].joined && (
+              <div className="profile-date-joined">
+                <FontAwesomeIcon
+                  icon={faCalendarAlt}
+                  color="#778899"
+                  size="lg"
+                  className="profile-icon"
+                />
+                  Joined: {new Date(renderedUser[0].joined).toLocaleString("default", { month: "long", year: "numeric" })}
+              </div>
+            )}
           </div>
         </div>
       </div>

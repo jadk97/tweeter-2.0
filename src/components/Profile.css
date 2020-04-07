@@ -55,11 +55,17 @@
 .profile-details{
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-shrink: 0;
   color: lightslategray;
+  margin-top: 2%;
+  align-items: flex-start;
 }
 
-.calendar-icon{
-  padding-right: 10px;
+.profile-details div{
+  padding-right: 2%;
+}
+
+.profile-icon{
+  padding-right: 5px;
 }
