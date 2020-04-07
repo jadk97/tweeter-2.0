@@ -13,6 +13,7 @@ import { selectUserProfile, addLikedTweet, removeLikedTweet } from '../reducers/
 import { likeTweet, unlikeTweet } from "../reducers/timelineSlice";
 import { selectTimeline } from "../reducers/timelineSlice";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Tweet = ({ tweet, focusedView }) => {
   const userProfile = useSelector(selectUserProfile);
@@ -35,7 +36,7 @@ const Tweet = ({ tweet, focusedView }) => {
     e.nativeEvent.stopImmediatePropagation();
 
     let clickedElement = e.currentTarget.classList;
-    console.log(clickedElement);
+    console.log("This is the clicked element", clickedElement);
     if (clickedElement[0] === "tweet-container") {
       console.log("Tweet container clicked");
       history.push(`/${tweet.creatorHandle}/status/${tweet.id}`);
@@ -67,8 +68,8 @@ const Tweet = ({ tweet, focusedView }) => {
     setReplyClicked(false);
   }
 
-  const tweetChain = (tweet.replies || []).map( (tweet, i) => {   
-    if( i === 0){
+  const tweetChain = (tweet.replies || []).map((tweet, i) => {
+    if (i === 0) {
       console.log("this is the index of the tweet: ", tweet);
     }
     return <Tweet key={tweet.id} tweet={tweet} type="child" />
@@ -78,8 +79,8 @@ const Tweet = ({ tweet, focusedView }) => {
     console.log("THE IDS MATCH");
   }
 
-  const abridgedTweetChain = (tweet.replies || []).map( (tweet, i) => {   
-    if( i === 0){
+  const abridgedTweetChain = (tweet.replies || []).map((tweet, i) => {
+    if (i === 0) {
       return <Tweet key={tweet.id} tweet={tweet} type="child" />
     }
   })
@@ -103,8 +104,9 @@ const Tweet = ({ tweet, focusedView }) => {
             </div>
           </div>
           <div className="tweet-text">
-            <div className="creator-name">
-              {tweet.creatorName}
+            <div className="creator-details">
+            <span className="creator-name">{tweet.creatorName}</span>
+              
               <span className="creator-handle"> @{tweet.creatorHandle}</span>
               <span className="time-tweeted"> - {new Date(tweet.posted_at).toDateString()}</span>
             </div>
@@ -127,22 +129,22 @@ const Tweet = ({ tweet, focusedView }) => {
                 }
               </div>
               <div className="tweet-text">
-                <div className="creator-name">
-                  {tweet.creatorName}
+                <div className="creator-details">
+                  <span className="creator-name">{tweet.creatorName}</span>
                   <div className="creator-handle"> @{tweet.creatorHandle}</div>
                 </div>
               </div>
             </div>
             <div className="tweet-body">
-            {tweet.content}
-            <div className="time-tweeted"> {new Date(tweet.posted_at).toDateString()}</div>
+              {tweet.content}
+              <div className="time-tweeted"> {new Date(tweet.posted_at).toDateString()}</div>
             </div>
             <div className={`tweet-stats ${tweet.likes === 0 && tweet.retweets === 0 ? "__none" : ""}`}>
-                {tweet.likes > 0 && <div>
-                  <span>{tweet.likes}</span> Likes
+              {tweet.likes > 0 && <div>
+                <span>{tweet.likes}</span> Likes
                   </div>}
-                  {tweet.retweets > 0 && <div>
-                    <span>{tweet.retweets}</span> Retweets
+              {tweet.retweets > 0 && <div>
+                <span>{tweet.retweets}</span> Retweets
                     </div>}
             </div>
           </React.Fragment>
@@ -155,8 +157,8 @@ const Tweet = ({ tweet, focusedView }) => {
                 }
               </div>
               <div className="tweet-text">
-                <div className="creator-name">
-                  {tweet.creatorName}
+                <div className="creator-details">
+                  <span className="creator-name">{tweet.creatorName}</span>
                   <span className="creator-handle"> @{tweet.creatorHandle}</span>
                   <span className="time-tweeted"> - {new Date(tweet.posted_at).toDateString()}</span>
                 </div>
@@ -201,7 +203,7 @@ const Tweet = ({ tweet, focusedView }) => {
             />
             {!focusedView && (
               <span className="retweet-counter">{tweet.retweets}</span>
-            ) }
+            )}
           </span>
 
           <span className={`fa-layers heart-button ${heartClicked ? "__clicked" : ""}`} onClick={clickHandler}>
