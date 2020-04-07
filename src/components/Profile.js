@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./Header";
 import TweetList from "../components/TweetList";
 
-import { useParams, useLocation, useRouteMatch, Switch, Route } from "react-router-dom";
+import { useParams, useLocation, useRouteMatch, useHistory, Switch, Route } from "react-router-dom";
 import { selectUserProfile } from "../reducers/userProfileSlice";
 import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -14,8 +14,11 @@ import "./Profile.css";
 
 const Profile = (props) => {
   let { creatorHandle } = useParams();
-  // let location = useLocation();
+  let location = useLocation();
+  console.log("This is the current location:", location.pathname.split("/"));
+
   let match = useRouteMatch();
+  console.log("this is match.params: ", match)
   const userProfile = useSelector(selectUserProfile);
 
   let userList = [
@@ -129,7 +132,7 @@ const Profile = (props) => {
         replyCount: 0,
         retweets: 500,
         likes: 2,
-        replies: [ {
+        replies: [{
           id: "tweet6",
           content: "But what about kiwis?",
           posted_at: Date.now(),
@@ -153,7 +156,14 @@ const Profile = (props) => {
     renderedUser = userList.filter((user) => user.creatorHandle === creatorHandle);
   }
 
-  let tweets = renderedUser[0].tweets.filter((tweet) => tweet.type === "parent");
+  let tweets;
+  let viewMode = location.pathname.split("/");
+  if (viewMode[viewMode.length - 1] === "with_replies") {
+    tweets = renderedUser[0].tweets;
+  }
+  else {
+    tweets = renderedUser[0].tweets.filter((tweet) => tweet.type === "parent");
+  }
   // let tweets = renderedUser[0].tweets;
   console.log(renderedUser);
   // console.log("this is the current url", location);
@@ -212,12 +222,13 @@ const Profile = (props) => {
                   Joined: {new Date(renderedUser[0].joined).toLocaleString("default", { month: "long", year: "numeric" })}
               </div>
             )}
+
           </div>
         </div>
-        </div>
-        <HorizontalNavBar headings={[{ title: "Tweets", path: `${match.url}` }, {title: "With Replies", path:`${match.url}/with_replies`}]} />
-
+      </div>
+      <HorizontalNavBar headings={[{ title: "Tweets", path: `${match.url}` }, { title: "Tweets & Replies", path: `${match.url}/with_replies` }]} />
       <TweetList timeline={tweets} />
+
     </div>
   )
 }

@@ -8,7 +8,7 @@ const HorizontalNavBar = (props) => {
     <div className="horizontal-navbar">
       {props.headings.map((heading) => (
       
-          <NavLink to={heading.path} activeClassName="__selected">
+          <NavLink exact to={heading.path} activeClassName="__selected">
             {heading.title}
           </NavLink>
     
