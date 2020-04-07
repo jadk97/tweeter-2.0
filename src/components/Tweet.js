@@ -37,6 +37,9 @@ const Tweet = ({ tweet, focusedView }) => {
 
     let clickedElement = e.currentTarget.classList;
     console.log("This is the clicked element", clickedElement);
+    if (clickedElement[0] === "creator-details" || clickedElement[0] === "avatar"){
+      history.push(`/${tweet.creatorHandle}`);
+    }
     if (clickedElement[0] === "tweet-container") {
       console.log("Tweet container clicked");
       history.push(`/${tweet.creatorHandle}/status/${tweet.id}`);
@@ -123,13 +126,13 @@ const Tweet = ({ tweet, focusedView }) => {
           <React.Fragment>
             <div className="tweet-content">
               <div className="tweet-avatar">
-                <img className="avatar" src={tweet.avatar} />
+                <img className="avatar" src={tweet.avatar} onClick={clickHandler}/>
                 {
                   tweet.replies && tweet.replies.length > 0 && (<div className="reply-line"></div>)
                 }
               </div>
               <div className="tweet-text">
-                <div className="creator-details">
+                <div className="creator-details" onClick={clickHandler}>
                   <span className="creator-name">{tweet.creatorName}</span>
                   <div className="creator-handle"> @{tweet.creatorHandle}</div>
                 </div>
@@ -151,13 +154,13 @@ const Tweet = ({ tweet, focusedView }) => {
         ) : (
             <div className="tweet-content">
               <div className="tweet-avatar">
-                <img className="avatar" src={tweet.avatar} />
+                <img className="avatar" src={tweet.avatar} onClick={clickHandler} />
                 {
                   tweet.replies && tweet.replies.length > 0 && (<div className="reply-line"></div>)
                 }
               </div>
               <div className="tweet-text">
-                <div className="creator-details">
+                <div className="creator-details" onClick={clickHandler}>
                   <span className="creator-name">{tweet.creatorName}</span>
                   <span className="creator-handle"> @{tweet.creatorHandle}</span>
                   <span className="time-tweeted"> - {new Date(tweet.posted_at).toDateString()}</span>

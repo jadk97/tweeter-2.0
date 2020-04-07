@@ -19,7 +19,7 @@ const Profile = (props) => {
   let userList = [
     {
       creatorName: "Ayn Rand",
-      creatorHandle: "AynRand",
+      creatorHandle: "AtlasShrugged",
       avatar: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg",
       bio: "I wrote The Fountainhead and Atlas Shrugged",
       joined: Date.now(),

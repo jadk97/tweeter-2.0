@@ -28,6 +28,11 @@
   height: 3.5rem;
   object-fit: cover;
   margin-right: 2%;
+  transition: all .2s;
+}
+
+.avatar:hover{
+  opacity: 0.7;
 }
 
 .tweet-author{
@@ -234,3 +239,8 @@ text-align: right;
     color: white;
   }
 
+
+  .creator-details:hover .creator-name{
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+  }
