@@ -69,7 +69,19 @@ export const slice = createSlice({
       replyCount: 0,
       retweets: 500,
       likes: 2,
-      replies: []
+      replies: [{
+        id: "tweet6",
+        content: "But what about kiwis?",
+        posted_at: Date.now(),
+        creatorName: "Ayn Rand",
+        creatorHandle: "AtlasShrugged",
+        avatar: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg",
+        replyCount: 0,
+        retweets: 500,
+        likes: 2,
+        replies: [],
+        replyingTo: ["tweet5"]
+      }]
     }
   ],
   reducers: {

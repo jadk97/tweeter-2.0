@@ -2,18 +2,20 @@ import React from "react";
 import Header from "./Header";
 import TweetList from "../components/TweetList";
 
-import { useParams } from "react-router-dom";
+import { useParams, useLocation, useRouteMatch, Switch, Route } from "react-router-dom";
 import { selectUserProfile } from "../reducers/userProfileSlice";
 import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt } from "@fortawesome/free-regular-svg-icons";
 import { faMapMarkerAlt, faLink } from "@fortawesome/free-solid-svg-icons";
-
+import HorizontalNavBar from "./HorizontalNavBar";
 import Button from "../components/Button";
 import "./Profile.css";
 
 const Profile = (props) => {
   let { creatorHandle } = useParams();
+  // let location = useLocation();
+  let match = useRouteMatch();
   const userProfile = useSelector(selectUserProfile);
 
   let userList = [
@@ -78,6 +80,19 @@ const Profile = (props) => {
         likes: 2,
         replies: [],
         replyingTo: ["tweet1"]
+      },
+      {
+        id: "tweet6",
+        content: "But what about kiwis?",
+        posted_at: Date.now(),
+        creatorName: "Ayn Rand",
+        creatorHandle: "AtlasShrugged",
+        avatar: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg",
+        replyCount: 0,
+        retweets: 500,
+        likes: 2,
+        replies: [],
+        replyingTo: ["tweet5"]
       }
       ]
     },
@@ -114,18 +129,34 @@ const Profile = (props) => {
         replyCount: 0,
         retweets: 500,
         likes: 2,
-        replies: []
+        replies: [ {
+          id: "tweet6",
+          content: "But what about kiwis?",
+          posted_at: Date.now(),
+          creatorName: "Ayn Rand",
+          creatorHandle: "AtlasShrugged",
+          avatar: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg",
+          replyCount: 0,
+          retweets: 500,
+          likes: 2,
+          replies: [],
+          replyingTo: ["tweet5"]
+        }]
       }]
     }
   ];
   let renderedUser;
-  if(creatorHandle === userProfile.creatorHandle){
+  if (creatorHandle === userProfile.creatorHandle) {
     renderedUser = [userProfile];
   }
-  else{
+  else {
     renderedUser = userList.filter((user) => user.creatorHandle === creatorHandle);
   }
+
+  let tweets = renderedUser[0].tweets.filter((tweet) => tweet.type === "parent");
+  // let tweets = renderedUser[0].tweets;
   console.log(renderedUser);
+  // console.log("this is the current url", location);
   return (
     <div className="center-view">
       <Header title={renderedUser[0].creatorName} />
@@ -183,8 +214,10 @@ const Profile = (props) => {
             )}
           </div>
         </div>
-      </div>
-      <TweetList timeline={renderedUser[0].tweets} />
+        </div>
+        <HorizontalNavBar headings={[{ title: "Tweets", path: `${match.url}` }, {title: "With Replies", path:`${match.url}/with_replies`}]} />
+
+      <TweetList timeline={tweets} />
     </div>
   )
 }
