@@ -5,6 +5,8 @@ import TweetList from "../components/TweetList";
 import { useParams } from "react-router-dom";
 import { selectUserProfile } from "../reducers/userProfileSlice";
 import { useSelector } from "react-redux";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faCalendarAlt} from "@fortawesome/free-regular-svg-icons";
 import Button from "../components/Button";
 import "./Profile.css";
 
@@ -143,7 +145,13 @@ const Profile = (props) => {
           <div className="profile-details">
             {renderedUser[0].joined && (
               <div className="profile-date-joined">
-                Date joined: {new Date(renderedUser[0].joined).toDateString()}
+              <FontAwesomeIcon
+              icon={faCalendarAlt}
+              color="#778899"
+              size="lg"
+              className="calendar-icon"
+              />
+                Joined: {new Date(renderedUser[0].joined).toLocaleString("default", {month: "long", year: "numeric"})}
               </div>
             )}
             {renderedUser[0].location && (
