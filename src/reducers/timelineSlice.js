@@ -51,12 +51,12 @@ export const slice = createSlice({
             retweets: 500,
             likes: 2,
             replies: [],
-            replyingTo: ["tweet8"]
+            replyingTo: ["tweet1", "tweet3", "tweet8"]
           }],
-          replyingTo: ["tweet3"]
+          replyingTo: ["tweet1", "tweet3"]
         },
         {
-          id: "tweet9",
+          id: "tweet10",
           type: "child",
           content: "Tell me about the tomatoes",
           posted_at: Date.now(),
@@ -68,7 +68,7 @@ export const slice = createSlice({
           likes: 2,
           replies: [
             {
-              id: "tweet9",
+              id: "tweet11",
               type: "child",
               content: "They taste pretty good.",
               posted_at: Date.now(),
@@ -79,7 +79,7 @@ export const slice = createSlice({
               retweets: 500,
               likes: 2,
               replies: [],
-              replyingTo: ["tweet9"]
+              replyingTo: ["tweet10"]
             }
           ],
           replyingTo: ["tweet3"]
