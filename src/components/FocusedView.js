@@ -14,24 +14,39 @@ const FocusedView = (props) => {
   console.log("THIS IS THE TIMELINE INSIDE OF FOCUSEDVIEW", timeline);
   console.log(id);
   let pathToTweet = findPath(id, timeline).split(".");
+  // console.log("This is the path to tweet inside FocusedView", pathToTweet);
   pathToTweet.pop();
-  console.log(pathToTweet);
+  console.log("This is the path to tweet inside FocusedView", pathToTweet);
   // console.log(_.get(timeline, pathToTweet));
   let tweetToFocus = _.get(timeline, pathToTweet);
   let parentTweet;
-  let focusedTweetReplyChain;
+  let pathToChildTweet;
+  let replyChainToRender;
   if (tweetToFocus.type === "child") {
-    parentTweet = _.get(timeline, pathToTweet[0]);
+    console.log("The last index of tweetToFocus: ", tweetToFocus.replyingTo[tweetToFocus.replyingTo.length - 1]);
+    pathToChildTweet = findPath(tweetToFocus.replyingTo[tweetToFocus.replyingTo.length - 1], timeline).split(".");
+    pathToChildTweet.pop();
+
+    parentTweet = _.get(timeline, pathToChildTweet);
     console.log("This is the parent tweet inside of FocusedView: ", parentTweet);
-    console.log("TWEET TO FOCUS: ", tweetToFocus);
-   
+    // console.log("TWEET TO FOCUS: ", tweetToFocus);
+    let tweetIndex = parentTweet.replies.findIndex((tweet) => tweet.id === tweetToFocus.id);
+    console.log("this is the index of the child tweet", tweetIndex);
+    if(tweetIndex > 0) {
+      console.log("This is the replies of parent tweet inside of Focusedview:", parentTweet.replies);
+      replyChainToRender = {...parentTweet, replies: [tweetToFocus] }
+    }
+    else {
+      replyChainToRender = parentTweet;
+    }
+    console.log("TWEET TO FOCUS replyCount: ",   tweetToFocus.replies.length)
   }
 
   return (
     <div className="center-view">
       <Header title={"Tweet"} />
       {
-      tweetToFocus.type === "child" ? (<Tweet id={id} tweet={parentTweet} childTweetToFocus={tweetToFocus}/>) :  <Tweet focusedView={true} id={id} tweet={tweetToFocus}/>
+      tweetToFocus.type === "child" ? (<Tweet id={id} tweet={replyChainToRender} childTweetToFocus={tweetToFocus}/>) :  <Tweet focusedView={true} id={id} tweet={tweetToFocus}/>
       }
 
       {

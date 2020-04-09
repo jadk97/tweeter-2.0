@@ -91,9 +91,10 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus }) => {
         console.log("this is the childtweettofocus", childTweetToFocus.id === tweet.id);
         return <Tweet key={tweet.id} tweet={tweet} childTweetToFocus ={childTweetToFocus} focusedView={childTweetToFocus.id === tweet.id} />
       }
-
       return <Tweet key={tweet.id} tweet={tweet} childTweetToFocus={childTweetToFocus} type="child" />
     }
+
+  
   })
 
   console.log("THIS IS ME LOGGING THE tweet VARIABLE INSIDE TWEET.JS: ", focusedView)
