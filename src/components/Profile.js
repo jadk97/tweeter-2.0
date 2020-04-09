@@ -163,6 +163,7 @@ const Profile = (props) => {
   let renderedUser;
   if (creatorHandle === userProfile.creatorHandle) {
     renderedUser = [userProfile];
+    console.log("This is renderedUser inside the profile component:", renderedUser);
   }
   else {
     renderedUser = userList.filter((user) => user.creatorHandle === creatorHandle);
@@ -178,6 +179,7 @@ const Profile = (props) => {
   }
   else {
     tweets = renderedUser[0].tweets.filter((tweet) => tweet.type === "parent");
+    console.log("This is tweets inside of the Profile component:", tweets);
   }
   // let tweets = renderedUser[0].tweets;
   console.log(renderedUser);

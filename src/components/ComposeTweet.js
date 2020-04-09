@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImages } from '@fortawesome/free-solid-svg-icons';
 import { useTweetInteract } from "../hooks/tweet-interact-hook";
 import { useDispatch, useSelector } from "react-redux";
-import { selectUserProfile } from '../reducers/userProfileSlice';
+import { selectUserProfile, addTweet } from '../reducers/userProfileSlice';
 import { submitTweet, replyTweet, selectTimeline } from "../reducers/timelineSlice";
 import { v4 as uuid } from "uuid";
 
@@ -47,6 +47,21 @@ const ComposeTweet = (props) => {
         likes: 0,
         replyingTo: [...props.replyingTo]
       }));
+
+      dispatch(addTweet({
+        id: uuid(),
+        type: "child",
+        content: tweet,
+        posted_at: Date.now(),
+        creatorName: userProfile.creatorName,
+        creatorHandle: userProfile.creatorHandle,
+        avatar: userProfile.avatar,
+        replyCount: 0,
+        replies: [],
+        retweets: 0,
+        likes: 0,
+        replyingTo: [...props.replyingTo]
+      }))
       props.modalSubmit();
     }
     else {
@@ -63,6 +78,20 @@ const ComposeTweet = (props) => {
         retweets: 0,
         likes: 0
       }));
+
+      dispatch(addTweet({
+        id: uuid(),
+        type: "parent",
+        content: tweet,
+        posted_at: Date.now(),
+        creatorName: userProfile.creatorName,
+        creatorHandle: userProfile.creatorHandle,
+        avatar: userProfile.avatar,
+        replyCount: 0,
+        replies: [],
+        retweets: 0,
+        likes: 0
+      }))
       setTweet("");
     }
   }

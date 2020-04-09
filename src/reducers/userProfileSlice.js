@@ -27,12 +27,12 @@ export const slice = createSlice({
       state.likedTweets.splice(tweetToRemove, 1);
     },
     addTweet: (state, action) => {
-      state.tweets.push(action.payload);
+      state.tweets.unshift(action.payload);
     }
   }
 });
 
-export const { getUser, addLikedTweet, removeLikedTweet } = slice.actions;
+export const { getUser, addLikedTweet, removeLikedTweet, addTweet } = slice.actions;
 
 
 export const selectUserProfile = state => state.userProfile;
