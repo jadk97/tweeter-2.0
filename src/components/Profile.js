@@ -30,7 +30,19 @@ const Profile = (props) => {
       joined: Date.now(),
       website: "https://en.wikipedia.org/wiki/Ayn_Rand",
       location: null,
-      likedTweets: [],
+      likedTweets: [{
+        id: "tweet4",
+        type: "parent",
+        content: "Bananas",
+        posted_at: Date.now(),
+        creatorName: "Ernest Hemingway",
+        creatorHandle: "EHemWay",
+        avatar: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/ErnestHemingway.jpg/220px-ErnestHemingway.jpg",
+        replyCount: 0,
+        retweets: 500,
+        likes: 2,
+        replies: []
+      }],
       tweets: [{
         id: "tweet1",
         type: "parent",
@@ -161,6 +173,9 @@ const Profile = (props) => {
   if (viewMode[viewMode.length - 1] === "with_replies") {
     tweets = renderedUser[0].tweets;
   }
+  else if(viewMode[viewMode.length -1] === "likes"){
+   
+  }
   else {
     tweets = renderedUser[0].tweets.filter((tweet) => tweet.type === "parent");
   }
@@ -226,7 +241,7 @@ const Profile = (props) => {
           </div>
         </div>
       </div>
-      <HorizontalNavBar headings={[{ title: "Tweets", path: `${match.url}` }, { title: "Tweets & Replies", path: `${match.url}/with_replies` }]} />
+      <HorizontalNavBar headings={[{ title: "Tweets", path: `${match.url}` }, { title: "Tweets & Replies", path: `${match.url}/with_replies` }, {title: "Likes", path: `${match.url}/likes`}]} />
       <TweetList timeline={tweets} />
 
     </div>
