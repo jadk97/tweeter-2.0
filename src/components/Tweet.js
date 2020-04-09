@@ -15,7 +15,7 @@ import { selectTimeline } from "../reducers/timelineSlice";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-const Tweet = ({ tweet, focusedView }) => {
+const Tweet = ({ tweet, focusedView, childTweetToFocus }) => {
   const userProfile = useSelector(selectUserProfile);
   let likedUserTweets = userProfile.likedTweets.some(likedTweet => likedTweet.id === tweet.id);
   console.log("likedUserTweets: ", likedUserTweets);
@@ -30,7 +30,7 @@ const Tweet = ({ tweet, focusedView }) => {
   console.log("THIS IS THE ID IN TWEET: ", id);
   // console.log(tweet.replies);
   // let hasReplies = tweet.replies && tweet.replies.length > 0;
-
+ 
   const clickHandler = (e) => {
     e.stopPropagation();
     e.nativeEvent.stopImmediatePropagation();
@@ -84,7 +84,15 @@ const Tweet = ({ tweet, focusedView }) => {
 
   const abridgedTweetChain = (tweet.replies || []).map((tweet, i) => {
     if (i === 0) {
-      return <Tweet key={tweet.id} tweet={tweet} type="child" />
+      // console.log("childTweetToFocus?: ", (typeof childTweetToFocus != "undefined") && (childTweetToFocus.id === tweet.id));
+      if(childTweetToFocus){
+        
+        console.log("this is the tweet id:", tweet.id);
+        console.log("this is the childtweettofocus", childTweetToFocus.id === tweet.id);
+        return <Tweet key={tweet.id} tweet={tweet} childTweetToFocus ={childTweetToFocus} focusedView={childTweetToFocus.id === tweet.id} />
+      }
+
+      return <Tweet key={tweet.id} tweet={tweet} childTweetToFocus={childTweetToFocus} type="child" />
     }
   })
 
@@ -119,6 +127,7 @@ const Tweet = ({ tweet, focusedView }) => {
 
         </div>
       </Modal>
+      
       <div className={`tweet-container ${focusedView ? "__focused" : ""} ${tweet.replies && tweet.replies.length > 0 ? "__replied" : ""}`} onClick={(event) => clickHandler(event)}>
 
 

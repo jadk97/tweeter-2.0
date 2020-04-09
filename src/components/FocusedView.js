@@ -18,12 +18,26 @@ const FocusedView = (props) => {
   console.log(pathToTweet);
   // console.log(_.get(timeline, pathToTweet));
   let tweetToFocus = _.get(timeline, pathToTweet);
-  console.log("TWEET TO FOCUS: ", tweetToFocus);
-  
-  return(
+  let parentTweet;
+  let focusedTweetReplyChain;
+  if (tweetToFocus.type === "child") {
+    parentTweet = _.get(timeline, pathToTweet[0]);
+    console.log("This is the parent tweet inside of FocusedView: ", parentTweet);
+    console.log("TWEET TO FOCUS: ", tweetToFocus);
+   
+  }
+
+  return (
     <div className="center-view">
       <Header title={"Tweet"} />
-        <Tweet focusedView={true} id={id} tweet={tweetToFocus} />
+      {
+      tweetToFocus.type === "child" ? (<Tweet id={id} tweet={parentTweet} childTweetToFocus={tweetToFocus}/>) :  <Tweet focusedView={true} id={id} tweet={tweetToFocus}/>
+      }
+
+      {
+        // <Tweet focusedView={true} id={id} tweet={tweetToFocus}/>
+      }
+      
     </div>
   )
 }

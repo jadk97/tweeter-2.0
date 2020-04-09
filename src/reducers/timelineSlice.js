@@ -54,7 +54,37 @@ export const slice = createSlice({
             replyingTo: ["tweet8"]
           }],
           replyingTo: ["tweet3"]
-        }],
+        },
+        {
+          id: "tweet9",
+          type: "child",
+          content: "Tell me about the tomatoes",
+          posted_at: Date.now(),
+          creatorName: "Ayn Rand",
+          creatorHandle: "AtlasShrugged",
+          avatar: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg",
+          replyCount: 0,
+          retweets: 500,
+          likes: 2,
+          replies: [
+            {
+              id: "tweet9",
+              type: "child",
+              content: "They taste pretty good.",
+              posted_at: Date.now(),
+              creatorName: "Ayn Rand",
+              creatorHandle: "AtlasShrugged",
+              avatar: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg",
+              replyCount: 0,
+              retweets: 500,
+              likes: 2,
+              replies: [],
+              replyingTo: ["tweet9"]
+            }
+          ],
+          replyingTo: ["tweet3"]
+        }
+        ],
         replyingTo: ["tweet1"]
       },
       {
