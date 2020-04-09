@@ -174,7 +174,7 @@ const Profile = (props) => {
     tweets = renderedUser[0].tweets;
   }
   else if(viewMode[viewMode.length -1] === "likes"){
-   
+    tweets = renderedUser[0].likedTweets;
   }
   else {
     tweets = renderedUser[0].tweets.filter((tweet) => tweet.type === "parent");
