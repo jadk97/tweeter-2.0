@@ -2,15 +2,20 @@ span.logo{
   font-family: "Bungee", cursive;
   font-size: 2em;
   color: white;
-
+  
 }
 
 nav {
   width: 30%;
   order: 1;
-
+  
 }
 
+nav ul {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
 nav .fa-ul{
   list-style: none;
   text-align: left;
