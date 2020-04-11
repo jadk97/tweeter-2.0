@@ -71,6 +71,13 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus }) => {
     setReplyClicked(false);
   }
 
+  let usersRepliedTo;
+  if(focusedView){
+    usersRepliedTo = new Set();
+    usersRepliedTo.add(tweet.creatorHandle);
+    console.log(usersRepliedTo);
+  }
+
   const tweetChain = (tweet.replies || []).map((tweet, i) => {
     if (i === 0) {
       console.log("this is the index of the tweet: ", tweet);
@@ -81,7 +88,6 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus }) => {
   if (tweet.id === id) {
     console.log("THE IDS MATCH");
   }
-
   const abridgedTweetChain = (tweet.replies || []).map((tweet, i) => {
     if (i === 0) {
       // console.log("childTweetToFocus?: ", (typeof childTweetToFocus != "undefined") && (childTweetToFocus.id === tweet.id));

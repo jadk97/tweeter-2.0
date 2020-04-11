@@ -1,6 +1,11 @@
 .header{
   text-align: left;
+  padding-top: 1px;
   padding-left: 5%;
   border-bottom: 1px solid lightslategray;
-  
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: #15202B;
+  z-index: 10;
 }
