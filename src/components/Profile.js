@@ -173,6 +173,7 @@ const Profile = (props) => {
   let viewMode = location.pathname.split("/");
   if (viewMode[viewMode.length - 1] === "with_replies") {
     tweets = renderedUser[0].tweets;
+    console.log("this is tweets with replies inside the profile component", tweets);
   }
   else if(viewMode[viewMode.length -1] === "likes"){
     tweets = renderedUser[0].likedTweets;

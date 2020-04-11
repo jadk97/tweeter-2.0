@@ -33,8 +33,9 @@ const ComposeTweet = (props) => {
         // });
         // console.log("This is the parent: ", parent);
       }
+      let id = uuid();
       dispatch(replyTweet({
-        id: uuid(),
+        id: id,
         type: "child",
         content: tweet,
         posted_at: Date.now(),
@@ -49,7 +50,7 @@ const ComposeTweet = (props) => {
       }));
 
       dispatch(addTweet({
-        id: uuid(),
+        id: id,
         type: "child",
         content: tweet,
         posted_at: Date.now(),
@@ -65,8 +66,9 @@ const ComposeTweet = (props) => {
       props.modalSubmit();
     }
     else {
+      let id = uuid();
       dispatch(submitTweet({
-        id: uuid(),
+        id: id,
         type: "parent",
         content: tweet,
         posted_at: Date.now(),
@@ -80,7 +82,7 @@ const ComposeTweet = (props) => {
       }));
 
       dispatch(addTweet({
-        id: uuid(),
+        id: id,
         type: "parent",
         content: tweet,
         posted_at: Date.now(),

@@ -31,7 +31,7 @@ const FocusedView = (props) => {
     let rootParentTweet = _.get(timeline, pathToTweet[0]);
     console.log("This is the rootParentTweet:", rootParentTweet)
     console.log("This is the parent tweet inside of FocusedView: ", parentTweet);
-    // console.log("TWEET TO FOCUS: ", tweetToFocus);
+    console.log("TWEET TO FOCUS: ", tweetToFocus);
     let tweetIndex = parentTweet.replies.findIndex((tweet) => tweet.id === tweetToFocus.id);
     console.log("this is the index of the child tweet", tweetIndex);
     if(tweetIndex > 0) {
@@ -48,7 +48,7 @@ const FocusedView = (props) => {
        : (replyChainToRender = {...rootParentTweet, replies: [{ ...parentTweet, replies: [tweetToFocus]}]})
       // replyChainToRender = parentTweet;
     }
-    console.log("TWEET TO FOCUS replyCount: ",   tweetToFocus.replies.length)
+    // console.log("TWEET TO FOCUS replyCount: ",   tweetToFocus.replies.length)
   }
 
   return (
