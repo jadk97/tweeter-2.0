@@ -9,7 +9,7 @@ import ComposeTweet from "./ComposeTweet";
 
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { selectUserProfile, addLikedTweet, removeLikedTweet } from '../reducers/userProfileSlice';
+import { selectUserProfile, addLikedTweet, removeLikedTweet, addRetweet } from '../reducers/userProfileSlice';
 import { likeTweet, unlikeTweet } from "../reducers/timelineSlice";
 import { selectTimeline } from "../reducers/timelineSlice";
 import { useParams } from "react-router-dom";

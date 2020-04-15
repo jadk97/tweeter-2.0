@@ -204,6 +204,12 @@ export const slice = createSlice({
       pathToTweet[pathToTweet.length - 1] = "likes";
 
       _.set(state, pathToTweet, _.get(state, pathToTweet) - 1);
+    },
+    retweetTweet: (state, action) => {
+      let tweetRetweeted = action.payload.id;
+      let pathToTweet = findPath(tweetRetweeted, state).split(".");
+      pathToTweet[pathToTweet.length - 1] = "retweets";
+      _.set(state, pathToTweet, _.get(state, pathToTweet) + 1);
     }
   }
 });
