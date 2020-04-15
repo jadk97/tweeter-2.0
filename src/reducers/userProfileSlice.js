@@ -14,6 +14,7 @@ export const slice = createSlice({
     location: null,
     website: null,
     likedTweets: [],
+    retweets: [],
     tweets: []
   },
   reducers: {
@@ -28,11 +29,15 @@ export const slice = createSlice({
     },
     addTweet: (state, action) => {
       state.tweets.unshift(action.payload);
+    },
+    addRetweet: (state, action) => {
+      state.tweets.unshift(action.payload);
+      state.retweets.unshift(action.payload);
     }
   }
 });
 
-export const { getUser, addLikedTweet, removeLikedTweet, addTweet } = slice.actions;
+export const { getUser, addLikedTweet, removeLikedTweet, addTweet, addRetweet } = slice.actions;
 
 
 export const selectUserProfile = state => state.userProfile;

@@ -138,6 +138,7 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus }) => {
         {focusedView ? (
           <React.Fragment>
             <div className="tweet-content">
+            
               <div className="tweet-avatar">
                 <img className="avatar" src={tweet.avatar} onClick={clickHandler}/>
                 {
