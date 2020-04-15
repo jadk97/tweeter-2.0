@@ -67,7 +67,11 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus }) => {
         dispatch(addRetweet( tweetToRetweet ));
       }
       else {
-        dispatch(unretweetTweet({ ...tweet }))
+        let tweetToUnretweet = { ...tweet, retweetedBy: [userProfile.creatorHandle] };
+        
+        // console.log("index of retweet to remove", tweetIndex);
+        // tweetToUnretweet.retweetedBy.splice(tweetIndex, 1);
+        dispatch(unretweetTweet(tweetToUnretweet));
       }
     }
 

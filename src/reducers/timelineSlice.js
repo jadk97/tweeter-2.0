@@ -222,7 +222,7 @@ export const slice = createSlice({
       pathToTweet[pathToTweet.length - 1] = "retweets";
       _.set(state, pathToTweet, _.get(state, pathToTweet) + 1);
       pathToTweet[pathToTweet.length - 1] = "retweetedBy";
-      console.log("retweetedBy inside the timelineSlice: ", _.get(state, pathToTweet))
+    
       _.set(state, pathToTweet, action.payload.retweetedBy);
     },
     unretweetTweet: (state, action) => {
@@ -230,6 +230,14 @@ export const slice = createSlice({
       let pathToTweet = findPath(tweetUnretweeted, state).split(".");
       pathToTweet[pathToTweet.length - 1] = "retweets";
       _.set(state,pathToTweet, _.get(state,pathToTweet) - 1);
+
+      pathToTweet[pathToTweet.length - 1] = "retweetedBy";
+      let updatedRetweetedBy = [..._.get(state, pathToTweet)];
+      let tweetIndex = updatedRetweetedBy.findIndex((user) => user === action.payload.retweetedBy[0]);
+      updatedRetweetedBy.splice(tweetIndex, 1);
+      console.log("updated retweet", updatedRetweetedBy);
+
+      _.set(state, pathToTweet, updatedRetweetedBy);
     }
   }
 });
