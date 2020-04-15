@@ -37,6 +37,8 @@ export const slice = createSlice({
     removeRetweet: (state, action) => {
       let retweetToRemove = state.retweetedTweets.findIndex((tweet) => tweet.id === action.payload.id);
       state.retweetedTweets.splice(retweetToRemove, 1);
+      retweetToRemove = state.tweets.findIndex((tweet) => tweet.id === action.payload.id );
+      state.tweets.splice(retweetToRemove, 1);
     }
   }
 });

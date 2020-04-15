@@ -9,7 +9,7 @@ import ComposeTweet from "./ComposeTweet";
 
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { selectUserProfile, addLikedTweet, removeLikedTweet, addRetweet } from '../reducers/userProfileSlice';
+import { selectUserProfile, addLikedTweet, removeLikedTweet, addRetweet, removeRetweet } from '../reducers/userProfileSlice';
 import { likeTweet, unlikeTweet, retweetTweet, unretweetTweet } from "../reducers/timelineSlice";
 import { selectTimeline } from "../reducers/timelineSlice";
 import { useParams } from "react-router-dom";
@@ -18,11 +18,13 @@ import { Link } from "react-router-dom";
 const Tweet = ({ tweet, focusedView, childTweetToFocus }) => {
   const userProfile = useSelector(selectUserProfile);
   let likedUserTweets = userProfile.likedTweets.some(likedTweet => likedTweet.id === tweet.id);
+  // let retweetedUserTweets = userProfile.retweetedTweets(retweetedTweet => retweetedTweet.id === )
+  let retweetedUserTweets = userProfile.retweetedTweets.some(retweetedTweet => retweetedTweet.id === tweet.id);
   console.log("likedUserTweets: ", likedUserTweets);
   // console.log("Has the user liked this tweet? ", likedUserTweets.
   // console.log("tweet being passed into Tweet component", tweet);
   const [heartClicked, setHeartClicked] = useState(likedUserTweets);
-  const [retweetClicked, setRetweetClicked] = useState(false);
+  const [retweetClicked, setRetweetClicked] = useState(retweetedUserTweets);
   const [replyClicked, setReplyClicked] = useState(false);
   const dispatch = useDispatch();
   let history = useHistory();
@@ -64,14 +66,15 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus }) => {
         let tweetToRetweet = { ...tweet, retweetedBy: [...tweet.retweetedBy, userProfile.creatorHandle] };
         console.log("this is the tweet to retweet", tweetToRetweet)
         dispatch(retweetTweet(tweetToRetweet));
-        dispatch(addRetweet( tweetToRetweet ));
+        dispatch(addRetweet(tweetToRetweet));
       }
       else {
         let tweetToUnretweet = { ...tweet, retweetedBy: [userProfile.creatorHandle] };
-        
+
         // console.log("index of retweet to remove", tweetIndex);
         // tweetToUnretweet.retweetedBy.splice(tweetIndex, 1);
         dispatch(unretweetTweet(tweetToUnretweet));
+        dispatch(removeRetweet({ ...tweet }));
       }
     }
 
@@ -272,10 +275,10 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus }) => {
           </span>
         </div>
       </div>
-     
-       { focusedView ? tweetChain : abridgedTweetChain }
-      
-      
+
+      {focusedView ? tweetChain : abridgedTweetChain}
+
+
     </React.Fragment>
   )
 }
