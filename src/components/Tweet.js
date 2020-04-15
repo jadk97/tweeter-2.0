@@ -62,6 +62,7 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus }) => {
       setRetweetClicked((prev) => !prev);
       if (!retweetClicked){
         dispatch(retweetTweet({...tweet}));
+        dispatch(addRetweet({...tweet}));
       }
       else{
         dispatch(unretweetTweet({...tweet}))

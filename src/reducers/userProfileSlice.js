@@ -14,7 +14,7 @@ export const slice = createSlice({
     location: null,
     website: null,
     likedTweets: [],
-    retweets: [],
+    retweetedTweets: [],
     tweets: []
   },
   reducers: {
@@ -32,12 +32,16 @@ export const slice = createSlice({
     },
     addRetweet: (state, action) => {
       state.tweets.unshift(action.payload);
-      state.retweets.unshift(action.payload);
+      state.retweetedTweets.unshift(action.payload);
+    },
+    removeRetweet: (state, action) => {
+      let retweetToRemove = state.retweetedTweets.findIndex((tweet) => tweet.id === action.payload.id);
+      state.retweetedTweets.splice(retweetToRemove, 1);
     }
   }
 });
 
-export const { getUser, addLikedTweet, removeLikedTweet, addTweet, addRetweet } = slice.actions;
+export const { getUser, addLikedTweet, removeLikedTweet, addTweet, addRetweet, removeRetweet } = slice.actions;
 
 
 export const selectUserProfile = state => state.userProfile;
