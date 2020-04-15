@@ -71,13 +71,10 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus }) => {
     setReplyClicked(false);
   }
 
-  let usersRepliedTo;
-  if(focusedView){
-    usersRepliedTo = new Set();
-    usersRepliedTo.add(tweet.creatorHandle);
-    console.log(usersRepliedTo);
-  }
-
+  // let usersRepliedTo = new Set();
+  // usersRepliedTo.add(tweet.creatorHandle);
+  // console.log(usersRepliedTo);
+  
   const tweetChain = (tweet.replies || []).map((tweet, i) => {
     if (i === 0) {
       console.log("this is the index of the tweet: ", tweet);

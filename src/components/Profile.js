@@ -95,19 +95,6 @@ const Profile = (props) => {
         likes: 2,
         replies: [],
         replyingTo: ["tweet1"]
-      },
-      {
-        id: "tweet6",
-        content: "But what about kiwis?",
-        posted_at: Date.now(),
-        creatorName: "Ayn Rand",
-        creatorHandle: "AtlasShrugged",
-        avatar: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg",
-        replyCount: 0,
-        retweets: 500,
-        likes: 2,
-        replies: [],
-        replyingTo: ["tweet5"]
       }
       ]
     },
@@ -141,12 +128,13 @@ const Profile = (props) => {
         creatorName: "ErnestHemingway",
         creatorHandle: "EHemWay",
         avatar: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/ErnestHemingway.jpg/220px-ErnestHemingway.jpg",
-        replyCount: 0,
+        replyCount: 1,
         retweets: 500,
         likes: 2,
         replies: [{
           id: "tweet6",
-          content: "But what about kiwis?",
+          type: "child",
+          content: "Oranges.",
           posted_at: Date.now(),
           creatorName: "Ayn Rand",
           creatorHandle: "AtlasShrugged",
@@ -175,7 +163,7 @@ const Profile = (props) => {
     tweets = renderedUser[0].tweets;
     console.log("this is tweets with replies inside the profile component", tweets);
   }
-  else if(viewMode[viewMode.length -1] === "likes"){
+  else if (viewMode[viewMode.length - 1] === "likes") {
     tweets = renderedUser[0].likedTweets;
   }
   else {
@@ -244,7 +232,7 @@ const Profile = (props) => {
           </div>
         </div>
       </div>
-      <HorizontalNavBar headings={[{ title: "Tweets", path: `${match.url}` }, { title: "Tweets & Replies", path: `${match.url}/with_replies` }, {title: "Likes", path: `${match.url}/likes`}]} />
+      <HorizontalNavBar headings={[{ title: "Tweets", path: `${match.url}` }, { title: "Tweets & Replies", path: `${match.url}/with_replies` }, { title: "Likes", path: `${match.url}/likes` }]} />
       <TweetList timeline={tweets} />
 
     </div>

@@ -154,7 +154,8 @@ export const slice = createSlice({
       likes: 2,
       replies: [{
         id: "tweet6",
-        content: "But what about kiwis?",
+        type: "child",
+        content: "Oranges.",
         posted_at: Date.now(),
         creatorName: "Ayn Rand",
         creatorHandle: "AtlasShrugged",

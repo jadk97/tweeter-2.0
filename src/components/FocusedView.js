@@ -23,6 +23,7 @@ const FocusedView = (props) => {
   let pathToChildTweet;
   let replyChainToRender;
   if (tweetToFocus.type === "child") {
+    console.log("tweet is a child");
     console.log("The last index of tweetToFocus: ", tweetToFocus.replyingTo[tweetToFocus.replyingTo.length - 1]);
     pathToChildTweet = findPath(tweetToFocus.replyingTo[tweetToFocus.replyingTo.length - 1], timeline).split(".");
     pathToChildTweet.pop();
