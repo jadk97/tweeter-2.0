@@ -221,6 +221,9 @@ export const slice = createSlice({
       let pathToTweet = findPath(tweetRetweeted, state).split(".");
       pathToTweet[pathToTweet.length - 1] = "retweets";
       _.set(state, pathToTweet, _.get(state, pathToTweet) + 1);
+      pathToTweet[pathToTweet.length - 1] = "retweetedBy";
+      console.log("retweetedBy inside the timelineSlice: ", _.get(state, pathToTweet))
+      _.set(state, pathToTweet, action.payload.retweetedBy);
     },
     unretweetTweet: (state, action) => {
       let tweetUnretweeted = action.payload.id;

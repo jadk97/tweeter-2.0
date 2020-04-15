@@ -30,14 +30,14 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus }) => {
   console.log("THIS IS THE ID IN TWEET: ", id);
   // console.log(tweet.replies);
   // let hasReplies = tweet.replies && tweet.replies.length > 0;
- 
+
   const clickHandler = (e) => {
     e.stopPropagation();
     e.nativeEvent.stopImmediatePropagation();
 
     let clickedElement = e.currentTarget.classList;
     console.log("This is the clicked element", clickedElement);
-    if (clickedElement[0] === "creator-details" || clickedElement[0] === "avatar"){
+    if (clickedElement[0] === "creator-details" || clickedElement[0] === "avatar") {
       history.push(`/${tweet.creatorHandle}`);
     }
     if (clickedElement[0] === "tweet-container") {
@@ -60,12 +60,14 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus }) => {
 
     if (clickedElement[1] === "retweet-button") {
       setRetweetClicked((prev) => !prev);
-      if (!retweetClicked){
-        dispatch(retweetTweet({...tweet}));
-        dispatch(addRetweet({...tweet}));
+      if (!retweetClicked) {
+        let tweetToRetweet = { ...tweet, retweetedBy: [...tweet.retweetedBy, userProfile.creatorHandle] };
+        console.log("this is the tweet to retweet", tweetToRetweet)
+        dispatch(retweetTweet(tweetToRetweet));
+        dispatch(addRetweet( tweetToRetweet ));
       }
-      else{
-        dispatch(unretweetTweet({...tweet}))
+      else {
+        dispatch(unretweetTweet({ ...tweet }))
       }
     }
 
@@ -81,7 +83,7 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus }) => {
   // let usersRepliedTo = new Set();
   // usersRepliedTo.add(tweet.creatorHandle);
   // console.log(usersRepliedTo);
-  
+
   const tweetChain = (tweet.replies || []).map((tweet, i) => {
     if (i === 0) {
       console.log("this is the index of the tweet: ", tweet);
@@ -95,16 +97,16 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus }) => {
   const abridgedTweetChain = (tweet.replies || []).map((tweet, i) => {
     if (i === 0) {
       // console.log("childTweetToFocus?: ", (typeof childTweetToFocus != "undefined") && (childTweetToFocus.id === tweet.id));
-      if(childTweetToFocus){
-        
+      if (childTweetToFocus) {
+
         console.log("this is the tweet id:", tweet.id);
         console.log("this is the childtweettofocus", childTweetToFocus.id === tweet.id);
-        return <Tweet key={tweet.id} tweet={tweet} childTweetToFocus ={childTweetToFocus} focusedView={childTweetToFocus.id === tweet.id} />
+        return <Tweet key={tweet.id} tweet={tweet} childTweetToFocus={childTweetToFocus} focusedView={childTweetToFocus.id === tweet.id} />
       }
       return <Tweet key={tweet.id} tweet={tweet} childTweetToFocus={childTweetToFocus} type="child" />
     }
 
-  
+
   })
 
   console.log("THIS IS ME LOGGING THE tweet VARIABLE INSIDE TWEET.JS: ", focusedView)
@@ -127,8 +129,8 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus }) => {
           </div>
           <div className="tweet-text">
             <div className="creator-details">
-            <span className="creator-name">{tweet.creatorName}</span>
-              
+              <span className="creator-name">{tweet.creatorName}</span>
+
               <span className="creator-handle"> @{tweet.creatorHandle}</span>
               <span className="time-tweeted"> - {new Date(tweet.posted_at).toDateString()}</span>
             </div>
@@ -138,16 +140,16 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus }) => {
 
         </div>
       </Modal>
-      
+
       <div className={`tweet-container ${focusedView ? "__focused" : ""} ${tweet.replies && tweet.replies.length > 0 ? "__replied" : ""}`} onClick={(event) => clickHandler(event)}>
 
 
         {focusedView ? (
           <React.Fragment>
             <div className="tweet-content">
-            
+
               <div className="tweet-avatar">
-                <img className="avatar" src={tweet.avatar} onClick={clickHandler}/>
+                <img className="avatar" src={tweet.avatar} onClick={clickHandler} />
                 {
                   tweet.replies && tweet.replies.length > 0 && (<div className="reply-line"></div>)
                 }
@@ -266,7 +268,10 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus }) => {
           </span>
         </div>
       </div>
-      {focusedView ? tweetChain : abridgedTweetChain}
+     
+       { focusedView ? tweetChain : abridgedTweetChain }
+      
+      
     </React.Fragment>
   )
 }
