@@ -10,7 +10,7 @@ import ComposeTweet from "./ComposeTweet";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUserProfile, addLikedTweet, removeLikedTweet, addRetweet } from '../reducers/userProfileSlice';
-import { likeTweet, unlikeTweet } from "../reducers/timelineSlice";
+import { likeTweet, unlikeTweet, retweetTweet, unretweetTweet } from "../reducers/timelineSlice";
 import { selectTimeline } from "../reducers/timelineSlice";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -60,6 +60,12 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus }) => {
 
     if (clickedElement[1] === "retweet-button") {
       setRetweetClicked((prev) => !prev);
+      if (!retweetClicked){
+        dispatch(retweetTweet({...tweet}));
+      }
+      else{
+        dispatch(unretweetTweet({...tweet}))
+      }
     }
 
     if (clickedElement[1] === "reply-button") {

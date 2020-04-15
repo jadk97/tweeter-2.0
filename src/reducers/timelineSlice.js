@@ -210,11 +210,17 @@ export const slice = createSlice({
       let pathToTweet = findPath(tweetRetweeted, state).split(".");
       pathToTweet[pathToTweet.length - 1] = "retweets";
       _.set(state, pathToTweet, _.get(state, pathToTweet) + 1);
+    },
+    unretweetTweet: (state, action) => {
+      let tweetUnretweeted = action.payload.id;
+      let pathToTweet = findPath(tweetUnretweeted, state).split(".");
+      pathToTweet[pathToTweet.length - 1] = "retweets";
+      _.set(state,pathToTweet, _.get(state,pathToTweet) - 1);
     }
   }
 });
 
-export const { submitTweet, replyTweet, likeTweet, unlikeTweet } = slice.actions;
+export const { submitTweet, replyTweet, likeTweet, unlikeTweet, retweetTweet, unretweetTweet } = slice.actions;
 
 
 export const selectTimeline = state => state.timeline;
