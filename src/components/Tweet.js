@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Tweet.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment, faHeart, faBookmark } from '@fortawesome/free-regular-svg-icons';
-import { faRetweet, faCircle } from "@fortawesome/free-solid-svg-icons";
+import { faRetweet, faCircle, faTimes } from "@fortawesome/free-solid-svg-icons";
 import Modal from "./Modal";
 import Button from "./Button";
 import ComposeTweet from "./ComposeTweet";
@@ -137,8 +137,23 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus }) => {
       <Modal
         show={replyClicked}
         onCancel={() => setReplyClicked(setReplyClicked((prev) => !prev))}
-        header={"tweet"}
+        header={
+        <span className="fa-layers close-button" onClick={() => setReplyClicked(setReplyClicked((prev) => !prev))} >
+        <FontAwesomeIcon
+          icon={faTimes}
+          size="lg"
+          color="#1da1f2"
+          className="close-icon"
+        />
+        <FontAwesomeIcon
+          icon={faCircle}
+          size="2x"
+          color="rgba(29, 161, 242, 0.1)"
+          className="close-circle-icon"
+        />
+      </span>}
         contentClass="tweet__modal-content"
+        headerClass="tweet__modal-header"
         footerClass="tweet__modal-actions"
         footer={<ComposeTweet type={tweet.type} mode="reply" modalSubmit={handleModalSubmit} replyingTo={tweet.type === "parent" ? [tweet.id] : [...tweet.replyingTo, tweet.id]}></ComposeTweet>}
       >

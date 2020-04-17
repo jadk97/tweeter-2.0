@@ -175,6 +175,10 @@ text-align: right;
     margin-bottom: 20px;
   }
 
+  .tweet__modal-header{
+  
+  }
+
   .replying-to{
     margin-top: 3rem;
   }
@@ -254,3 +258,18 @@ text-align: right;
   .tweet-retweeted span{
     padding-left:1%;
   }
+
+  .fa-layers.close-button{
+    padding-top: 1%;
+    padding-bottom: 2%;
+    padding-left: 5%;
+  }
+  .close-circle-icon{
+    opacity: 0%;
+  }
+  .fa-layers.close-button:hover > .close-circle-icon{
+    opacity: 100%;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  
