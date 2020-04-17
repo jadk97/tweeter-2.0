@@ -1,11 +1,30 @@
 .header{
   text-align: left;
-  padding-top: 1px;
-  padding-left: 5%;
+  padding-top: 3%;
+  padding-left: 3%;
+  
   border-bottom: 1px solid lightslategray;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
   background-color: #15202B;
   z-index: 10;
+ 
+  height: 55px;
+}
+
+.header h2{
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+
+.subheader{
+  font-size: 15px;
+  float: bottom;
+  color: lightslategray;
+ 
+  
 }
