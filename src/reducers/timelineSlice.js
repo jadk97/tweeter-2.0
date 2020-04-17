@@ -83,6 +83,7 @@ export const slice = createSlice({
               replyCount: 0,
               retweets: 500,
               likes: 2,
+              retweetedBy: [],
               replies: [],
               replyingTo: ["tweet10"]
             }
@@ -161,7 +162,7 @@ export const slice = createSlice({
       replyCount: 0,
       retweets: 500,
       likes: 2,
-      retweetedBy: [],
+      retweetedBy: ["AtlasShrugged"],
       replies: [{
         id: "tweet6",
         type: "child",

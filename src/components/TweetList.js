@@ -6,9 +6,8 @@ import Tweet from "./Tweet";
 
 const TweetList = (props) => (
 
-  props.timeline.map((tweet) => {
-    console.log("THIS IS TWEET: ", tweet);
-    console.log("This is the type of the TWEET: ",tweet.type)
+  props.timeline.map((tweet) => { 
+    
     // if(tweet.type==="parent"){
       return (
         
