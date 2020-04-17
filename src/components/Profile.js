@@ -41,6 +41,7 @@ const Profile = (props) => {
         replyCount: 0,
         retweets: 500,
         likes: 2,
+        retweetedBy: [],
         replies: []
       }],
       tweets: [{
@@ -54,6 +55,7 @@ const Profile = (props) => {
         replyCount: 1,
         retweets: 5,
         likes: 120,
+        retweetedBy: [],
         replies: [{
           id: "tweet3",
           type: "child",
@@ -65,6 +67,7 @@ const Profile = (props) => {
           replyCount: 0,
           retweets: 500,
           likes: 2,
+          retweetedBy: [],
           replies: [],
           replyingTo: ["tweet1"]
         }]
@@ -80,6 +83,7 @@ const Profile = (props) => {
         replyCount: 0,
         retweets: 500,
         likes: 2,
+        retweetedBy: [],
         replies: []
       },
       {
@@ -93,6 +97,7 @@ const Profile = (props) => {
         replyCount: 0,
         retweets: 500,
         likes: 2,
+        retweetedBy: [],
         replies: [],
         replyingTo: ["tweet1"]
       }
@@ -131,6 +136,7 @@ const Profile = (props) => {
         replyCount: 1,
         retweets: 500,
         likes: 2,
+        retweetedBy: [],
         replies: [{
           id: "tweet6",
           type: "child",
@@ -142,6 +148,7 @@ const Profile = (props) => {
           replyCount: 0,
           retweets: 500,
           likes: 2,
+          retweetedBy: [],
           replies: [],
           replyingTo: ["tweet5"]
         }]
