@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./Header";
 import TweetList from "../components/TweetList";
-
+import _ from "lodash";
 import { useParams, useLocation, useRouteMatch, useHistory, Switch, Route } from "react-router-dom";
 import { selectUserProfile } from "../reducers/userProfileSlice";
 import { useSelector } from "react-redux";
@@ -183,9 +183,10 @@ const Profile = (props) => {
   // let tweets = renderedUser[0].tweets;
   console.log(renderedUser);
   // console.log("this is the current url", location);
+
   return (
     <div className="center-view">
-      <Header title={renderedUser[0].creatorName} />
+      <Header title={renderedUser[0].creatorName} subtitle={renderedUser[0].tweets.length + " Tweets"} />
       <div className="profile-images">
         <img className="profile-avatar" src={renderedUser[0].avatar} />
         <img className="profile-banner" src={"https://gethope.net/wp-content/uploads/2019/07/Why-How-and-What-Slider-Background-1500x500.jpg"} />

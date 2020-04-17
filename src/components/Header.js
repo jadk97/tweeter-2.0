@@ -6,7 +6,7 @@ const Header = (props) => {
     <h2>{props.title}</h2>
     
     <div className="subheader">
-    
+      {props.subtitle}
     </div>
     
     </div>
