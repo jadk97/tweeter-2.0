@@ -244,3 +244,13 @@ text-align: right;
     text-decoration: underline;
     text-decoration-thickness: 2px;
   }
+
+  .tweet-retweeted{
+    color: lightslategray;
+    margin-left: 7%;
+    margin-bottom: 1%;
+  }
+
+  .tweet-retweeted span{
+    padding-left:1%;
+  }

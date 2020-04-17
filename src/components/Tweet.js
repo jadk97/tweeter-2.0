@@ -32,7 +32,7 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus }) => {
   console.log("THIS IS THE ID IN TWEET: ", id);
   // console.log(tweet.replies);
   // let hasReplies = tweet.replies && tweet.replies.length > 0;
-  
+
   const clickHandler = (e) => {
     e.stopPropagation();
     e.nativeEvent.stopImmediatePropagation();
@@ -117,15 +117,15 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus }) => {
   })
 
   let retweetIndicator;
-  if(tweet.retweetedBy.length > 0){
+  if (tweet.retweetedBy.length > 0) {
     console.log("the tweet has been retweeted");
-    if(tweet.retweetedBy.includes(userProfile.creatorHandle)){
+    if (tweet.retweetedBy.includes(userProfile.creatorHandle)) {
       retweetIndicator = "You retweeted this";
     }
-    else if(tweet.retweetedBy.length === 1 && !tweet.retweetedBy.includes(userProfile.creatorHanlde)){
+    else if (tweet.retweetedBy.length === 1 && !tweet.retweetedBy.includes(userProfile.creatorHanlde)) {
       retweetIndicator = `${tweet.retweetedBy[0]} Retweeted`;
     }
-    else{
+    else {
       let isPlural = (tweet.retweetedBy.length - 2) > 1;
       tweet.retweetedBy.length > 2 ? retweetIndicator = `${tweet.retweetedBy.slice(-2).join(", ")} & ${tweet.retweetedBy.length - 2} ${isPlural ? "others Retweeted" : "other Retweeted"}` : retweetIndicator = `${tweet.retweetedBy.join(" & ")} Retweeted`;
     }
@@ -164,8 +164,16 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus }) => {
 
       <div className={`tweet-container ${focusedView ? "__focused" : ""} ${tweet.replies && tweet.replies.length > 0 ? "__replied" : ""}`} onClick={(event) => clickHandler(event)}>
         {retweetIndicator && (
-          <div>{retweetIndicator}</div>
-          ) }
+          <div className="tweet-retweeted">
+            <FontAwesomeIcon
+              icon={faRetweet}
+              size="sm"
+              color="#778899"
+              className="retweet-icon"
+            />
+            <span>{retweetIndicator}</span>
+          </div>
+        )}
         {focusedView ? (
           <React.Fragment>
             <div className="tweet-content">
