@@ -170,7 +170,7 @@ const Profile = (props) => {
     tweets = renderedUser[0].likedTweets;
   }
   else {
-    tweets = renderedUser[0].tweets.filter((tweet) => tweet.type === "parent");
+    tweets = renderedUser[0].tweets.filter((tweet) => tweet.type === "parent" || (tweet.type === "child" && tweet.retweetedBy.includes(userProfile.creatorHandle)));
     console.log("This is tweets inside of the Profile component:", tweets);
   }
   // let tweets = renderedUser[0].tweets;
