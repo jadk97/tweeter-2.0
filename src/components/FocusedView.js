@@ -54,7 +54,7 @@ const FocusedView = (props) => {
 
   return (
     <div className="center-view">
-      <Header title={"Tweet"} />
+      <Header title={"Tweet"} navButton={true}/>
       {
       tweetToFocus.type === "child" ? (<Tweet id={id} tweet={replyChainToRender} childTweetToFocus={tweetToFocus}/>) :  <Tweet focusedView={true} id={id} tweet={tweetToFocus}/>
       }
