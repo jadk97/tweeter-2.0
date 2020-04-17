@@ -3,9 +3,14 @@ import "./Header.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faCircle } from "@fortawesome/free-solid-svg-icons";
 const Header = (props) => {
+
+  const clickHandler = () => {
+
+  }
   return (
     <div className="header">
-      <span className="fa-layers back-button">
+    {props.navButton && (
+      <span className="fa-layers back-button" onClick={clickHandler}>
         <FontAwesomeIcon
           icon={faArrowLeft}
           size="lg"
@@ -20,7 +25,8 @@ const Header = (props) => {
           transform="left-3.0"
         />
       </span>
-      <div className="header-text __with-navigation">
+    )}
+      <div className="header-text">
         <h2>{props.title}</h2>
         <div className="subheader">
           {props.subtitle}
