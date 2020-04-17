@@ -9,7 +9,9 @@
   top: 0;
   background-color: #15202B;
   z-index: 10;
- 
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
   height: 55px;
 }
 
@@ -27,4 +29,18 @@
   color: lightslategray;
  
   
+}
+.fa-layers.back-button{
+padding-top: 3%;
+padding-left: 2%;
+margin-right: 5%;
+cursor: pointer;
+}
+
+.back-circle-icon{
+  opacity: 0%;
+}
+.fa-layers.back-button:hover > .back-circle-icon{
+  opacity: 100%;
+  transition: all 0.2s;
 }

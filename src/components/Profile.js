@@ -15,6 +15,7 @@ import "./Profile.css";
 const Profile = (props) => {
   let { creatorHandle } = useParams();
   let location = useLocation();
+  
   console.log("This is the current location:", location.pathname.split("/"));
 
   let match = useRouteMatch();
