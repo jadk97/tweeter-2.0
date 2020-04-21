@@ -140,15 +140,15 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
       mentionsChain = tweet.mentions.map((mention, i) => {
         if(i === tweet.mentions.length - 1){
           // console.log("last index", mention);
-          return <span>& <span className="replying-to-link" onClick={(event) => clickHandler(event)}>{mention}</span></span>
+          return <span>&<span className="replying-to-link" onClick={(event) => clickHandler(event)}>@{mention}</span></span>
         }
         else{
-          return <span><span className="replying-to-link" onClick={(event) => clickHandler(event)}>{mention}</span>, </span>
+          return <span><span className="replying-to-link" onClick={(event) => clickHandler(event)}>@{mention}</span>, </span>
         }
       })
     }
     else{
-      mentionsChain = <span className="replying-to-link" onClick={(event) => clickHandler(event)}>{tweet.mentions[0]}</span>
+      mentionsChain = <span className="replying-to-link" onClick={(event) => clickHandler(event)}>@{tweet.mentions[0]}</span>
     }
   // }
   // mentionsChain = tweet.mentions.map((mention, i) => (

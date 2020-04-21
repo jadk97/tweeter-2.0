@@ -42,6 +42,7 @@ const Profile = (props) => {
         replyCount: 0,
         retweets: 500,
         likes: 2,
+        mentions: [],
         retweetedBy: [],
         replies: []
       }],
@@ -68,6 +69,7 @@ const Profile = (props) => {
           replyCount: 0,
           retweets: 500,
           likes: 2,
+          mentions: ["AtlasShrugged"],
           retweetedBy: [],
           replies: [],
           replyingTo: ["tweet1"]
@@ -84,6 +86,7 @@ const Profile = (props) => {
         replyCount: 0,
         retweets: 500,
         likes: 2,
+        mentions: [],
         retweetedBy: [],
         replies: []
       },
@@ -98,6 +101,7 @@ const Profile = (props) => {
         replyCount: 0,
         retweets: 500,
         likes: 2,
+        mentions: ["AtlasShrugged"],
         retweetedBy: [],
         replies: [],
         replyingTo: ["tweet1"]
