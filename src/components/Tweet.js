@@ -235,7 +235,7 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
                 </div>
               </div>
             </div>
-            {tweet.type === "child" && <div className="tweet-mentions">Replying To <span>{tweet.mentions.join(", ")}</span></div>}
+            {tweet.type === "child" && <div className="tweet-mentions">Replying To {mentionsChain}</div>}
             <div className="tweet-body">
               {tweet.content}
               <div className="time-tweeted"> {new Date(tweet.posted_at).toDateString()}</div>
