@@ -51,6 +51,8 @@ const FocusedView = (props) => {
        : (replyChainToRender = {...rootParentTweet, replies: [{ ...parentTweet, replies: [tweetToFocus]}]})
       // replyChainToRender = parentTweet;
     }
+
+    
     // console.log("TWEET TO FOCUS replyCount: ",   tweetToFocus.replies.length)
   }
 

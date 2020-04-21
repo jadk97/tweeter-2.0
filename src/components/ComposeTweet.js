@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectUserProfile, addTweet } from '../reducers/userProfileSlice';
 import { submitTweet, replyTweet, selectTimeline } from "../reducers/timelineSlice";
 import { v4 as uuid } from "uuid";
+import { useHistory } from "react-router-dom";
 
 
 const ComposeTweet = (props) => {
@@ -16,11 +17,13 @@ const ComposeTweet = (props) => {
   const userProfile = useSelector(selectUserProfile);
   // const timeline = useSelector(selectTimeline);
   const dispatch = useDispatch();
-
+  let history = useHistory();
   const handleChange = (e) => {
     setTweet(e.target.value);
   }
-
+  const handleAvatarClick = () => {
+    history.push(`/${userProfile.creatorHandle}`);
+  }
   const handleSubmit = (e) => {
     // console.log(timeline)
     e.preventDefault();
@@ -109,7 +112,7 @@ const ComposeTweet = (props) => {
     <div className="compose-tweet">
       <form onSubmit={handleSubmit}>
         <div className="tweet-box">
-          <img className="avatar" src={"https://www.deccanherald.com/sites/dh/files/styles/article_detail/public/article_images/2017/04/04/604513.jpg?itok=FqqfYOfA"} />
+          <img className="avatar" src={"https://www.deccanherald.com/sites/dh/files/styles/article_detail/public/article_images/2017/04/04/604513.jpg?itok=FqqfYOfA"} onClick={handleAvatarClick} />
           <TextareaAutosize
             value={tweet}
             className={`tweet-input${tweet.length > 0 ? " __filled" : ""}`}

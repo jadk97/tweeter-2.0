@@ -13,6 +13,7 @@
 .tweet-box .avatar{
   position: sticky;
   align-self: flex-start;
+  cursor: pointer;
 }
 
 
