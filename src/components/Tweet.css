@@ -278,6 +278,9 @@ text-align: right;
     color: #1da1f2;
   }
 
-  .replying-to-link{
-    
+
+  .replying-to-link:hover{
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    cursor: pointer;
   }
