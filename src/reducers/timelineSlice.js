@@ -17,6 +17,7 @@ export const slice = createSlice({
       replyCount: 1,
       retweets: 5,
       likes: 120,
+      mentions:[],
       retweetedBy: [],
       replies: [{
         id: "tweet3",
@@ -29,6 +30,7 @@ export const slice = createSlice({
         replyCount: 1,
         retweets: 500,
         likes: 2,
+        mentions:[],
         retweetedBy: [],
         replies: [{
           id: "tweet8",
@@ -41,6 +43,7 @@ export const slice = createSlice({
           replyCount: 1,
           retweets: 500,
           likes: 2,
+          mentions:[],
           retweetedBy: [],
           replies: [{
             id: "tweet9",
@@ -53,6 +56,7 @@ export const slice = createSlice({
             replyCount: 0,
             retweets: 500,
             likes: 2,
+            mentions:[],
             retweetedBy: [],
             replies: [],
             replyingTo: ["tweet1", "tweet3", "tweet8"]
@@ -70,6 +74,7 @@ export const slice = createSlice({
           replyCount: 0,
           retweets: 500,
           likes: 2,
+          mentions:[],
           retweetedBy: [],
           replies: [
             {
@@ -83,6 +88,7 @@ export const slice = createSlice({
               replyCount: 0,
               retweets: 500,
               likes: 2,
+              mentions:[],
               retweetedBy: [],
               replies: [],
               replyingTo: ["tweet10"]
@@ -104,8 +110,9 @@ export const slice = createSlice({
         replyCount: 0,
         retweets: 500,
         likes: 2,
+        mentions:[],
         retweetedBy: [],
-        replies: [  {
+        replies: [{
           id: "tweet12",
           type: "child",
           content: "Papayas.",
@@ -116,6 +123,7 @@ export const slice = createSlice({
           replyCount: 0,
           retweets: 500,
           likes: 2,
+          mentions:[],
           retweetedBy: [],
           replies: [],
           replyingTo: ["tweet1", "tweet7"]
@@ -134,6 +142,7 @@ export const slice = createSlice({
       replyCount: 0,
       retweets: 500,
       likes: 2,
+      mentions:[],
       retweetedBy: [],
       replies: []
     },
@@ -148,8 +157,24 @@ export const slice = createSlice({
       replyCount: 0,
       retweets: 500,
       likes: 2,
+      mentions:[],
       retweetedBy: [],
-      replies: []
+      replies: [{
+        id: "tweet6",
+        type: "child",
+        content: "Cherries.",
+        posted_at: Date.now(),
+        creatorName: "Ayn Rand",
+        creatorHandle: "AtlasShrugged",
+        avatar: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg",
+        replyCount: 0,
+        retweets: 500,
+        likes: 2,
+        replies: [],
+        mentions: ["@EHemWay"],
+        retweetedBy: [],
+        replyingTo: ["tweet4"]
+      }]
     },
     {
       id: "tweet5",
@@ -162,6 +187,7 @@ export const slice = createSlice({
       replyCount: 0,
       retweets: 500,
       likes: 2,
+      mentions:[],
       retweetedBy: ["AtlasShrugged"],
       replies: [{
         id: "tweet6",
@@ -175,6 +201,7 @@ export const slice = createSlice({
         retweets: 500,
         likes: 2,
         replies: [],
+        mentions:[],
         retweetedBy: [],
         replyingTo: ["tweet5"]
       }]
@@ -223,14 +250,14 @@ export const slice = createSlice({
       pathToTweet[pathToTweet.length - 1] = "retweets";
       _.set(state, pathToTweet, _.get(state, pathToTweet) + 1);
       pathToTweet[pathToTweet.length - 1] = "retweetedBy";
-    
+
       _.set(state, pathToTweet, action.payload.retweetedBy);
     },
     unretweetTweet: (state, action) => {
       let tweetUnretweeted = action.payload.id;
       let pathToTweet = findPath(tweetUnretweeted, state).split(".");
       pathToTweet[pathToTweet.length - 1] = "retweets";
-      _.set(state,pathToTweet, _.get(state,pathToTweet) - 1);
+      _.set(state, pathToTweet, _.get(state, pathToTweet) - 1);
 
       pathToTweet[pathToTweet.length - 1] = "retweetedBy";
       let updatedRetweetedBy = [..._.get(state, pathToTweet)];

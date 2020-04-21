@@ -47,6 +47,7 @@ const ComposeTweet = (props) => {
         replies: [],
         retweets: 0,
         likes: 0,
+        mentions: [...props.mentions],
         replyingTo: [...props.replyingTo]
       }));
 
@@ -63,6 +64,7 @@ const ComposeTweet = (props) => {
         retweetedBy: [],
         retweets: 0,
         likes: 0,
+        mentions: [...props.mentions],
         replyingTo: [...props.replyingTo]
       }))
       props.modalSubmit();

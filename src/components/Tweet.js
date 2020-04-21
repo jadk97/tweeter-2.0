@@ -15,7 +15,7 @@ import { selectTimeline } from "../reducers/timelineSlice";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-const Tweet = ({ tweet, focusedView, childTweetToFocus }) => {
+const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
   const userProfile = useSelector(selectUserProfile);
   let likedUserTweets = userProfile.likedTweets.some(likedTweet => likedTweet.id === tweet.id);
   // let retweetedUserTweets = userProfile.retweetedTweets(retweetedTweet => retweetedTweet.id === )
@@ -95,12 +95,11 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus }) => {
     if (i === 0) {
       console.log("this is the index of the tweet: ", tweet);
     }
-    return <Tweet key={tweet.id} tweet={tweet} type="child" />
+    return <Tweet key={tweet.id} tweet={tweet} type="child" showMentions={true} />
   })
 
-  if (tweet.id === id) {
-    console.log("THE IDS MATCH");
-  }
+
+
   const abridgedTweetChain = (tweet.replies || []).map((tweet, i) => {
     if (i === 0) {
       // console.log("childTweetToFocus?: ", (typeof childTweetToFocus != "undefined") && (childTweetToFocus.id === tweet.id));
@@ -122,7 +121,7 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus }) => {
     if (tweet.retweetedBy.includes(userProfile.creatorHandle)) {
       retweetIndicator = "You retweeted this";
     }
-    else if (tweet.retweetedBy.length === 1 && !tweet.retweetedBy.includes(userProfile.creatorHanlde)) {
+    else if (tweet.retweetedBy.length === 1 && !tweet.retweetedBy.includes(userProfile.creatorHandle)) {
       retweetIndicator = `${tweet.retweetedBy[0]} Retweeted`;
     }
     else {
@@ -130,8 +129,13 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus }) => {
       tweet.retweetedBy.length > 2 ? retweetIndicator = `${tweet.retweetedBy.slice(-2).join(", ")} & ${tweet.retweetedBy.length - 2} ${isPlural ? "others Retweeted" : "other Retweeted"}` : retweetIndicator = `${tweet.retweetedBy.join(" & ")} Retweeted`;
     }
   }
+
+  let showReplyingTo;
+  
+
   console.log("THIS IS ME LOGGING THE tweet VARIABLE INSIDE TWEET.JS: ", focusedView)
-  console.log("THIS IS THE TWEETCHAIN:", tweetChain);
+  // console.log("THIS IS THE TWEETCHAIN:", abridgedTweetChain);
+ console.log("does this have __replied?", tweet.replies.length > 0);
   return (
     <React.Fragment>
       <Modal
@@ -155,7 +159,7 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus }) => {
         contentClass="tweet__modal-content"
         headerClass="tweet__modal-header"
         footerClass="tweet__modal-actions"
-        footer={<ComposeTweet type={tweet.type} mode="reply" modalSubmit={handleModalSubmit} replyingTo={tweet.type === "parent" ? [tweet.id] : [...tweet.replyingTo, tweet.id]}></ComposeTweet>}
+        footer={<ComposeTweet type={tweet.type} mode="reply" modalSubmit={handleModalSubmit} replyingTo={tweet.type === "parent" ? [tweet.id] : [...tweet.replyingTo, tweet.id]} mentions={new Set(["@" + tweet.creatorHandle, ...tweet.mentions])}></ComposeTweet>}
       >
         <div className="tweet-content">
           <div className="tweet-avatar">
@@ -233,6 +237,7 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus }) => {
                   <span className="creator-handle"> @{tweet.creatorHandle}</span>
                   <span className="time-tweeted"> - {new Date(tweet.posted_at).toDateString()}</span>
                 </div>
+                {showMentions && <div className="tweet-mentions">Replying To <span>{tweet.mentions.join(", ")}</span></div>}
                 <div className="tweet-body">{tweet.content}</div>
               </div>
             </div>

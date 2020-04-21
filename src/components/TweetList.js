@@ -9,15 +9,26 @@ const TweetList = (props) => (
   props.timeline.map((tweet) => { 
     
     // if(tweet.type==="parent"){
-      return (
-        
+      if(tweet.type === "child"){
+        return (
           <Tweet
-            key={tweet.id}
-            tweet={tweet}
-          />
-
-
-      )
+          key={tweet.id}
+          tweet={tweet}
+          showMentions={true}
+        />
+        )
+      }
+      else{
+        return (
+          
+            <Tweet
+              key={tweet.id}
+              tweet={tweet}
+            />
+  
+  
+        )
+      }
     // }
   }
   )

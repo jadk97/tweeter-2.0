@@ -183,6 +183,7 @@ text-align: right;
     color: #1da1f2;
   }
 
+
   .tweet-container.__focused{
     border-bottom: 1px solid lightslategray;
     padding: 15px 15px 20px 15px;
@@ -269,3 +270,9 @@ text-align: right;
     cursor: pointer;
   }
   
+  .tweet-mentions{
+    color: lightslategray;
+  }
+  .tweet-mentions span{
+    color: #1da1f2;
+  }
