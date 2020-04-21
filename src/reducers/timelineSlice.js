@@ -190,7 +190,7 @@ export const slice = createSlice({
       mentions:[],
       retweetedBy: ["AtlasShrugged"],
       replies: [{
-        id: "tweet6",
+        id: "tweet13",
         type: "child",
         content: "Oranges.",
         posted_at: Date.now(),
@@ -201,7 +201,7 @@ export const slice = createSlice({
         retweets: 500,
         likes: 2,
         replies: [],
-        mentions:["@EHemWay"],
+        mentions:["@EHemWay", "@JohnDoe"],
         retweetedBy: [],
         replyingTo: ["tweet5"]
       }]

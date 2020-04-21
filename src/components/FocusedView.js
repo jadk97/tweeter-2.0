@@ -8,6 +8,8 @@ import { selectTimeline } from "../reducers/timelineSlice";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import _ from "lodash";
+
+// refactor this later
 const FocusedView = (props) => {
   let { creatorHandle, id } = useParams();
   const timeline = useSelector(selectTimeline);

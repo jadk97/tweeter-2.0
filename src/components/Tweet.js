@@ -42,6 +42,11 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
     if (clickedElement[0] === "creator-details" || clickedElement[0] === "avatar") {
       history.push(`/${tweet.creatorHandle}`);
     }
+    if (clickedElement[0] === "replyingto-link") {
+      let creatorLink = e.currentTarget.innerText;
+      history.push(`/${creatorLink.substr(1)}`);
+      console.log();
+    }
     if (clickedElement[0] === "tweet-container") {
       console.log("Tweet container clicked");
       history.push(`/${tweet.creatorHandle}/status/${tweet.id}`);
@@ -95,7 +100,7 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
     if (i === 0) {
       console.log("this is the index of the tweet: ", tweet);
     }
-    return <Tweet key={tweet.id} tweet={tweet} type="child" showMentions={true}  />
+    return <Tweet key={tweet.id} tweet={tweet} type="child" showMentions={true} />
   })
 
 
@@ -111,8 +116,6 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
       }
       return <Tweet key={tweet.id} tweet={tweet} childTweetToFocus={childTweetToFocus} type="child" />
     }
-
-
   })
 
   let retweetIndicator;
@@ -130,32 +133,54 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
     }
   }
 
-  let showReplyingTo;
-  
+  let mentionsChain;
+
+    // let isPlural = (tweet.retweetedBy.length - 2) > 1;
+    if(tweet.mentions.length > 1){
+      mentionsChain = tweet.mentions.map((mention, i) => {
+        if(i === tweet.mentions.length - 1){
+          // console.log("last index", mention);
+          return <span>& <span className="replyingto-link" onClick={(event) => clickHandler(event)}>{mention}</span></span>
+        }
+        else{
+          return <span><span className="replyingto-link" onClick={(event) => clickHandler(event)}>{mention}</span>, </span>
+        }
+      })
+    }
+    else{
+      mentionsChain = <span className="replyingto-link" onClick={(event) => clickHandler(event)}>{tweet.mentions[0]}</span>
+    }
+  // }
+  // mentionsChain = tweet.mentions.map((mention, i) => (
+  //   <span className="replyingto-link" onClick={(event) => clickHandler(event)}>{mention}</span>
+  // ));
+
+  // console.log("This is the mentionsChain", mentionsChain);
+  console.log("These are the mentions", tweet.mentions);
 
   console.log("THIS IS ME LOGGING THE tweet VARIABLE INSIDE TWEET.JS: ", focusedView)
   // console.log("THIS IS THE TWEETCHAIN:", abridgedTweetChain);
- console.log("does this have __replied?", tweet.replies.length > 0);
+  console.log("does this have __replied?", tweet.replies.length > 0);
   return (
     <React.Fragment>
       <Modal
         show={replyClicked}
         onCancel={() => setReplyClicked(setReplyClicked((prev) => !prev))}
         header={
-        <span className="fa-layers close-button" onClick={() => setReplyClicked(setReplyClicked((prev) => !prev))} >
-        <FontAwesomeIcon
-          icon={faTimes}
-          size="lg"
-          color="#1da1f2"
-          className="close-icon"
-        />
-        <FontAwesomeIcon
-          icon={faCircle}
-          size="2x"
-          color="rgba(29, 161, 242, 0.1)"
-          className="close-circle-icon"
-        />
-      </span>}
+          <span className="fa-layers close-button" onClick={() => setReplyClicked(setReplyClicked((prev) => !prev))} >
+            <FontAwesomeIcon
+              icon={faTimes}
+              size="lg"
+              color="#1da1f2"
+              className="close-icon"
+            />
+            <FontAwesomeIcon
+              icon={faCircle}
+              size="2x"
+              color="rgba(29, 161, 242, 0.1)"
+              className="close-circle-icon"
+            />
+          </span>}
         contentClass="tweet__modal-content"
         headerClass="tweet__modal-header"
         footerClass="tweet__modal-actions"
@@ -210,7 +235,7 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
                 </div>
               </div>
             </div>
-            {tweet.mentions.length > 0 && <div className="tweet-mentions">Replying To <span>{tweet.mentions.join(", ")}</span></div>}
+            {tweet.type === "child" && <div className="tweet-mentions">Replying To <span>{tweet.mentions.join(", ")}</span></div>}
             <div className="tweet-body">
               {tweet.content}
               <div className="time-tweeted"> {new Date(tweet.posted_at).toDateString()}</div>
@@ -238,7 +263,7 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
                   <span className="creator-handle"> @{tweet.creatorHandle}</span>
                   <span className="time-tweeted"> - {new Date(tweet.posted_at).toDateString()}</span>
                 </div>
-                {showMentions && <div className="tweet-mentions">Replying To <span>{tweet.mentions.join(", ")}</span></div>}
+                {showMentions && <div className="tweet-mentions">Replying To {mentionsChain}</div>}
                 <div className="tweet-body">{tweet.content}</div>
               </div>
             </div>
