@@ -57,6 +57,7 @@ const Profile = (props) => {
         replyCount: 1,
         retweets: 5,
         likes: 120,
+        mentions: [],
         retweetedBy: [],
         replies: [{
           id: "tweet3",
@@ -128,7 +129,10 @@ const Profile = (props) => {
         replyCount: 0,
         retweets: 500,
         likes: 2,
-        replies: []
+        mentions: [],
+        retweetedBy: [],
+        replies: [],
+        replyingTo: []
       },
       {
         id: "tweet5",
@@ -141,6 +145,7 @@ const Profile = (props) => {
         replyCount: 1,
         retweets: 500,
         likes: 2,
+        mentions: [],
         retweetedBy: [],
         replies: [{
           id: "tweet6",
@@ -153,10 +158,12 @@ const Profile = (props) => {
           replyCount: 0,
           retweets: 500,
           likes: 2,
+          mentions: ["EHemWay"],
           retweetedBy: [],
           replies: [],
           replyingTo: ["tweet5"]
-        }]
+        }],
+        replyingTo: []
       }]
     }
   ];
