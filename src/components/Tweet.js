@@ -184,7 +184,7 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
         contentClass="tweet__modal-content"
         headerClass="tweet__modal-header"
         footerClass="tweet__modal-actions"
-        footer={<ComposeTweet type={tweet.type} mode="reply" modalSubmit={handleModalSubmit} replyingTo={tweet.type === "parent" ? [tweet.id] : [...tweet.replyingTo, tweet.id]} mentions={new Set(["@" + tweet.creatorHandle, ...tweet.mentions])}></ComposeTweet>}
+        footer={<ComposeTweet type={tweet.type} mode="reply" modalSubmit={handleModalSubmit} replyingTo={tweet.type === "parent" ? [tweet.id] : [...tweet.replyingTo, tweet.id]} mentions={new Set([tweet.creatorHandle, ...tweet.mentions])}></ComposeTweet>}
       >
         <div className="tweet-content">
           <div className="tweet-avatar">
