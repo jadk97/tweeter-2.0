@@ -43,6 +43,7 @@ const ComposeTweet = (props) => {
         creatorHandle: userProfile.creatorHandle,
         avatar: userProfile.avatar,
         replyCount: 0,
+        retweetedBy: [],
         replies: [],
         retweets: 0,
         likes: 0,
