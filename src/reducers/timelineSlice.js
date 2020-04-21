@@ -30,7 +30,7 @@ export const slice = createSlice({
         replyCount: 1,
         retweets: 500,
         likes: 2,
-        mentions:[],
+        mentions:["@AtlasShrugged"],
         retweetedBy: [],
         replies: [{
           id: "tweet8",
@@ -43,7 +43,7 @@ export const slice = createSlice({
           replyCount: 1,
           retweets: 500,
           likes: 2,
-          mentions:[],
+          mentions:["@AtlasShrugged"],
           retweetedBy: [],
           replies: [{
             id: "tweet9",
@@ -56,7 +56,7 @@ export const slice = createSlice({
             replyCount: 0,
             retweets: 500,
             likes: 2,
-            mentions:[],
+            mentions:["@AtlasShrugged"],
             retweetedBy: [],
             replies: [],
             replyingTo: ["tweet1", "tweet3", "tweet8"]
@@ -74,7 +74,7 @@ export const slice = createSlice({
           replyCount: 0,
           retweets: 500,
           likes: 2,
-          mentions:[],
+          mentions:["@AtlasShrugged"],
           retweetedBy: [],
           replies: [
             {
@@ -88,7 +88,7 @@ export const slice = createSlice({
               replyCount: 0,
               retweets: 500,
               likes: 2,
-              mentions:[],
+              mentions:["@AtlasShrugged"],
               retweetedBy: [],
               replies: [],
               replyingTo: ["tweet10"]
@@ -110,7 +110,7 @@ export const slice = createSlice({
         replyCount: 0,
         retweets: 500,
         likes: 2,
-        mentions:[],
+        mentions:["@AtlasShrugged"],
         retweetedBy: [],
         replies: [{
           id: "tweet12",
@@ -123,7 +123,7 @@ export const slice = createSlice({
           replyCount: 0,
           retweets: 500,
           likes: 2,
-          mentions:[],
+          mentions:["@AtlasShrugged"],
           retweetedBy: [],
           replies: [],
           replyingTo: ["tweet1", "tweet7"]
@@ -201,7 +201,7 @@ export const slice = createSlice({
         retweets: 500,
         likes: 2,
         replies: [],
-        mentions:[],
+        mentions:["@EHemWay"],
         retweetedBy: [],
         replyingTo: ["tweet5"]
       }]

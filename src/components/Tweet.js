@@ -95,7 +95,7 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
     if (i === 0) {
       console.log("this is the index of the tweet: ", tweet);
     }
-    return <Tweet key={tweet.id} tweet={tweet} type="child" showMentions={true} />
+    return <Tweet key={tweet.id} tweet={tweet} type="child" showMentions={true}  />
   })
 
 
@@ -210,6 +210,7 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
                 </div>
               </div>
             </div>
+            {tweet.mentions.length > 0 && <div className="tweet-mentions">Replying To <span>{tweet.mentions.join(", ")}</span></div>}
             <div className="tweet-body">
               {tweet.content}
               <div className="time-tweeted"> {new Date(tweet.posted_at).toDateString()}</div>

@@ -271,6 +271,7 @@ text-align: right;
   }
   
   .tweet-mentions{
+    margin-bottom: 1%;
     color: lightslategray;
   }
   .tweet-mentions span{
