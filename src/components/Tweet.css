@@ -241,7 +241,7 @@ text-align: right;
   }
 
 
-  .creator-details:hover .creator-name{
+  .creator-credentials:hover > .creator-name{
     text-decoration: underline;
     text-decoration-thickness: 2px;
   }
@@ -283,4 +283,10 @@ text-align: right;
     text-decoration: underline;
     text-decoration-thickness: 1px;
     cursor: pointer;
+  }
+
+  .fa-layers.dropdown-button {
+    float:right;
+    margin-right: 2%;
+    margin-top: 1;
   }

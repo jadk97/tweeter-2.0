@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Tweet.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment, faHeart, faBookmark } from '@fortawesome/free-regular-svg-icons';
-import { faRetweet, faCircle, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faRetweet, faCircle, faTimes, faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import Modal from "./Modal";
 import Button from "./Button";
 import ComposeTweet from "./ComposeTweet";
@@ -39,7 +39,7 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
 
     let clickedElement = e.currentTarget.classList;
     console.log("This is the clicked element", clickedElement);
-    if (clickedElement[0] === "creator-details" || clickedElement[0] === "avatar") {
+    if (clickedElement[0] === "creator-credentials" || clickedElement[0] === "avatar") {
       history.push(`/${tweet.creatorHandle}`);
     }
     if (clickedElement[0] === "replying-to-link") {
@@ -135,21 +135,21 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
 
   let mentionsChain;
 
-    // let isPlural = (tweet.retweetedBy.length - 2) > 1;
-    if(tweet.mentions.length > 1){
-      mentionsChain = tweet.mentions.map((mention, i) => {
-        if(i === tweet.mentions.length - 1){
-          // console.log("last index", mention);
-          return <span>&<span className="replying-to-link" onClick={(event) => clickHandler(event)}>@{mention}</span></span>
-        }
-        else{
-          return <span><span className="replying-to-link" onClick={(event) => clickHandler(event)}>@{mention}</span>, </span>
-        }
-      })
-    }
-    else{
-      mentionsChain = <span className="replying-to-link" onClick={(event) => clickHandler(event)}>@{tweet.mentions[0]}</span>
-    }
+  // let isPlural = (tweet.retweetedBy.length - 2) > 1;
+  if (tweet.mentions.length > 1) {
+    mentionsChain = tweet.mentions.map((mention, i) => {
+      if (i === tweet.mentions.length - 1) {
+        // console.log("last index", mention);
+        return <span>&<span className="replying-to-link" onClick={(event) => clickHandler(event)}>@{mention}</span></span>
+      }
+      else {
+        return <span><span className="replying-to-link" onClick={(event) => clickHandler(event)}>@{mention}</span>, </span>
+      }
+    })
+  }
+  else {
+    mentionsChain = <span className="replying-to-link" onClick={(event) => clickHandler(event)}>@{tweet.mentions[0]}</span>
+  }
   // }
   // mentionsChain = tweet.mentions.map((mention, i) => (
   //   <span className="replyingto-link" onClick={(event) => clickHandler(event)}>{mention}</span>
@@ -257,11 +257,30 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
                   tweet.replies && tweet.replies.length > 0 && (<div className="reply-line"></div>)
                 }
               </div>
+
               <div className="tweet-text">
-                <div className="creator-details" onClick={clickHandler}>
+                <div className="creator-details" >
+                  <span className="creator-credentials" onClick={clickHandler}>
                   <span className="creator-name">{tweet.creatorName}</span>
                   <span className="creator-handle"> @{tweet.creatorHandle}</span>
+                  </span>
                   <span className="time-tweeted"> - {new Date(tweet.posted_at).toDateString()}</span>
+                  <span className="fa-layers dropdown-button" onClick={clickHandler} >
+                  <FontAwesomeIcon
+                    icon={faAngleDown}
+                    size="lg"
+                    color="#778899"
+                    className="dropdown-icon"
+                  />
+                  <FontAwesomeIcon
+                    icon={faCircle}
+                    size="2x"
+                    color="rgba(29, 161, 242, 0.1)"
+                    className="dropdown-circle-icon"
+                    transform="left-4.5"
+                  />
+                </span>
+              
                 </div>
                 {showMentions && <div className="tweet-mentions">Replying To {mentionsChain}</div>}
                 <div className="tweet-body">{tweet.content}</div>
