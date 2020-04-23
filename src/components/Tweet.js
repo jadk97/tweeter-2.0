@@ -15,6 +15,8 @@ import { selectTimeline } from "../reducers/timelineSlice";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
+import DropDown from "./Dropdown";
+
 const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
   const userProfile = useSelector(selectUserProfile);
   let likedUserTweets = userProfile.likedTweets.some(likedTweet => likedTweet.id === tweet.id);
@@ -45,7 +47,6 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
     if (clickedElement[0] === "replying-to-link") {
       let creatorLink = e.currentTarget.innerText;
       history.push(`/${creatorLink.substr(1)}`);
-      console.log();
     }
     if (clickedElement[0] === "tweet-container") {
       console.log("Tweet container clicked");
@@ -261,26 +262,12 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
               <div className="tweet-text">
                 <div className="creator-details" >
                   <span className="creator-credentials" onClick={clickHandler}>
-                  <span className="creator-name">{tweet.creatorName}</span>
-                  <span className="creator-handle"> @{tweet.creatorHandle}</span>
+                    <span className="creator-name">{tweet.creatorName}</span>
+                    <span className="creator-handle"> @{tweet.creatorHandle}</span>
                   </span>
                   <span className="time-tweeted"> - {new Date(tweet.posted_at).toDateString()}</span>
-                  <span className="fa-layers dropdown-button" onClick={clickHandler} >
-                  <FontAwesomeIcon
-                    icon={faAngleDown}
-                    size="lg"
-                    color="#778899"
-                    className="dropdown-icon"
-                  />
-                  <FontAwesomeIcon
-                    icon={faCircle}
-                    size="2x"
-                    color="rgba(29, 161, 242, 0.1)"
-                    className="dropdown-circle-icon"
-                    transform="left-4.5"
-                  />
-                </span>
-              
+                  <DropDown buttonClass="tweet" clickBind={clickHandler} />
+
                 </div>
                 {showMentions && <div className="tweet-mentions">Replying To {mentionsChain}</div>}
                 <div className="tweet-body">{tweet.content}</div>

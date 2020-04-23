@@ -1,25 +1,65 @@
 .dropdown-list { 
-  position: absolute; 
-  top: 100%; 
-  left: 0; 
-  width: 300px; 
-  z-index: 2; 
-  border: 1px solid rgba(0, 0, 0, 0.04); 
+  float: right;
+  position: relative;
+  z-index: 11; 
+  border: 1px solid lightslategray;
+  border-radius: 2%;
+  width: 20%;
   box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14); 
+  margin-right: 2%;
+  background-color: #15202B;
 }
 
   
-.dropdown-list .ul { 
+.dropdown-list > ul { 
   list-style: none; 
   padding: 0; 
   margin: 0; 
+  font-size: 20px;
 } 
 
-.dropdown-list .ul .li { 
-  padding: 8px 12px; 
+.dropdown-list > ul li:not(:last-child) {
+  
+  width: 100%;
+  
 }
 
-.dropdown-list .ul .li:hover { 
-background-color: rgba(0, 0, 0, 0.14); 
+
+.dropdown-list > ul li {
+  width: 100%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+.dropdown-list > ul li:hover { 
+
+  background-color: #253341;
 cursor: pointer; 
 }
+
+
+.fa-layers.dropdown-button {
+  float:right;
+  margin-right: 2%;
+  margin-top: 1;
+}
+
+.dropdown-circle-icon{
+  opacity: 0%;
+}
+
+.fa-layers.dropdown-button:hover > .dropdown-circle-icon{
+  opacity: 100%;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.fa-layers.dropdown-button:hover > .dropdown-icon{
+  color:#1da1f2;
+  transition: all 0.2s;
+}
+
+.fa-layers.dropdown-button.__opened {
+display: none;
+}
+
