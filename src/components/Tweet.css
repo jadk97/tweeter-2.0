@@ -300,3 +300,8 @@ text-align: right;
     transition: all 0.2s;
     cursor: pointer;
   }
+
+  .fa-layers.dropdown-button:hover > .dropdown-icon{
+    color:#1da1f2;
+    transition: all 0.2s;
+  }
