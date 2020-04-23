@@ -290,3 +290,13 @@ text-align: right;
     margin-right: 2%;
     margin-top: 1;
   }
+  
+  .dropdown-circle-icon{
+    opacity: 0%;
+  }
+
+  .fa-layers.dropdown-button:hover > .dropdown-circle-icon{
+    opacity: 100%;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
