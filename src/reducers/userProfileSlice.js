@@ -30,6 +30,10 @@ export const slice = createSlice({
     addTweet: (state, action) => {
       state.tweets.unshift(action.payload);
     },
+    removeTweet: (state, action) => {
+      let tweetToRemove = state.tweets.findIndex((tweet) => tweet.id === action.payload.id);
+      state.tweets.splice(tweetToRemove, 1);
+    },
     addRetweet: (state, action) => {
       state.tweets.unshift(action.payload);
       state.retweetedTweets.unshift(action.payload);
@@ -43,7 +47,7 @@ export const slice = createSlice({
   }
 });
 
-export const { getUser, addLikedTweet, removeLikedTweet, addTweet, addRetweet, removeRetweet } = slice.actions;
+export const { getUser, addLikedTweet, removeLikedTweet, addTweet, addRetweet, removeRetweet, removeTweet } = slice.actions;
 
 
 export const selectUserProfile = state => state.userProfile;

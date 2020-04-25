@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle, faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import "./Dropdown.css";
 import { useDispatch, useSelector } from "react-redux";
-import { selectUserProfile } from "../reducers/userProfileSlice";
+import { selectUserProfile, removeTweet } from "../reducers/userProfileSlice";
 
 const Dropdown = (props) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -22,6 +22,9 @@ const Dropdown = (props) => {
       setDropdownOpen(false)
     }
   }
+  const handleDeleteTweet = (tweet) => {
+    dispatch(removeTweet(props.tweet))
+  }
 
   useEffect(() => {
     document.addEventListener("mousedown", handleOutsideClick);
@@ -33,8 +36,8 @@ const Dropdown = (props) => {
     {dropdownOpen && (
       <div className="dropdown-list">
         <ul>
-          {props.creatorHandle && props.creatorHandle === userProfile.creatorHandle && (
-            <li>Delete tweet</li>
+          {props.tweet.creatorHandle && props.tweet.creatorHandle === userProfile.creatorHandle && (
+            <li onClick={handleDeleteTweet}>Delete tweet</li>
           )}
           <li>Option 1</li>
           <li>Option 2</li>
