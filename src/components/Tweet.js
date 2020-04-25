@@ -231,7 +231,7 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
               </div>
               <div className="tweet-text">
                 <div className="creator-details">
-                <DropDown buttonClass="tweet" clickBind={clickHandler} tweet={tweet} />
+                <DropDown buttonClass="tweet" clickBind={clickHandler} tweet={tweet} focusedView={focusedView} />
                   <span className="creator-credentials" onClick={clickHandler}>
                     <span className="creator-name">{tweet.creatorName}</span>
                     <div className="creator-handle"> @{tweet.creatorHandle}</div>
@@ -264,7 +264,7 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
 
               <div className="tweet-text">
                 <div className="creator-details" >
-                <DropDown buttonClass="tweet" clickBind={clickHandler} tweet={tweet} />
+                <DropDown buttonClass="tweet" clickBind={clickHandler} tweet={tweet} focusedView={focusedView} />
                   <span className="creator-credentials" onClick={clickHandler}>
                     <span className="creator-name">{tweet.creatorName}</span>
                     <span className="creator-handle"> @{tweet.creatorHandle}</span>

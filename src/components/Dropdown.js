@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle, faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import "./Dropdown.css";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUserProfile, removeTweet } from "../reducers/userProfileSlice";
 import { selectTimeline, deleteTweet } from "../reducers/timelineSlice";
@@ -10,21 +11,27 @@ const Dropdown = (props) => {
   const dropdown = useRef();
   const dispatch = useDispatch();
   const userProfile = useSelector(selectUserProfile);
-  
+  let history = useHistory();
+;
   const handleButtonClick = () => {
     setDropdownOpen(true);
   };
 
   const handleOutsideClick = (e) => {
-    // props.clickBind(e);
-
     if (!dropdown.current.contains(e.target)) {
       setDropdownOpen(false)
     }
   }
   const handleDeleteTweet = (tweet) => {
-    dispatch(removeTweet(tweet));
-    dispatch(deleteTweet(tweet))
+    if(props.focusedView){
+      dispatch(removeTweet(tweet));
+      history.push("/home");
+      dispatch(deleteTweet(tweet));
+    }
+    else{
+      dispatch(removeTweet(tweet));
+      dispatch(deleteTweet(tweet));
+    }
   }
 
   useEffect(() => {

@@ -15,7 +15,9 @@ const FocusedView = (props) => {
   const timeline = useSelector(selectTimeline);
   console.log("THIS IS THE TIMELINE INSIDE OF FOCUSEDVIEW", timeline);
   console.log(id);
+  
   let pathToTweet = findPath(id, timeline).split(".");
+
   // console.log("This is the path to tweet inside FocusedView", pathToTweet);
   pathToTweet.pop();
   console.log("This is the path to tweet inside FocusedView", pathToTweet);
