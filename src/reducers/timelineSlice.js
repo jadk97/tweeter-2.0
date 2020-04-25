@@ -266,11 +266,18 @@ export const slice = createSlice({
       console.log("updated retweet", updatedRetweetedBy);
 
       _.set(state, pathToTweet, updatedRetweetedBy);
+    },
+    deleteTweet: (state, action) => {
+      let tweetToDelete = action.payload.id;
+      let pathToTweet = findPath(tweetToDelete, state).split(".");
+      console.log("This is the tweet to delete", _.get(state, pathToTweet));
+      let tweetIndex = state.findIndex((tweet) => tweet.id === tweetToDelete);
+      state.splice(tweetIndex, 1);
     }
   }
 });
 
-export const { submitTweet, replyTweet, likeTweet, unlikeTweet, retweetTweet, unretweetTweet } = slice.actions;
+export const { submitTweet, replyTweet, likeTweet, unlikeTweet, retweetTweet, unretweetTweet, deleteTweet } = slice.actions;
 
 
 export const selectTimeline = state => state.timeline;

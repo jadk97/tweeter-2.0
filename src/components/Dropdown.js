@@ -4,26 +4,27 @@ import { faCircle, faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import "./Dropdown.css";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUserProfile, removeTweet } from "../reducers/userProfileSlice";
-
+import { selectTimeline, deleteTweet } from "../reducers/timelineSlice";
 const Dropdown = (props) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdown = useRef();
   const dispatch = useDispatch();
   const userProfile = useSelector(selectUserProfile);
-
+  
   const handleButtonClick = () => {
     setDropdownOpen(true);
   };
 
   const handleOutsideClick = (e) => {
     // props.clickBind(e);
-   
+
     if (!dropdown.current.contains(e.target)) {
       setDropdownOpen(false)
     }
   }
   const handleDeleteTweet = (tweet) => {
-    dispatch(removeTweet(props.tweet))
+    dispatch(removeTweet(tweet));
+    dispatch(deleteTweet(tweet))
   }
 
   useEffect(() => {
@@ -33,20 +34,20 @@ const Dropdown = (props) => {
 
   return (
     <div className={`${props.buttonClass} dropdown`} ref={dropdown} onClick={props.clickBind} >
-    {dropdownOpen && (
-      <div className="dropdown-list">
-        <ul>
-          {props.tweet.creatorHandle && props.tweet.creatorHandle === userProfile.creatorHandle && (
-            <li onClick={handleDeleteTweet}>Delete tweet</li>
-          )}
-          <li>Option 1</li>
-          <li>Option 2</li>
-          <li>Option 3</li>
-          <li>Option 4</li>
-        </ul>
-      </div>
-    )}
-      <div className={`fa-layers dropdown-button ${dropdownOpen ? "__opened": ""}`} onClick={handleButtonClick} >
+      {dropdownOpen && (
+        <div className="dropdown-list">
+          <ul>
+            {props.tweet.creatorHandle && props.tweet.creatorHandle === userProfile.creatorHandle && (
+              <li onClick={() => handleDeleteTweet(props.tweet)}>Delete tweet</li>
+            )}
+            <li>Option 1</li>
+            <li>Option 2</li>
+            <li>Option 3</li>
+            <li>Option 4</li>
+          </ul>
+        </div>
+      )}
+      <div className={`fa-layers dropdown-button ${dropdownOpen ? "__opened" : ""}`} onClick={handleButtonClick} >
         <FontAwesomeIcon
           icon={faAngleDown}
           size="lg"
