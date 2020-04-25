@@ -230,9 +230,11 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
                 }
               </div>
               <div className="tweet-text">
-                <div className="creator-details" onClick={clickHandler}>
-                  <span className="creator-name">{tweet.creatorName}</span>
-                  <div className="creator-handle"> @{tweet.creatorHandle}</div>
+                <div className="creator-details">
+                  <span className="creator-credentials" onClick={clickHandler}>
+                    <span className="creator-name">{tweet.creatorName}</span>
+                    <div className="creator-handle"> @{tweet.creatorHandle}</div>
+                  </span>
                 </div>
               </div>
             </div>
