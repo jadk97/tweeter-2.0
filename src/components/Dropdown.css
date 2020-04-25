@@ -1,12 +1,12 @@
 .dropdown-list { 
   float: right;
-  position: relative;
+  position:absolute;
   z-index: 11; 
   border: 1px solid lightslategray;
   border-radius: 2%;
-  width: 30%;
+  width: 10%;
   box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14); 
-  margin-right: 2%;
+  left: 52.5%;
   background-color: #15202B;
 }
 
@@ -27,7 +27,7 @@
 
 
 .dropdown-list > ul li {
-  width: 100%;
+  
   padding-top: 5%;
   padding-bottom: 5%;
   
