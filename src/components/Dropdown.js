@@ -2,9 +2,14 @@ import React, { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle, faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import "./Dropdown.css";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUserProfile } from "../reducers/userProfileSlice";
+
 const Dropdown = (props) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdown = useRef();
+  const dispatch = useDispatch();
+  const userProfile = useSelector(selectUserProfile);
 
   const handleButtonClick = () => {
     setDropdownOpen(true);
@@ -28,6 +33,9 @@ const Dropdown = (props) => {
     {dropdownOpen && (
       <div className="dropdown-list">
         <ul>
+          {props.creatorHandle && props.creatorHandle === userProfile.creatorHandle && (
+            <li>Delete tweet</li>
+          )}
           <li>Option 1</li>
           <li>Option 2</li>
           <li>Option 3</li>

@@ -266,7 +266,7 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
                     <span className="creator-handle"> @{tweet.creatorHandle}</span>
                   </span>
                   <span className="time-tweeted"> - {new Date(tweet.posted_at).toDateString()}</span>
-                  <DropDown buttonClass="tweet" clickBind={clickHandler} />
+                  <DropDown buttonClass="tweet" clickBind={clickHandler} creatorHandle={tweet.creatorHandle} />
 
                 </div>
                 {showMentions && <div className="tweet-mentions">Replying To {mentionsChain}</div>}
