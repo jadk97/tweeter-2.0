@@ -277,42 +277,28 @@ export const slice = createSlice({
 
       if (tweetIndex === -1) {
         let updatedReplyCount;
-        // console.log(updatedReplyCount);
         let tweetRepliedTo = action.payload.replyingTo[action.payload.replyingTo.length - 1];
         pathToTweet = findPath(tweetRepliedTo, state).split(".");
-        
+
         console.log("THE CURRENT PATH TO TWEET TO DELETE FROM IS:", _.get(state, pathToTweet));
         let parentTweet = state.findIndex((tweet) => tweet.id === action.payload.replyingTo[0]);
         console.log("THIS IS THE PARENT TWEET TO DELETE: ", parentTweet);
         if (state[parentTweet].id !== _.get(state, pathToTweet)) {
-          // console.log("if check was hit", updatedReplyCount);
           pathToTweet[pathToTweet.length - 1] = "replies";
           updatedReplyCount = _.get(state, pathToTweet).length;
-          // updatedReplyCount = updatedReplyCount + 1;
           state[parentTweet].replyCount = updatedReplyCount;
         }
         console.log("if check wasn't hit");
-        // pathToTweet[pathToTweet.length - 1] = "replyCount";
-        // console.log("THIS IS AFTER THE CHECK", pathToTweet);
-        // console.log("THIS IS AFTER THE CHECK", _.get(state, pathToTweet));
-        // updatedReplyCount = _.get(state, pathToTweet);
+
         pathToTweet[pathToTweet.length - 1] = "replies";
         tweetIndex = _.get(state, pathToTweet).findIndex((tweet) => tweet.id === tweetToDelete);
         _.get(state, pathToTweet).splice(tweetIndex, 1);
-        
+
         updatedReplyCount = _.get(state, pathToTweet).length;
         console.log("CURRENT UPDATED REPLYCOUNT", updatedReplyCount);
-        // _.set(state, pathToTweet, [..._.get(state, pathToTweet), action.payload]);
         pathToTweet[pathToTweet.length - 1] = "replyCount";
         console.log("CURRENT REPLYCOUNT: ", _.get(state, pathToTweet));
-        // _.set(state, pathToTweet, _.get(state, pathToTweet) - updatedReplyCount);
         _.set(state, pathToTweet, updatedReplyCount);
-        // let tweetRepliedTo = action.payload.replyingTo[action.payload.replyingTo.length - 1];
-        // let pathToTweetRepliedTo = 
-        // pathToTweet.pop();
-        // pathToTweet.pop();
-        // tweetIndex = _.get(state, pathToTweet).findIndex((tweet) => tweet.id === tweetToDelete);
-        // _.get(state, pathToTweet).splice(tweetIndex, 1);
       }
       else {
         state.splice(tweetIndex, 1);

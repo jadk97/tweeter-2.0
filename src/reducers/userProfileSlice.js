@@ -59,8 +59,41 @@ export const slice = createSlice({
       }
     },
     removeTweet: (state, action) => {
-      // let tweetToRemove = state.tweets.findIndex((tweet) => tweet.id === action.payload.id);
-      // state.tweets.splice(tweetToRemove, 1);
+      let tweetToRemove = action.payload.id;
+      let pathToTweet = findPath(tweetToRemove, state.tweets).split(".");
+      console.log("This is the path of the tweet to delete", pathToTweet);
+      console.log("This is the tweet to delete", _.get(state.tweets, pathToTweet));
+      let tweetIndex = state.tweets.findIndex((tweet) => tweet.id === tweetToRemove);
+      console.log("This is the index of the tweet to delete", tweetIndex);
+
+      if (tweetIndex === -1) {
+        let updatedReplyCount;
+        let tweetRepliedTo = action.payload.replyingTo[action.payload.replyingTo.length - 1];
+        pathToTweet = findPath(tweetRepliedTo, state.tweets).split(".");
+
+        console.log("THE CURRENT PATH TO TWEET TO DELETE FROM IS:", _.get(state.tweets, pathToTweet));
+        let parentTweet = state.tweets.findIndex((tweet) => tweet.id === action.payload.replyingTo[0]);
+        console.log("THIS IS THE PARENT TWEET TO DELETE: ", parentTweet);
+        if (state.tweets[parentTweet].id !== _.get(state.tweets, pathToTweet)) {
+          pathToTweet[pathToTweet.length - 1] = "replies";
+          updatedReplyCount = _.get(state.tweets, pathToTweet).length;
+          state.tweets[parentTweet].replyCount = updatedReplyCount;
+        }
+        console.log("if check wasn't hit");
+
+        pathToTweet[pathToTweet.length - 1] = "replies";
+        tweetIndex = _.get(state.tweets, pathToTweet).findIndex((tweet) => tweet.id === tweetToRemove);
+        _.get(state.tweets, pathToTweet).splice(tweetIndex, 1);
+
+        updatedReplyCount = _.get(state.tweets, pathToTweet).length;
+        console.log("CURRENT UPDATED REPLYCOUNT", updatedReplyCount);
+        pathToTweet[pathToTweet.length - 1] = "replyCount";
+        console.log("CURRENT REPLYCOUNT: ", _.get(state.tweets, pathToTweet));
+        _.set(state.tweets, pathToTweet, updatedReplyCount);
+      }
+      else {
+        state.tweets.splice(tweetIndex, 1);
+      }
     },
     addRetweet: (state, action) => {
       state.tweets.unshift(action.payload);
