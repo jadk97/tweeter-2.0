@@ -39,13 +39,18 @@ export const slice = createSlice({
         // Make sure to stress test this later
         let parentTweet = state.tweets.findIndex((tweet) => tweet.id === action.payload.replyingTo[0]);
         if (parentTweet === -1) {
-          parentTweet = state.tweets.findIndex((tweet) => tweet.id === tweetRepliedTo)
+          // let parentPath = [...pathToTweet];
+          // parentPath.pop();
+          // parentTweet = _.get(state.tweets, parentPath);
+          // console.log(parentTweet);
         }
         console.log("THIS IS THE PARENT TWEET: ", parentTweet);
-        if (state.tweets[parentTweet].id !== _.get(state.tweets, pathToTweet)) {
+        // if(parentTweet !== -1){
+        if (state.tweets[parentTweet] && (state.tweets[parentTweet].id !== _.get(state.tweets, pathToTweet))) {
           state.tweets[parentTweet].replyCount++;
 
         }
+        // }
         pathToTweet[pathToTweet.length - 1] = "replies";
 
 
@@ -74,11 +79,12 @@ export const slice = createSlice({
         console.log("THE CURRENT PATH TO TWEET TO DELETE FROM IS:", _.get(state.tweets, pathToTweet));
         let parentTweet = state.tweets.findIndex((tweet) => tweet.id === action.payload.replyingTo[0]);
         console.log("THIS IS THE PARENT TWEET TO DELETE: ", parentTweet);
-        if (state.tweets[parentTweet].id !== _.get(state.tweets, pathToTweet)) {
+        if (state.tweets[parentTweet] && (state.tweets[parentTweet].id !== _.get(state.tweets, pathToTweet))) {
           pathToTweet[pathToTweet.length - 1] = "replies";
           updatedReplyCount = _.get(state.tweets, pathToTweet).length;
           state.tweets[parentTweet].replyCount = updatedReplyCount;
         }
+
         console.log("if check wasn't hit");
 
         pathToTweet[pathToTweet.length - 1] = "replies";
