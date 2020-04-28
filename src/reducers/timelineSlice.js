@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import findPath from "../helpers/findPath";
-
+import findKeys from "../helpers/findKeys";
 import _ from "lodash";
 
 export const slice = createSlice({
@@ -14,7 +14,7 @@ export const slice = createSlice({
       creatorName: "Ayn Rand",
       creatorHandle: "AtlasShrugged",
       avatar: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg",
-      replyCount: 1,
+      replyCount: 7,
       retweets: 5,
       likes: 120,
       mentions: [],
@@ -27,7 +27,7 @@ export const slice = createSlice({
         creatorName: "Ayn Rand",
         creatorHandle: "AtlasShrugged",
         avatar: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg",
-        replyCount: 1,
+        replyCount: 2,
         retweets: 500,
         likes: 2,
         mentions: ["AtlasShrugged"],
@@ -71,7 +71,7 @@ export const slice = createSlice({
           creatorName: "Ayn Rand",
           creatorHandle: "AtlasShrugged",
           avatar: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg",
-          replyCount: 0,
+          replyCount: 1,
           retweets: 500,
           likes: 2,
           mentions: ["AtlasShrugged"],
@@ -107,7 +107,7 @@ export const slice = createSlice({
         creatorName: "Ayn Rand",
         creatorHandle: "AtlasShrugged",
         avatar: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg",
-        replyCount: 0,
+        replyCount: 1,
         retweets: 500,
         likes: 2,
         mentions: ["AtlasShrugged"],
@@ -294,7 +294,7 @@ export const slice = createSlice({
         tweetIndex = _.get(state, pathToTweet).findIndex((tweet) => tweet.id === tweetToDelete);
         _.get(state, pathToTweet).splice(tweetIndex, 1);
 
-        updatedReplyCount = _.get(state, pathToTweet).length;
+        updatedReplyCount = findKeys(_.get(state, pathToTweet), "id").length;
         console.log("CURRENT UPDATED REPLYCOUNT", updatedReplyCount);
         pathToTweet[pathToTweet.length - 1] = "replyCount";
         console.log("CURRENT REPLYCOUNT: ", _.get(state, pathToTweet));
