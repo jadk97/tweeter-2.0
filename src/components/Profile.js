@@ -11,7 +11,7 @@ import { faMapMarkerAlt, faLink } from "@fortawesome/free-solid-svg-icons";
 import HorizontalNavBar from "./HorizontalNavBar";
 import Button from "../components/Button";
 import "./Profile.css";
-
+import findKeys from "../helpers/findKeys";
 const Profile = (props) => {
   let { creatorHandle } = useParams();
   let location = useLocation();
@@ -194,10 +194,10 @@ const Profile = (props) => {
   // let tweets = renderedUser[0].tweets;
  
   // console.log("this is the current url", location);
-
+  let tweetCount = findKeys(renderedUser[0].tweets, "id").length;
   return (
     <div className="center-view">
-      <Header title={renderedUser[0].creatorName} subtitle={renderedUser[0].tweets.length + " Tweets"} navButton={true} />
+      <Header title={renderedUser[0].creatorName} subtitle={tweetCount + " Tweets"} navButton={true} />
       <div className="profile-images">
         <img className="profile-avatar" src={renderedUser[0].avatar} />
         <img className="profile-banner" src={"https://gethope.net/wp-content/uploads/2019/07/Why-How-and-What-Slider-Background-1500x500.jpg"} />

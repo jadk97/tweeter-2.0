@@ -24,7 +24,7 @@ const FocusedView = (props) => {
   // console.log(_.get(timeline, pathToTweet));
   let tweetToFocus = _.get(timeline, pathToTweet);
   // console.log("this is the tweetToFocus: ", tweetToFocus);
-  let parentTweet;
+  // let parentTweetReplies=findPath(timeline, pathToTweet[0]);
   let pathToChildTweet;
   let replyChainToRender;
  
@@ -43,7 +43,7 @@ const FocusedView = (props) => {
         replies: [a]
       }; 
     });
-
+// console.log(replyChainToRender);
   
   // if (tweetToFocus.type === "child") {
   //   console.log("tweet is a child");
