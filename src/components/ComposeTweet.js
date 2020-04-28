@@ -27,7 +27,7 @@ const ComposeTweet = (props) => {
   const handleSubmit = (e) => {
     // console.log(timeline)
     e.preventDefault();
-    console.log("This is props.replyingTo:", props.replyingTo);
+    // console.log("This is props.replyingTo:", props.replyingTo);
     if (props.mode === "reply") {
       if (props.type === "child") {
         let replies = []

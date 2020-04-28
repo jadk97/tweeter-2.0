@@ -24,7 +24,6 @@ function App() {
   
   let routes;
   if(userProfile){
-    console.log(userProfile);
     routes = (
       <MainNavigation avatar={userProfile.avatar} creatorHandle={userProfile.creatorHandle}>
       <Switch>

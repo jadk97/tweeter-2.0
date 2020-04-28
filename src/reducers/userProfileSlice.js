@@ -51,6 +51,7 @@ export const slice = createSlice({
 
         _.set(state.tweets, pathToTweet, [..._.get(state.tweets, pathToTweet), action.payload]);
         pathToTweet[pathToTweet.length - 1] = "replyCount";
+
         _.set(state.tweets, pathToTweet, _.get(state.tweets, pathToTweet) + 1);
       }
       else {
@@ -58,8 +59,8 @@ export const slice = createSlice({
       }
     },
     removeTweet: (state, action) => {
-      let tweetToRemove = state.tweets.findIndex((tweet) => tweet.id === action.payload.id);
-      state.tweets.splice(tweetToRemove, 1);
+      // let tweetToRemove = state.tweets.findIndex((tweet) => tweet.id === action.payload.id);
+      // state.tweets.splice(tweetToRemove, 1);
     },
     addRetweet: (state, action) => {
       state.tweets.unshift(action.payload);

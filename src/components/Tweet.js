@@ -22,7 +22,7 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
   let likedUserTweets = userProfile.likedTweets.some(likedTweet => likedTweet.id === tweet.id);
   // let retweetedUserTweets = userProfile.retweetedTweets(retweetedTweet => retweetedTweet.id === )
   let retweetedUserTweets = userProfile.retweetedTweets.some(retweetedTweet => retweetedTweet.id === tweet.id);
-  console.log("likedUserTweets: ", likedUserTweets);
+  // console.log("likedUserTweets: ", likedUserTweets);
   // console.log("Has the user liked this tweet? ", likedUserTweets.
   // console.log("tweet being passed into Tweet component", tweet);
   const [heartClicked, setHeartClicked] = useState(likedUserTweets);
@@ -31,7 +31,7 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
   const dispatch = useDispatch();
   let history = useHistory();
   let { id } = useParams();
-  console.log("THIS IS THE ID IN TWEET: ", id);
+
   // console.log(tweet.replies);
   // let hasReplies = tweet.replies && tweet.replies.length > 0;
 
@@ -70,7 +70,6 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
       setRetweetClicked((prev) => !prev);
       if (!retweetClicked) {
         let tweetToRetweet = { ...tweet, retweetedBy: [...tweet.retweetedBy, userProfile.creatorHandle] };
-        console.log("this is the tweet to retweet", tweetToRetweet)
         dispatch(retweetTweet(tweetToRetweet));
         dispatch(addRetweet(tweetToRetweet));
       }
@@ -98,9 +97,6 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
   // console.log(usersRepliedTo);
 
   const tweetChain = (tweet.replies || []).map((tweet, i) => {
-    if (i === 0) {
-      console.log("this is the index of the tweet: ", tweet);
-    }
     return <Tweet key={tweet.id} tweet={tweet} type="child" showMentions={true} />
   })
 
@@ -110,9 +106,6 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
     if (i === 0) {
       // console.log("childTweetToFocus?: ", (typeof childTweetToFocus != "undefined") && (childTweetToFocus.id === tweet.id));
       if (childTweetToFocus) {
-
-        console.log("this is the tweet id:", tweet.id);
-        console.log("this is the childtweettofocus", childTweetToFocus.id === tweet.id);
         return <Tweet key={tweet.id} tweet={tweet} childTweetToFocus={childTweetToFocus} focusedView={childTweetToFocus.id === tweet.id} />
       }
       return <Tweet key={tweet.id} tweet={tweet} childTweetToFocus={childTweetToFocus} type="child" />
@@ -121,7 +114,6 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
 
   let retweetIndicator;
   if (tweet.retweetedBy.length > 0) {
-    console.log("the tweet has been retweeted");
     if (tweet.retweetedBy.includes(userProfile.creatorHandle)) {
       retweetIndicator = "You retweeted this";
     }
@@ -157,11 +149,11 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
   // ));
 
   // console.log("This is the mentionsChain", mentionsChain);
-  console.log("These are the mentions", tweet.mentions);
 
-  console.log("THIS IS ME LOGGING THE tweet VARIABLE INSIDE TWEET.JS: ", focusedView)
+
+ 
   // console.log("THIS IS THE TWEETCHAIN:", abridgedTweetChain);
-  console.log("does this have __replied?", tweet.replies.length > 0);
+
   return (
     <React.Fragment>
       <Modal

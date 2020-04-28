@@ -17,7 +17,7 @@ export const slice = createSlice({
       replyCount: 1,
       retweets: 5,
       likes: 120,
-      mentions:[],
+      mentions: [],
       retweetedBy: [],
       replies: [{
         id: "tweet3",
@@ -30,7 +30,7 @@ export const slice = createSlice({
         replyCount: 1,
         retweets: 500,
         likes: 2,
-        mentions:["AtlasShrugged"],
+        mentions: ["AtlasShrugged"],
         retweetedBy: [],
         replies: [{
           id: "tweet8",
@@ -43,7 +43,7 @@ export const slice = createSlice({
           replyCount: 1,
           retweets: 500,
           likes: 2,
-          mentions:["AtlasShrugged"],
+          mentions: ["AtlasShrugged"],
           retweetedBy: [],
           replies: [{
             id: "tweet9",
@@ -56,7 +56,7 @@ export const slice = createSlice({
             replyCount: 0,
             retweets: 500,
             likes: 2,
-            mentions:["AtlasShrugged"],
+            mentions: ["AtlasShrugged"],
             retweetedBy: [],
             replies: [],
             replyingTo: ["tweet1", "tweet3", "tweet8"]
@@ -74,7 +74,7 @@ export const slice = createSlice({
           replyCount: 0,
           retweets: 500,
           likes: 2,
-          mentions:["AtlasShrugged"],
+          mentions: ["AtlasShrugged"],
           retweetedBy: [],
           replies: [
             {
@@ -88,7 +88,7 @@ export const slice = createSlice({
               replyCount: 0,
               retweets: 500,
               likes: 2,
-              mentions:["AtlasShrugged"],
+              mentions: ["AtlasShrugged"],
               retweetedBy: [],
               replies: [],
               replyingTo: ["tweet10"]
@@ -110,7 +110,7 @@ export const slice = createSlice({
         replyCount: 0,
         retweets: 500,
         likes: 2,
-        mentions:["AtlasShrugged"],
+        mentions: ["AtlasShrugged"],
         retweetedBy: [],
         replies: [{
           id: "tweet12",
@@ -123,7 +123,7 @@ export const slice = createSlice({
           replyCount: 0,
           retweets: 500,
           likes: 2,
-          mentions:["AtlasShrugged"],
+          mentions: ["AtlasShrugged"],
           retweetedBy: [],
           replies: [],
           replyingTo: ["tweet1", "tweet7"]
@@ -142,7 +142,7 @@ export const slice = createSlice({
       replyCount: 0,
       retweets: 500,
       likes: 2,
-      mentions:[],
+      mentions: [],
       retweetedBy: [],
       replies: []
     },
@@ -157,7 +157,7 @@ export const slice = createSlice({
       replyCount: 0,
       retweets: 500,
       likes: 2,
-      mentions:[],
+      mentions: [],
       retweetedBy: [],
       replies: [{
         id: "tweet6",
@@ -187,7 +187,7 @@ export const slice = createSlice({
       replyCount: 0,
       retweets: 500,
       likes: 2,
-      mentions:[],
+      mentions: [],
       retweetedBy: ["AtlasShrugged"],
       replies: [{
         id: "tweet13",
@@ -201,7 +201,7 @@ export const slice = createSlice({
         retweets: 500,
         likes: 2,
         replies: [],
-        mentions:["EHemWay"],
+        mentions: ["EHemWay"],
         retweetedBy: [],
         replyingTo: ["tweet5"]
       }]
@@ -270,9 +270,53 @@ export const slice = createSlice({
     deleteTweet: (state, action) => {
       let tweetToDelete = action.payload.id;
       let pathToTweet = findPath(tweetToDelete, state).split(".");
+      console.log("This is the path of the tweet to delete", pathToTweet);
       console.log("This is the tweet to delete", _.get(state, pathToTweet));
       let tweetIndex = state.findIndex((tweet) => tweet.id === tweetToDelete);
-      state.splice(tweetIndex, 1);
+      console.log("This is the index of the tweet to delete", tweetIndex);
+
+      if (tweetIndex === -1) {
+        let updatedReplyCount;
+        // console.log(updatedReplyCount);
+        let tweetRepliedTo = action.payload.replyingTo[action.payload.replyingTo.length - 1];
+        pathToTweet = findPath(tweetRepliedTo, state).split(".");
+        
+        console.log("THE CURRENT PATH TO TWEET TO DELETE FROM IS:", _.get(state, pathToTweet));
+        let parentTweet = state.findIndex((tweet) => tweet.id === action.payload.replyingTo[0]);
+        console.log("THIS IS THE PARENT TWEET TO DELETE: ", parentTweet);
+        if (state[parentTweet].id !== _.get(state, pathToTweet)) {
+          // console.log("if check was hit", updatedReplyCount);
+          pathToTweet[pathToTweet.length - 1] = "replies";
+          updatedReplyCount = _.get(state, pathToTweet).length;
+          // updatedReplyCount = updatedReplyCount + 1;
+          state[parentTweet].replyCount = updatedReplyCount;
+        }
+        console.log("if check wasn't hit");
+        // pathToTweet[pathToTweet.length - 1] = "replyCount";
+        // console.log("THIS IS AFTER THE CHECK", pathToTweet);
+        // console.log("THIS IS AFTER THE CHECK", _.get(state, pathToTweet));
+        // updatedReplyCount = _.get(state, pathToTweet);
+        pathToTweet[pathToTweet.length - 1] = "replies";
+        tweetIndex = _.get(state, pathToTweet).findIndex((tweet) => tweet.id === tweetToDelete);
+        _.get(state, pathToTweet).splice(tweetIndex, 1);
+        
+        updatedReplyCount = _.get(state, pathToTweet).length;
+        console.log("CURRENT UPDATED REPLYCOUNT", updatedReplyCount);
+        // _.set(state, pathToTweet, [..._.get(state, pathToTweet), action.payload]);
+        pathToTweet[pathToTweet.length - 1] = "replyCount";
+        console.log("CURRENT REPLYCOUNT: ", _.get(state, pathToTweet));
+        // _.set(state, pathToTweet, _.get(state, pathToTweet) - updatedReplyCount);
+        _.set(state, pathToTweet, updatedReplyCount);
+        // let tweetRepliedTo = action.payload.replyingTo[action.payload.replyingTo.length - 1];
+        // let pathToTweetRepliedTo = 
+        // pathToTweet.pop();
+        // pathToTweet.pop();
+        // tweetIndex = _.get(state, pathToTweet).findIndex((tweet) => tweet.id === tweetToDelete);
+        // _.get(state, pathToTweet).splice(tweetIndex, 1);
+      }
+      else {
+        state.splice(tweetIndex, 1);
+      }
     }
   }
 });

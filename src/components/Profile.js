@@ -16,10 +16,9 @@ const Profile = (props) => {
   let { creatorHandle } = useParams();
   let location = useLocation();
   
-  console.log("This is the current location:", location.pathname.split("/"));
 
   let match = useRouteMatch();
-  console.log("this is match.params: ", match)
+
   const userProfile = useSelector(selectUserProfile);
 
   let userList = [
@@ -170,7 +169,7 @@ const Profile = (props) => {
   let renderedUser;
   if (creatorHandle === userProfile.creatorHandle) {
     renderedUser = [userProfile];
-    console.log("This is renderedUser inside the profile component:", renderedUser);
+ 
   }
   else {
     renderedUser = userList.filter((user) => user.creatorHandle === creatorHandle);
@@ -183,17 +182,17 @@ const Profile = (props) => {
     // tweets = new Set();
     // tweets.add(renderedUser[0].tweets);
     // tweets.add(renderedUser[0].retweetedTweets);
-    console.log("this is tweets with replies inside the profile component", tweets);
+ 
   }
   else if (viewMode[viewMode.length - 1] === "likes") {
     tweets = renderedUser[0].likedTweets;
   }
   else {
     tweets = renderedUser[0].tweets.filter((tweet) => tweet.type === "parent" || (tweet.type === "child" && tweet.retweetedBy.includes(userProfile.creatorHandle)));
-    console.log("This is tweets inside of the Profile component:", tweets);
+   
   }
   // let tweets = renderedUser[0].tweets;
-  console.log(renderedUser);
+ 
   // console.log("this is the current url", location);
 
   return (

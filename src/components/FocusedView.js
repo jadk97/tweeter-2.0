@@ -13,17 +13,17 @@ import _ from "lodash";
 const FocusedView = (props) => {
   let { creatorHandle, id } = useParams();
   const timeline = useSelector(selectTimeline);
-  console.log("THIS IS THE TIMELINE INSIDE OF FOCUSEDVIEW", timeline);
-  console.log(id);
+  // console.log("THIS IS THE TIMELINE INSIDE OF FOCUSEDVIEW", timeline);
+  // console.log(id);
   
   let pathToTweet = findPath(id, timeline).split(".");
 
   // console.log("This is the path to tweet inside FocusedView", pathToTweet);
   pathToTweet.pop();
-  console.log("This is the path to tweet inside FocusedView", pathToTweet);
+  // console.log("This is the path to tweet inside FocusedView", pathToTweet);
   // console.log(_.get(timeline, pathToTweet));
   let tweetToFocus = _.get(timeline, pathToTweet);
-  console.log("this is the tweetToFocus: ", tweetToFocus);
+  // console.log("this is the tweetToFocus: ", tweetToFocus);
   let parentTweet;
   let pathToChildTweet;
   let replyChainToRender;
@@ -36,7 +36,7 @@ const FocusedView = (props) => {
       individualTweets.push(_.get(timeline, pathCopy));
     }
   }
-  console.log("this is indvidual tweets", individualTweets);
+  // console.log("this is indvidual tweets", individualTweets);
   replyChainToRender  = individualTweets.reduceRight(function (a, c) {
       return {
         ...c,

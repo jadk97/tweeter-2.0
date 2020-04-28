@@ -73,7 +73,7 @@ export const useTweetInteract = (() => {
  
  
   const handleTweetSubmit = useCallback((submittedTweet) => {
-    console.log(timeline);
+    // console.log(timeline);
     let tweet = {
       id: uuid(),
       content: submittedTweet,

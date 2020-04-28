@@ -5,7 +5,6 @@ const Button = (props) => {
 
   if(props.disabled){
     classes.push("__disabled");
-    console.log(classes.join(" "));
   }
 
   if (props.fullwidth){

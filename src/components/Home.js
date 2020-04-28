@@ -9,7 +9,7 @@ import { selectTimeline } from "../reducers/timelineSlice";
 
 const Home = (props) => {
   const timeline = useSelector(selectTimeline);
-  console.log(timeline);
+  // console.log(timeline);
   return (
     <div className="center-view">
       <Header title={"Home"} />
