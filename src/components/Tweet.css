@@ -179,6 +179,15 @@ text-align: right;
     align-self: center;
   }
 
+  .reply-line-with-image{
+    background-color: lightslategray;
+    width: 2px;
+    height: 22rem;
+    margin-left: 26px;
+    margin-top: 5px;
+    align-self: center;
+  }
+
   .tweet__modal-content {
     margin-bottom: 20px;
   }

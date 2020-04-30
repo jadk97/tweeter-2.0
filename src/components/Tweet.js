@@ -253,7 +253,7 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
               <div className="tweet-avatar">
                 <img className="avatar" src={tweet.avatar} onClick={clickHandler} />
                 {
-                  tweet.replies && tweet.replies.length > 0 && (<div className="reply-line"></div>)
+                  tweet.replies && tweet.replies.length > 0 && (<div className={tweet.image ? "reply-line-with-image" : "reply-line"}></div>)
                 }
               </div>
 
