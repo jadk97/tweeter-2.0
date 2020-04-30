@@ -234,6 +234,9 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
             {tweet.type === "child" && <div className="tweet-mentions">Replying To {mentionsChain}</div>}
             <div className="tweet-body">
               {tweet.content}
+              {tweet.image && <div className="tweet-image-focused">
+                <img src={tweet.image} />
+              </div>}
               <div className="time-tweeted"> {new Date(tweet.posted_at).toDateString()}</div>
             </div>
             <div className={`tweet-stats ${tweet.likes === 0 && tweet.retweets === 0 ? "__none" : ""}`}>
@@ -277,7 +280,7 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
             </div>
           )}
 
-        <div className={`tweet-interaction-icons ${tweet.image ? "__with-image" : ""}`}>
+        <div className={`tweet-interaction-icons ${tweet.image && !focusedView ? "__with-image" : ""}`}>
           <span className="fa-layers reply-button" onClick={clickHandler} >
             <FontAwesomeIcon
               icon={faComment}
