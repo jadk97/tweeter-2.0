@@ -205,6 +205,22 @@ export const slice = createSlice({
         retweetedBy: [],
         replyingTo: ["tweet5"]
       }]
+    },
+    {
+      id: "tweet14",
+      type: "parent",
+      content: "Check this out!",
+      posted_at: Date.now(),
+      creatorName: "Ayn Rand",
+      creatorHandle: "AtlasShrugged",
+      avatar: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg",
+      image: "https://www.washingtonpost.com/resizer/uwlkeOwC_3JqSUXeH8ZP81cHx3I=/arc-anglerfish-washpost-prod-washpost/public/HB4AT3D3IMI6TMPTWIZ74WAR54.jpg",
+      replyCount: 0,
+      retweets: 500,
+      likes: 2,
+      mentions: [],
+      retweetedBy: [],
+      replies: []
     }
   ],
   reducers: {

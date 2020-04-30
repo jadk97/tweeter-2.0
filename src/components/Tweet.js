@@ -151,7 +151,7 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
   // console.log("This is the mentionsChain", mentionsChain);
 
 
- 
+
   // console.log("THIS IS THE TWEETCHAIN:", abridgedTweetChain);
 
   return (
@@ -223,7 +223,7 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
               </div>
               <div className="tweet-text">
                 <div className="creator-details">
-                <DropDown buttonClass="tweet" clickBind={clickHandler} tweet={tweet} focusedView={focusedView} />
+                  <DropDown buttonClass="tweet" clickBind={clickHandler} tweet={tweet} focusedView={focusedView} />
                   <span className="creator-credentials" onClick={clickHandler}>
                     <span className="creator-name">{tweet.creatorName}</span>
                     <div className="creator-handle"> @{tweet.creatorHandle}</div>
@@ -256,7 +256,7 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
 
               <div className="tweet-text">
                 <div className="creator-details" >
-                <DropDown buttonClass="tweet" clickBind={clickHandler} tweet={tweet} focusedView={focusedView} />
+                  <DropDown buttonClass="tweet" clickBind={clickHandler} tweet={tweet} focusedView={focusedView} />
                   <span className="creator-credentials" onClick={clickHandler}>
                     <span className="creator-name">{tweet.creatorName}</span>
                     <span className="creator-handle"> @{tweet.creatorHandle}</span>
@@ -265,12 +265,19 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
 
                 </div>
                 {showMentions && <div className="tweet-mentions">Replying To {mentionsChain}</div>}
-                <div className="tweet-body">{tweet.content}</div>
+                <div className="tweet-body">
+                  {tweet.content}
+
+                </div>
+                {tweet.image && <div className="tweet-image">
+                  <img src={tweet.image} />
+                  <p></p>
+                </div>}
               </div>
             </div>
           )}
 
-        <div className="tweet-interaction-icons">
+        <div className={`tweet-interaction-icons ${tweet.image ? "__with-image" : ""}`}>
           <span className="fa-layers reply-button" onClick={clickHandler} >
             <FontAwesomeIcon
               icon={faComment}

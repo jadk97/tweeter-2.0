@@ -65,6 +65,10 @@
   justify-content: space-around;
 }
 
+.tweet-interaction-icons.__with-image{
+  margin-top: 270px;
+}
+
 
 .fa-layers.heart-button.__clicked > .heart-icon{
   color: rgb(224, 36, 94);
@@ -283,4 +287,18 @@ text-align: right;
     text-decoration: underline;
     text-decoration-thickness: 1px;
     cursor: pointer;
+  }
+
+  .tweet-image{
+    height: 300px;
+    width: 570px;
+    margin-top: 10px;
+  }
+
+  .tweet-image img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border: 1px solid lightslategray;
+    border-radius: 3%;
   }
