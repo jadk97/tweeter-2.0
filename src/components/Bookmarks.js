@@ -5,7 +5,6 @@ const Bookmarks = (props) => {
   return(
     <div className="center-view">
     <Header title={"Bookmarks"} />
-    <Dropdown />
   </div>
   )
 }
