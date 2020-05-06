@@ -20,7 +20,13 @@ export const slice = createSlice({
   reducers: {
     getUser: state => state,
     addLikedTweet: (state, action) => {
-      state.likedTweets.push(action.payload);
+      if (action.payload.creatorHandle === state.creatorHandle) {
+        let pathToTweet = findPath(action.payload.id, state.tweets).split(".");
+        pathToTweet[pathToTweet.length - 1] = "likes";
+        _.set(state.tweets, pathToTweet, _.get(state.tweets, pathToTweet) + 1);
+      }
+      state.likedTweets.push({ ...action.payload, likes: action.payload.likes + 1 })
+
     },
     removeLikedTweet: (state, action) => {
       let tweetToRemove = state.likedTweets.findIndex((tweet) => tweet.id === action.payload.id);
