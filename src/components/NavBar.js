@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faHashtag, faBell, faEnvelope, faBookmark, faCircle } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faHashtag, faBell, faEnvelope, faBookmark, faCircle, faTimes } from "@fortawesome/free-solid-svg-icons";
 import Button from "./Button";
 import Modal from "./Modal";
 import "./NavBar.css";
@@ -20,7 +20,21 @@ const NavBar = (props) => {
       <Modal
         show={showModal}
         onCancel={() => setShowModal(false)}
-        header={"tweet"}
+        header={
+          <span className="fa-layers close-button" onClick={() => setShowModal(setShowModal((prev) => !prev))} >
+            <FontAwesomeIcon
+              icon={faTimes}
+              size="lg"
+              color="#1da1f2"
+              className="close-icon"
+            />
+            <FontAwesomeIcon
+              icon={faCircle}
+              size="2x"
+              color="rgba(29, 161, 242, 0.1)"
+              className="close-circle-icon"
+            />
+          </span>}
         className={"navbar"}
         contentClass="tweet__modal-content-navbar"
         footerClass="tweet__modal-footer-navbar"
