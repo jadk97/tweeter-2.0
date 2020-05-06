@@ -29,6 +29,11 @@ export const slice = createSlice({
 
     },
     removeLikedTweet: (state, action) => {
+      if (action.payload.creatorHandle === state.creatorHandle){
+        let pathToTweet = findPath(action.payload.id, state.tweets).split(".");
+        pathToTweet[pathToTweet.length - 1] = "likes";
+        _.set(state.tweets, pathToTweet, _.get(state.tweets, pathToTweet) - 1);
+      }
       let tweetToRemove = state.likedTweets.findIndex((tweet) => tweet.id === action.payload.id);
       console.log("THIS IS THE TWEET TO REMOVE", tweetToRemove);
       state.likedTweets.splice(tweetToRemove, 1);
