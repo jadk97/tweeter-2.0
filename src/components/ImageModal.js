@@ -3,8 +3,6 @@ import ReactDOM from "react-dom";
 import Backdrop from "./Backdrop";
 import { CSSTransition } from "react-transition-group";
 import "./ImageModal.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faComment, faHeart, faBookmark } from '@fortawesome/free-regular-svg-icons';
 
 const ModalOverLay = (props) => {
   const content = (
