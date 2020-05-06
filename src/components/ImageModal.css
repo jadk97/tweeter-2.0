@@ -1,0 +1,33 @@
+.image-modal{
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  left: 15%;
+  width: 70%;
+  height: 70%;
+  
+  
+}
+
+.image-modal img{
+  height: 100%; 
+  width: 100%; 
+  object-fit: contain;
+  margin:0 auto;
+
+}
+
+.image-modal__footer {
+  
+  color: white;
+  padding-top: 2rem;
+  margin-right: 20rem;
+  padding-bottom: 0rem;
+  margin-left: 20rem;
+}
+
+.image-modal__header{
+  position: absolute;
+  top: 20px; 
+  left: 20px;
+}

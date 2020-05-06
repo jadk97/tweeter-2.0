@@ -16,6 +16,7 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 import DropDown from "./Dropdown";
+import ImageModal from "./ImageModal";
 
 const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
   const userProfile = useSelector(selectUserProfile);
@@ -28,6 +29,7 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
   const [heartClicked, setHeartClicked] = useState(likedUserTweets);
   const [retweetClicked, setRetweetClicked] = useState(retweetedUserTweets);
   const [replyClicked, setReplyClicked] = useState(false);
+  const [imageClicked, setImageClicked] = useState(false);
   const dispatch = useDispatch();
   let history = useHistory();
   let { id } = useParams();
@@ -66,6 +68,10 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
       // heartClicked ? dispatch(unlikeTweet({ ...tweet })) : dispatch(likeTweet({ ...tweet }));
     }
 
+    if (clickedElement[0] === "tweet-image") {
+      setImageClicked(true);
+    }
+
     if (clickedElement[1] === "retweet-button") {
       setRetweetClicked((prev) => !prev);
       if (!retweetClicked) {
@@ -84,6 +90,7 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
     }
 
     if (clickedElement[1] === "reply-button") {
+      setImageClicked(false);
       setReplyClicked((prev) => !prev);
     }
   }
@@ -198,7 +205,104 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
 
         </div>
       </Modal>
+      <ImageModal
+        show={imageClicked}
+        header={
+          <span className="fa-layers close-button" onClick={() => setImageClicked(setImageClicked((prev) => !prev))} >
+            <FontAwesomeIcon
+              icon={faTimes}
+              size="2x"
+              color="white"
+              className="close-icon"
+            />
+            <FontAwesomeIcon
+              icon={faCircle}
+              size="3x"
+              color="rgba(255, 255, 255, 0.2)"
+              className="close-circle-icon"
+              transform="left-4.5"
+            />
+          </span>
+        }
+        onCancel={() => setImageClicked(setImageClicked((prev) => !prev))}
+        image={tweet.image}
+        footer={<div className={`tweet-interaction-icons`}>
+        <span className="fa-layers reply-button" onClick={clickHandler} >
+          <FontAwesomeIcon
+            icon={faComment}
+            size="lg"
+            color="#778899"
+            className="reply-icon"
+          />
+          <FontAwesomeIcon
+            icon={faCircle}
+            size="3x"
+            color="rgba(29, 161, 242, 0.1)"
+            className="reply-circle-icon"
+            transform="left-4.5"
+          />
+          {!focusedView && (
+            <span className="reply-counter">{tweet.replyCount}</span>
+          )}
+        </span>
 
+        <span className={`fa-layers retweet-button ${retweetClicked ? "__clicked" : ""}`} onClick={clickHandler}>
+          <FontAwesomeIcon
+            icon={faRetweet}
+            size="lg"
+            color="#778899"
+            className="retweet-icon"
+          />
+          <FontAwesomeIcon
+            icon={faCircle}
+            size="3x"
+            color="rgba(23, 191, 99, 0.1)"
+            className="retweet-circle-icon"
+            transform="left-3.5"
+          />
+          {!focusedView && (
+            <span className="retweet-counter">{tweet.retweets}</span>
+          )}
+        </span>
+
+        <span className={`fa-layers heart-button ${heartClicked ? "__clicked" : ""}`} onClick={clickHandler}>
+          <FontAwesomeIcon
+            icon={faHeart}
+            size="lg"
+            color="#778899"
+            className="heart-icon"
+          />
+          <FontAwesomeIcon
+            icon={faCircle}
+            size="3x"
+            color="rgb(224, 36, 94, 0.1)"
+            className="heart-circle-icon"
+            transform="left-4.2"
+          />
+          {!focusedView && (
+            <span className="like-counter">{tweet.likes}</span>
+          )}
+        </span>
+
+        <span className="fa-layers bookmark-button" onClick={clickHandler}>
+          <FontAwesomeIcon
+            icon={faBookmark}
+            size="lg"
+            color="#778899"
+            className="bookmark-icon"
+          />
+          <FontAwesomeIcon
+            icon={faCircle}
+            size="3x"
+            color="rgba(29, 161, 242, 0.1)"
+            className="bookmark-circle-icon"
+            transform="left-5.4"
+          />
+        </span>
+      </div>}
+       />
+     
+ 
       <div className={`tweet-container ${focusedView ? "__focused" : ""} ${tweet.replies && tweet.replies.length > 0 ? "__replied" : ""}`} onClick={(event) => clickHandler(event)}>
         {retweetIndicator && (
           <div className="tweet-retweeted">
@@ -272,7 +376,7 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
                   {tweet.content}
 
                 </div>
-                {tweet.image && <div className="tweet-image">
+                {tweet.image && <div className="tweet-image" onClick={clickHandler}>
                   <img src={tweet.image} />
                   <p></p>
                 </div>}

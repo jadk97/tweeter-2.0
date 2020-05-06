@@ -65,10 +65,6 @@
   justify-content: space-around;
 }
 
-.tweet-interaction-icons{
-
-}
-
 .__with-image{
   margin-top: 280px;
 }
@@ -330,4 +326,16 @@ text-align: right;
     object-fit: cover;
     border: 1px solid lightslategray;
     border-radius: 3%;
+  }
+
+  .modal__content > img:nth-child(1){
+    height: 100%; 
+    width: 100%; 
+    object-fit: contain;
+  }
+
+  .image-modal .tweet-interaction-icons{
+    display: flex;
+    align-content: flex-end;
+    justify-content: space-around;
   }
