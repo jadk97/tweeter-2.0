@@ -15,7 +15,9 @@ export const slice = createSlice({
     website: null,
     likedTweets: [],
     retweetedTweets: [],
-    tweets: []
+    tweets: [],
+    following: [],
+    followers: []
   },
   reducers: {
     getUser: state => state,
@@ -121,6 +123,9 @@ export const slice = createSlice({
       state.retweetedTweets.splice(retweetToRemove, 1);
       retweetToRemove = state.tweets.findIndex((tweet) => tweet.id === action.payload.id);
       state.tweets.splice(retweetToRemove, 1);
+    },
+    followUser: (state, action) => {
+      state.following.push(action.payload);
     }
   }
 });
