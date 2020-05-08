@@ -126,11 +126,15 @@ export const slice = createSlice({
     },
     followUser: (state, action) => {
       state.following.push(action.payload);
+    },
+    unfollowUser: (state, action) => {
+      let userToUnfollow = state.following.findIndex((user) => user.creatorHandle === action.payload.creatorHandle);
+      state.following.splice(userToUnfollow, 1);
     }
   }
 });
 
-export const { getUser, addLikedTweet, removeLikedTweet, addTweet, addRetweet, removeRetweet, removeTweet, followUser } = slice.actions;
+export const { getUser, addLikedTweet, removeLikedTweet, addTweet, addRetweet, removeRetweet, removeTweet, followUser, unfollowUser } = slice.actions;
 
 
 export const selectUserProfile = state => state.userProfile;

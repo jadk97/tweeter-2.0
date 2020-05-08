@@ -3,7 +3,7 @@ import Header from "./Header";
 import TweetList from "../components/TweetList";
 import _ from "lodash";
 import { useParams, useLocation, useRouteMatch, useHistory, Switch, Route } from "react-router-dom";
-import { selectUserProfile, followUser } from "../reducers/userProfileSlice";
+import { selectUserProfile, followUser, unfollowUser } from "../reducers/userProfileSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt } from "@fortawesome/free-regular-svg-icons";
@@ -206,13 +206,12 @@ const Profile = (props) => {
       // setFollow(true)
     }
     else{
-      console.log("unfollowed");
+      dispatch(unfollowUser(renderedUser[0]));
     }
   }
 
   const toggleHover = () => {
     setHover((prev) => !prev);
-    
   }
 
   return (
