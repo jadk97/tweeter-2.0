@@ -27,3 +27,7 @@
 .__fullwidth{
   padding: 0.6em 3em;
 }
+
+.__danger{
+  background-color: red;
+}

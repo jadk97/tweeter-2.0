@@ -14,6 +14,10 @@ const Button = (props) => {
   if (props.transparent){
     classes.push("__transparent")
   }
+
+  if(props.danger){
+    classes.push("__danger");
+  }
   return(
     <React.Fragment>
     <button {...props} className={"button" + " " + classes.join(" ")}>{props.children}</button>
