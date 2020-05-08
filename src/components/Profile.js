@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "./Header";
 import TweetList from "../components/TweetList";
 import _ from "lodash";
 import { useParams, useLocation, useRouteMatch, useHistory, Switch, Route } from "react-router-dom";
-import { selectUserProfile } from "../reducers/userProfileSlice";
-import { useSelector } from "react-redux";
+import { selectUserProfile, followUser } from "../reducers/userProfileSlice";
+import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt } from "@fortawesome/free-regular-svg-icons";
 import { faMapMarkerAlt, faLink } from "@fortawesome/free-solid-svg-icons";
@@ -15,12 +15,15 @@ import findKeys from "../helpers/findKeys";
 const Profile = (props) => {
   let { creatorHandle } = useParams();
   let location = useLocation();
+
   
-
   let match = useRouteMatch();
-
+  
   const userProfile = useSelector(selectUserProfile);
-
+  const dispatch = useDispatch();
+  let isFollowed = userProfile.following.filter((user) => user.creatorHandle === creatorHandle).length > 0;
+  console.log(isFollowed);
+  const [follow, setFollow] = useState(isFollowed);
   let userList = [
     {
       creatorName: "Ayn Rand",
@@ -169,7 +172,7 @@ const Profile = (props) => {
   let renderedUser;
   if (creatorHandle === userProfile.creatorHandle) {
     renderedUser = [userProfile];
- 
+
   }
   else {
     renderedUser = userList.filter((user) => user.creatorHandle === creatorHandle);
@@ -182,19 +185,29 @@ const Profile = (props) => {
     // tweets = new Set();
     // tweets.add(renderedUser[0].tweets);
     // tweets.add(renderedUser[0].retweetedTweets);
- 
+
   }
   else if (viewMode[viewMode.length - 1] === "likes") {
     tweets = renderedUser[0].likedTweets;
   }
   else {
     tweets = renderedUser[0].tweets.filter((tweet) => tweet.type === "parent" || (tweet.type === "child" && tweet.retweetedBy.includes(userProfile.creatorHandle)));
-   
+
   }
   // let tweets = renderedUser[0].tweets;
- 
+
   // console.log("this is the current url", location);
   let tweetCount = findKeys(renderedUser[0].tweets, "id").length;
+
+  const followHandler = () => {
+    if(!isFollowed){
+      dispatch(followUser(renderedUser[0]));
+    }
+    else{
+      console.log("unfollowed");
+    }
+  }
+
   return (
     <div className="center-view">
       <Header title={renderedUser[0].creatorName} subtitle={tweetCount + " Tweets"} navButton={true} />
@@ -205,7 +218,7 @@ const Profile = (props) => {
       <div className="profile-header">
         <div className="profile-interactables">
           <div>
-            <Button>Follow</Button>
+            <Button onClick={followHandler}>{isFollowed ? "Following" : "Follow"}</Button>
           </div>
         </div>
         <div className="profile-text-content">

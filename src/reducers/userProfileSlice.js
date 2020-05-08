@@ -130,7 +130,7 @@ export const slice = createSlice({
   }
 });
 
-export const { getUser, addLikedTweet, removeLikedTweet, addTweet, addRetweet, removeRetweet, removeTweet } = slice.actions;
+export const { getUser, addLikedTweet, removeLikedTweet, addTweet, addRetweet, removeRetweet, removeTweet, followUser } = slice.actions;
 
 
 export const selectUserProfile = state => state.userProfile;
