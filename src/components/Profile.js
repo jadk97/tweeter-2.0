@@ -224,7 +224,21 @@ const Profile = (props) => {
       <div className="profile-header">
         <div className="profile-interactables">
           <div>
-            <Button onClick={followHandler} danger={isFollowed && hover} onMouseEnter={toggleHover} onMouseLeave={toggleHover} >{isFollowed ? ( hover ? "Unfollow" : "Following") : "Follow" } </Button>
+          {creatorHandle !== userProfile.creatorHandle ?
+            (
+              <Button onClick={followHandler} 
+              danger={isFollowed && hover} 
+              onMouseEnter={toggleHover} onMouseLeave={toggleHover}>
+              {isFollowed ? ( hover ? "Unfollow" : "Following") : "Follow" } 
+              </Button>
+            )
+            :
+            (
+              <Button>
+                Edit Profile
+              </Button>
+            )
+          }
           </div>
         </div>
         <div className="profile-text-content">
