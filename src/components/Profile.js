@@ -23,7 +23,8 @@ const Profile = (props) => {
   const dispatch = useDispatch();
   let isFollowed = userProfile.following.filter((user) => user.creatorHandle === creatorHandle).length > 0;
   console.log(isFollowed);
-  const [follow, setFollow] = useState(isFollowed);
+  // const [follow, setFollow] = useState(isFollowed);
+  const [hover, setHover] = useState(false);
   let userList = [
     {
       creatorName: "Ayn Rand",
@@ -202,10 +203,16 @@ const Profile = (props) => {
   const followHandler = () => {
     if(!isFollowed){
       dispatch(followUser(renderedUser[0]));
+      // setFollow(true)
     }
     else{
       console.log("unfollowed");
     }
+  }
+
+  const toggleHover = () => {
+    setHover((prev) => !prev);
+    
   }
 
   return (
@@ -218,7 +225,7 @@ const Profile = (props) => {
       <div className="profile-header">
         <div className="profile-interactables">
           <div>
-            <Button onClick={followHandler}>{isFollowed ? "Following" : "Follow"}</Button>
+            <Button onClick={followHandler} danger={isFollowed && hover} onMouseEnter={toggleHover} onMouseLeave={toggleHover} >{isFollowed ? ( hover ? "Unfollow" : "Following") : "Follow" } </Button>
           </div>
         </div>
         <div className="profile-text-content">
