@@ -19,6 +19,7 @@ export const slice = createSlice({
       likes: 120,
       mentions: [],
       retweetedBy: [],
+      likedBy: [],
       replies: [{
         id: "tweet3",
         type: "child",
@@ -32,6 +33,7 @@ export const slice = createSlice({
         likes: 2,
         mentions: ["AtlasShrugged"],
         retweetedBy: [],
+        likedBy: [],
         replies: [{
           id: "tweet8",
           type: "child",
@@ -45,6 +47,7 @@ export const slice = createSlice({
           likes: 2,
           mentions: ["AtlasShrugged"],
           retweetedBy: [],
+          likedBy: [],
           replies: [{
             id: "tweet9",
             type: "child",
@@ -58,6 +61,7 @@ export const slice = createSlice({
             likes: 2,
             mentions: ["AtlasShrugged"],
             retweetedBy: [],
+            likedBy: [],
             replies: [],
             replyingTo: ["tweet1", "tweet3", "tweet8"]
           }],
@@ -90,6 +94,7 @@ export const slice = createSlice({
               likes: 2,
               mentions: ["AtlasShrugged"],
               retweetedBy: [],
+              likedBy: [],
               replies: [],
               replyingTo: ["tweet10"]
             }
@@ -112,6 +117,7 @@ export const slice = createSlice({
         likes: 2,
         mentions: ["AtlasShrugged"],
         retweetedBy: [],
+        likedBy: [],
         replies: [{
           id: "tweet12",
           type: "child",
@@ -144,6 +150,7 @@ export const slice = createSlice({
       likes: 2,
       mentions: [],
       retweetedBy: [],
+      likedBy: [],
       replies: []
     },
     {
@@ -159,6 +166,7 @@ export const slice = createSlice({
       likes: 2,
       mentions: [],
       retweetedBy: [],
+      likedBy: [],
       replies: [{
         id: "tweet6",
         type: "child",
@@ -173,6 +181,7 @@ export const slice = createSlice({
         replies: [],
         mentions: ["EHemWay"],
         retweetedBy: [],
+        likedBy: [],
         replyingTo: ["tweet4"]
       }]
     },
@@ -189,6 +198,7 @@ export const slice = createSlice({
       likes: 2,
       mentions: [],
       retweetedBy: ["AtlasShrugged"],
+      likedBy: [],
       replies: [{
         id: "tweet13",
         type: "child",
@@ -203,6 +213,7 @@ export const slice = createSlice({
         replies: [],
         mentions: ["EHemWay"],
         retweetedBy: [],
+        likedBy: [],
         replyingTo: ["tweet5"]
       }]
     },
@@ -220,6 +231,7 @@ export const slice = createSlice({
       likes: 2,
       mentions: [],
       retweetedBy: [],
+      likedBy: [],
       replies: []
     }
   ],

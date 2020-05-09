@@ -47,6 +47,7 @@ const ComposeTweet = (props) => {
         avatar: userProfile.avatar,
         replyCount: 0,
         retweetedBy: [],
+        likedBy: [],
         replies: [],
         retweets: 0,
         likes: 0,
@@ -65,6 +66,7 @@ const ComposeTweet = (props) => {
         replyCount: 0,
         replies: [],
         retweetedBy: [],
+        likedBy: [],
         retweets: 0,
         likes: 0,
         mentions: [...props.mentions],
@@ -85,6 +87,7 @@ const ComposeTweet = (props) => {
         replyCount: 0,
         mentions: [],
         retweetedBy: [],
+        likedBy: [],
         replies: [],
         retweets: 0,
         likes: 0
@@ -101,6 +104,7 @@ const ComposeTweet = (props) => {
         replyCount: 0,
         mentions: [],
         retweetedBy: [],
+        likedBy: [],
         replies: [],
         retweets: 0,
         likes: 0
