@@ -23,6 +23,8 @@ const Profile = (props) => {
   const dispatch = useDispatch();
   let isFollowed = userProfile.following.filter((user) => user.creatorHandle === creatorHandle).length > 0;
   console.log(isFollowed);
+  let followsYou = !!userProfile.followers.find((user) => user.creatorHandle === creatorHandle);
+  console.log("followsYou", followsYou);
   // const [follow, setFollow] = useState(isFollowed);
   const [hover, setHover] = useState(false);
   let userList = [
@@ -247,6 +249,8 @@ const Profile = (props) => {
           </div>
           <div className="creator-handle">
             {"@" + renderedUser[0].creatorHandle}
+            {followsYou && <span className="profile-follows-you">Follows you</span> }
+            
           </div>
           <div className="bio">
             {renderedUser[0].bio}
