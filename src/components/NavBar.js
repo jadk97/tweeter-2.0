@@ -18,13 +18,14 @@ const NavBar = (props) => {
   }
 
   const userProfile = useSelector(selectUserProfile);
-  let likedNotifications;
+  // let likedNotifications;
 
   useEffect(() => {
-    likedNotifications = findKeys(userProfile.tweets, "likedBy");
+    let likedNotifications = findKeys(userProfile.tweets, "likedBy");
+    let retweetedNotifications = findKeys(userProfile.tweets, "retweetedBy");
     console.log("useEffect ran");
-    setNotificationsCount(likedNotifications.length);
-    console.log(notificationsCount);
+    setNotificationsCount(likedNotifications.length + retweetedNotifications.length);
+    // console.log(notificationsCount);
   }, []);
   const handleNotificationsClick = () => {
     console.log("handleNoticationsClick");
