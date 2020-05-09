@@ -57,3 +57,21 @@ nav ul a.__selected{
 .modal__content.tweet__modal-content-navbar{
   display:none;
 }
+
+.badge {
+  font-size: .5em;
+  
+  display: block;
+  position: absolute;
+  top: -1em;
+  right: 17.75em;
+  width: 2em;
+  height: 2em;
+  line-height: 2em;
+  border-radius: 50%;
+  text-align: center;
+  
+  color: #fff;
+  background: #1da1f2;
+  border: 1px solid black;
+}

@@ -57,8 +57,9 @@ const NavBar = (props) => {
         </li>
         <li>
           <NavLink to="/notifications" activeClassName="__selected"  >
-            <FontAwesomeIcon icon={faBell} size={"lg"} listItem />
-            <span>Notifications</span>
+          <FontAwesomeIcon icon={faBell} size={"lg"} listItem />
+          <span>Notifications</span>
+          <div class="badge">1</div>
           </NavLink>
         </li>
         <li>
