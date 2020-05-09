@@ -15,7 +15,22 @@ export const slice = createSlice({
     website: null,
     likedTweets: [],
     retweetedTweets: [],
-    tweets: [],
+    tweets: [{
+      id: "tweet15",
+      type: "parent",
+      content: "Hello World!",
+      posted_at: Date.now(),
+      creatorName: "John Doe",
+      creatorHandle: "JohnDoe",
+      avatar: "https://www.deccanherald.com/sites/dh/files/styles/article_detail/public/article_images/2017/04/04/604513.jpg?itok=FqqfYOfA",
+      replyCount: 0,
+      retweets: 500,
+      likes: 1,
+      mentions: [],
+      retweetedBy: [],
+      likedBy: ["AtlasShrugged"],
+      replies: []
+    }],
     following: [],
     followers: [
       {

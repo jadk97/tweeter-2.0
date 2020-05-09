@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faHashtag, faBell, faEnvelope, faBookmark, faCircle, faTimes } from "@fortawesome/free-solid-svg-icons";
@@ -6,13 +6,29 @@ import Button from "./Button";
 import Modal from "./Modal";
 import "./NavBar.css";
 import ComposeTweet from "./ComposeTweet";
-
+import { useSelector } from "react-redux";
+import { selectUserProfile } from "../reducers/userProfileSlice";
+import findKeys from "../helpers/findKeys";
 const NavBar = (props) => {
 
   const [showModal, setShowModal] = useState(false);
-
+  const [notificationsCount, setNotificationsCount] = useState(0);
   const handleModalSubmit = () => {
     setShowModal(false);
+  }
+
+  const userProfile = useSelector(selectUserProfile);
+  let likedNotifications;
+
+  useEffect(() => {
+    likedNotifications = findKeys(userProfile.tweets, "likedBy");
+    console.log("useEffect ran");
+    setNotificationsCount(likedNotifications.length);
+    console.log(notificationsCount);
+  }, []);
+  const handleNotificationsClick = () => {
+    console.log("handleNoticationsClick");
+    setNotificationsCount(0);
   }
 
   return (
@@ -56,10 +72,13 @@ const NavBar = (props) => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/notifications" activeClassName="__selected"  >
-          <FontAwesomeIcon icon={faBell} size={"lg"} listItem />
-          <span>Notifications</span>
-          <div class="badge">1</div>
+          <NavLink to="/notifications" activeClassName="__selected" onClick={handleNotificationsClick}  >
+            <FontAwesomeIcon icon={faBell} size={"lg"} listItem />
+            <span>Notifications</span>
+              {notificationsCount > 0 && 
+                <div className="badge">{notificationsCount}</div>
+              }
+            
           </NavLink>
         </li>
         <li>
