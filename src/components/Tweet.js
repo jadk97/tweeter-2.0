@@ -57,12 +57,12 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
     if (clickedElement[1] === "heart-button") {
       setHeartClicked((prev) => !prev);
       if (!heartClicked) {
-        dispatch(likeTweet({ ...tweet }));
-        dispatch(addLikedTweet({ ...tweet }));
+        dispatch(likeTweet({ ...tweet, likedBy: [...tweet.likedBy, userProfile.creatorHandle] }));
+        dispatch(addLikedTweet({ ...tweet, likedBy: [...tweet.likedBy, userProfile.creatorHandle] }));
 
       }
       else {
-        dispatch(unlikeTweet({ ...tweet }))
+        dispatch(unlikeTweet({ ...tweet, likedBy: [userProfile.likedBy] }))
         dispatch(removeLikedTweet({ ...tweet }));
       }
       // heartClicked ? dispatch(unlikeTweet({ ...tweet })) : dispatch(likeTweet({ ...tweet }));
@@ -258,7 +258,7 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
               className="retweet-circle-icon"
               transform="left-3.5"
             />
-              <span className="retweet-counter">{tweet.retweets}</span>
+            <span className="retweet-counter">{tweet.retweets}</span>
           </span>
 
           <span className={`fa-layers heart-button ${heartClicked ? "__clicked" : ""}`} onClick={clickHandler}>
@@ -275,7 +275,7 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
               className="heart-circle-icon"
               transform="left-4.2"
             />
-              <span className="like-counter">{tweet.likes}</span>
+            <span className="like-counter">{tweet.likes}</span>
           </span>
 
           <span className="fa-layers bookmark-button" onClick={clickHandler}>

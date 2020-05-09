@@ -264,6 +264,10 @@ export const slice = createSlice({
       pathToTweet[pathToTweet.length - 1] = "likes";
 
       _.set(state, pathToTweet, _.get(state, pathToTweet) + 1);
+
+      pathToTweet[pathToTweet.length - 1] = "likedBy";
+
+      _.set(state, pathToTweet, action.payload.likedBy);
     },
     unlikeTweet: (state, action) => {
       let tweetUnliked = action.payload.id;
@@ -271,6 +275,14 @@ export const slice = createSlice({
       pathToTweet[pathToTweet.length - 1] = "likes";
 
       _.set(state, pathToTweet, _.get(state, pathToTweet) - 1);
+
+      pathToTweet[pathToTweet.length - 1] = "likedBy";
+      let updatedLikedBy = [..._.get(state, pathToTweet)];
+      let tweetIndex = updatedLikedBy.findIndex((user) => user === action.payload.likedBy[0]);
+      updatedLikedBy.splice(tweetIndex, 1);
+      console.log("updated retweet", updatedLikedBy);
+
+      _.set(state, pathToTweet, updatedLikedBy);
     },
     retweetTweet: (state, action) => {
       let tweetRetweeted = action.payload.id;
