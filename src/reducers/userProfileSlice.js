@@ -30,6 +30,37 @@ export const slice = createSlice({
       retweetedBy: ["AtlasShrugged"],
       likedBy: ["AtlasShrugged"],
       replies: []
+    },
+    {
+      id: "tweet16",
+      type: "parent",
+      content: "Hello again!",
+      posted_at: Date.now(),
+      creatorName: "John Doe",
+      creatorHandle: "JohnDoe",
+      avatar: "https://www.deccanherald.com/sites/dh/files/styles/article_detail/public/article_images/2017/04/04/604513.jpg?itok=FqqfYOfA",
+      replyCount: 1,
+      retweets: 1,
+      likes: 1,
+      mentions: [],
+      retweetedBy: ["AtlasShrugged"],
+      likedBy: ["AtlasShrugged"],
+      replies: [{
+        id: "tweet17",
+        type: "parent",
+        content: "My dearest friend",
+        posted_at: Date.now(),
+        creatorName: "John Doe",
+        creatorHandle: "JohnDoe",
+        avatar: "https://www.deccanherald.com/sites/dh/files/styles/article_detail/public/article_images/2017/04/04/604513.jpg?itok=FqqfYOfA",
+        replyCount: 0,
+        retweets: 1,
+        likes: 1,
+        mentions: [],
+        retweetedBy: ["AtlasShrugged"],
+        likedBy: ["AtlasShrugged"],
+        replies: []
+      }]
     }],
     following: [],
     followers: [

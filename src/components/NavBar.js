@@ -9,6 +9,7 @@ import ComposeTweet from "./ComposeTweet";
 import { useSelector } from "react-redux";
 import { selectUserProfile } from "../reducers/userProfileSlice";
 import findKeys from "../helpers/findKeys";
+import flattenTweets from "../helpers/flattenTweets";
 const NavBar = (props) => {
 
   const [showModal, setShowModal] = useState(false);
@@ -18,11 +19,13 @@ const NavBar = (props) => {
   }
 
   const userProfile = useSelector(selectUserProfile);
-  // let likedNotifications;
+
 
   useEffect(() => {
     let likedNotifications = findKeys(userProfile.tweets, "likedBy");
     let retweetedNotifications = findKeys(userProfile.tweets, "retweetedBy");
+
+    console.log(likedNotifications);
     console.log("useEffect ran");
     setNotificationsCount(likedNotifications.length + retweetedNotifications.length);
     // console.log(notificationsCount);
