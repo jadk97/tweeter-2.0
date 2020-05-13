@@ -9,7 +9,7 @@ import ComposeTweet from "./ComposeTweet";
 import { useSelector } from "react-redux";
 import { selectUserProfile } from "../reducers/userProfileSlice";
 import findKeys from "../helpers/findKeys";
-import flattenTweets from "../helpers/flattenTweets";
+
 const NavBar = (props) => {
 
   const [showModal, setShowModal] = useState(false);
