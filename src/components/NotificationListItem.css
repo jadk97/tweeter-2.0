@@ -1,6 +1,6 @@
 .notification-container{
   border-bottom: 1px solid lightslategray;
-  padding: 15px 15px 20px 15px;
+  padding: 15px 15px 5px 15px;
   text-align: left;
   cursor: pointer;
 }
@@ -10,3 +10,42 @@
   transition: all 0.2s;
 }
 
+.notification-content{
+
+}
+
+.notification-text{
+  margin-left: 7%;
+}
+
+.notification-tweet-text{
+  color:lightslategray;
+}
+
+.notification-type{
+  display: flex;
+  flex-direction: row;
+  
+ 
+}
+
+.notification-avatar{
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  object-fit: cover;
+  margin-right: 2%;
+  transition: all .2s;
+}
+
+.notification-icon{
+  margin-right: 3%;
+}
+.notification-link{
+  font-weight: bold;
+}
+.notification-link:hover{
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  cursor: pointer;
+}

@@ -150,31 +150,47 @@ const NotificationListItem = (props) => {
     }
   ];
 
+
+
+  // let isPlural = (tweet.retweetedBy.length - 2) > 1;
   return (
     <div className="notification-container">
-      <div className="notification-type">
+      <div className="notification-content">
         {props.notifType === "like" &&
           (
-            <FontAwesomeIcon
-              icon={faHeart}
-              size="2x"
-              color="#e0245e"
-              className="heart-icon"
-            />
+            <div className="notification-type">
+              <FontAwesomeIcon
+                icon={faHeart}
+                size="2x"
+                color="#e0245e"
+                className="notification-icon"
+              />
+
+              <img className="notification-avatar" src={"https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg"} />
+
+            </div>
           )
         }
-        {props.notifType === "retweet" &&
-          (
-            <FontAwesomeIcon
-              icon={faRetweet}
-              size="2x"
-              color="#17bf63"
-              className="retweet-icon"
-            />
-          )}
+        <div>
+          {props.notifType === "retweet" &&
+            (
+              <div className="notification-type">
+                <FontAwesomeIcon
+                  icon={faRetweet}
+                  size="2x"
+                  color="#17bf63"
+                  className="notification-icon"
+                />
+                <img className="notification-avatar" src={"https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg"} />
+              </div>
+            )
+          }
+        </div>
+        <div className="notification-text">
+        
+          <p className="notification-tweet-text">{props.text}</p>
+        </div>
       </div>
-      <div>{props.likedBy.join(" and ")}</div>
-      <div>{props.text}</div>
     </div>
   )
 }
