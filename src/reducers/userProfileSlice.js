@@ -58,7 +58,7 @@ export const slice = createSlice({
         likes: 1,
         mentions: [],
         retweetedBy: ["AtlasShrugged"],
-        likedBy: ["AtlasShrugged"],
+        likedBy: ["AtlasShrugged", "EHemWay"],
         replies: [],
         replyingTo: ["tweet16"]
       }]

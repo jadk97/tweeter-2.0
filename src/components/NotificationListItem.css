@@ -1,0 +1,12 @@
+.notification-container{
+  border-bottom: 1px solid lightslategray;
+  padding: 15px 15px 20px 15px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.notification-container:hover{
+  background-color: #253341;
+  transition: all 0.2s;
+}
+
