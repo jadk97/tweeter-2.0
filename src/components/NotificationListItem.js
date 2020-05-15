@@ -167,8 +167,26 @@ const NotificationListItem = (props) => {
     else {
       notifChain = <span className="notification-link">{notifType[0]}</span>
     }
-    return notifChain
+    return notifChain;
   }
+
+  // const renderAvatars = (notifType) => {
+  //   userList.filter(())
+  // }
+  let avatars = [];
+  for (let likers of props.notifUsers){
+    avatars.push(userList.filter((user) => user.creatorHandle === likers)[0].avatar);
+  }
+  // if(props.notifType === "like"){
+
+  // }
+  // else{
+  //   for (let retweeters of props.retweetedBy){
+  //     avatars.push(userList.filter((user) =>user))
+  //   }
+  // }
+
+  console.log(avatars);
   // let isPlural = (tweet.retweetedBy.length - 2) > 1;
   return (
     <div className="notification-container">
@@ -183,8 +201,7 @@ const NotificationListItem = (props) => {
                 className="notification-icon"
               />
 
-              <img className="notification-avatar" src={"https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg"} />
-
+              {avatars.map((avatar) => <img className="notification-avatar" src={avatar} />)}
             </div>
           )
         }
@@ -204,7 +221,7 @@ const NotificationListItem = (props) => {
           }
         </div>
         <div className="notification-text">
-          <p>{notificationTextFormatter(props.likedBy)}</p>
+          <p>{notificationTextFormatter(props.notifUsers)}</p>
           <p className="notification-tweet-text">{props.text}</p>
         </div>
       </div>
