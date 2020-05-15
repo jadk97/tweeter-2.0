@@ -1,6 +1,6 @@
 .notification-container{
   border-bottom: 1px solid lightslategray;
-  padding: 15px 15px 5px 15px;
+  padding: 15px 15px 5px 40px;
   text-align: left;
   cursor: pointer;
 }
