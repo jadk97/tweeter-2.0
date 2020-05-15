@@ -151,7 +151,24 @@ const NotificationListItem = (props) => {
   ];
 
 
-
+  const notificationTextFormatter = (notifType) => {
+    let notifChain;
+    if (notifType.length > 1) {
+      notifChain = notifType.map((notif, i) => {
+        if (i === notifType.length - 1) {
+          // console.log("last index", mention);
+          return <span>and <span className="notification-link">{notif}</span></span>
+        }
+        else {
+          return <span><span className="notification-link">{notif}</span>, </span>
+        }
+      })
+    }
+    else {
+      notifChain = <span className="notification-link">{notifType[0]}</span>
+    }
+    return notifChain
+  }
   // let isPlural = (tweet.retweetedBy.length - 2) > 1;
   return (
     <div className="notification-container">
@@ -187,7 +204,7 @@ const NotificationListItem = (props) => {
           }
         </div>
         <div className="notification-text">
-        
+          <p>{notificationTextFormatter(props.likedBy)}</p>
           <p className="notification-tweet-text">{props.text}</p>
         </div>
       </div>
