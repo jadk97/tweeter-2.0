@@ -3,6 +3,8 @@ import Header from "./Header";
 import flattenTweets from "../helpers/flattenTweets";
 import { useSelector } from "react-redux";
 import { selectUserProfile } from "../reducers/userProfileSlice";
+import NotificationList from "./NotificationList";
+
 const Notifications = (props) => {
 
   const userProfile = useSelector(selectUserProfile);
@@ -34,6 +36,7 @@ const Notifications = (props) => {
   return (
     <div className="center-view">
       <Header title={"Notifications"} />
+      <NotificationList notifications={notificationsFeed} />
     </div>
   )
 }
