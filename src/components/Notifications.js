@@ -15,7 +15,6 @@ const Notifications = (props) => {
   let viewMode = location.pathname.split("/");
 
   let retweetCheck = userProfile.tweets.filter((tweet) => tweet.retweetedBy.indexOf(userProfile.creatorHandle) > - 1 && tweet.replyCount > 0);
-  console.log("retweetCheck", retweetCheck);
   let getInteractions = [...userProfile.tweets];
 
   if(retweetCheck.length > 0){
@@ -26,7 +25,6 @@ const Notifications = (props) => {
   }
 
   let flattenedInteractions = [...flattenTweets(getInteractions)];
-  console.log("FLATTENED INTERACTIONS", flattenedInteractions);
   let notificationsFeed = [];
 
   for (let interaction of flattenedInteractions) {
@@ -43,6 +41,8 @@ const Notifications = (props) => {
       }
     }
     else if (userProfile.retweetedTweets.some((tweet) => interaction.id === tweet.id)){
+      // This is where you would put your logic for checking if someone interacted with a retweet the user made
+      // Come back to this later when you have a back-end
       console.log("this is a retweet the user made", interaction);
 
     }
