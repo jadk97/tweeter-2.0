@@ -165,18 +165,18 @@ const NotificationListItem = (props) => {
       notifChain = notifUsers.map((notif, i) => {
         if (i === notifUsers.length - 1) {
           // console.log("last index", mention);
-          return <span>and <span className="notification-link">{notif}</span>{messageEnder[notifType]}</span>
+          return <span>and <span className="notification-link" onClick={clickHandler}>{notif}</span>{messageEnder[notifType]}</span>
         }
         else {
-          return <span><span className="notification-link">{notif}</span>, </span>
+          return <span><span className="notification-link" onClick={clickHandler}>{notif}</span>, </span>
         }
       })
     }
     else {
-      notifChain = <span><span className="notification-link">{notifUsers[0]}</span>{messageEnder[notifType]}</span>
+      notifChain = <span><span className="notification-link" onClick={clickHandler}>{notifUsers[0]}</span>{messageEnder[notifType]}</span>
     }
 
-    
+
     return notifChain;
   }
 
@@ -186,17 +186,21 @@ const NotificationListItem = (props) => {
 
     let clickedElement = e.currentTarget.classList;
     console.log(clickedElement);
-    if (clickedElement[0] === "notification-container"){
+    if (clickedElement[0] === "notification-link") {
+      let creatorLink = e.currentTarget.innerText;
+      history.push(`/${creatorLink}`);
+    }
+    if (clickedElement[0] === "notification-container") {
       history.push(`/${props.tweetID}/status/${props.tweetID}`);
     }
   }
 
   let avatars = [];
-  for (let likers of props.notifUsers){
+  for (let likers of props.notifUsers) {
     avatars.push(userList.filter((user) => user.creatorHandle === likers)[0].avatar);
   }
 
-  
+
   return (
     <div className="notification-container" onClick={clickHandler}>
       <div className="notification-content">
@@ -210,7 +214,7 @@ const NotificationListItem = (props) => {
                 className="notification-icon"
               />
 
-              {avatars.map((avatar) => <img className="notification-avatar" src={avatar} />)}
+              {avatars.map((avatar) => <img className="notification-avatar" src={avatar} onClick={clickHandler} />)}
             </div>
           )
         }
