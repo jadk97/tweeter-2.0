@@ -17,6 +17,7 @@
   width: 100%;
   padding-top: 2%;
   padding-bottom: 2%;
+  outline:none;
 }
 
 .horizontal-navbar a:hover{

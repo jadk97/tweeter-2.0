@@ -9,7 +9,7 @@ const Header = (props) => {
     history.goBack();
   }
   return (
-    <div className="header">
+    <div className={`header ${props.noBorder ? "__no-border" : ""}`}>
       {props.navButton && (
         <span className="fa-layers back-button" onClick={backButtonHandler}>
           <FontAwesomeIcon

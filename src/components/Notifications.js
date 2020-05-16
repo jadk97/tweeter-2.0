@@ -3,11 +3,15 @@ import Header from "./Header";
 import flattenTweets from "../helpers/flattenTweets";
 import { useSelector } from "react-redux";
 import { selectUserProfile } from "../reducers/userProfileSlice";
-import NotificationList from "./NotificationList";
+import { useRouteMatch } from "react-router-dom";
 
+import HorizontalNavBar from "./HorizontalNavBar";
+import NotificationList from "./NotificationList";
 const Notifications = (props) => {
 
   const userProfile = useSelector(selectUserProfile);
+  let match = useRouteMatch();
+
 
   const getInteractions = (userProfile.tweets || []).map((tweet) => {
     if (tweet.likedBy.length > 0 || tweet.retweetedBy.length > 0 || (tweet.type === "child" && tweet.creatorHandle !== userProfile.creatorHandle)) {
@@ -38,7 +42,8 @@ const Notifications = (props) => {
   console.log(notificationsFeed);
   return (
     <div className="center-view">
-      <Header title={"Notifications"} />
+      <Header title={"Notifications"} noBorder={true}/>
+      <HorizontalNavBar headings={[{ title: "All", path: `${match.url}` }, {title: "Mentions", path: `${match.url}/mentions`}]} />
       <NotificationList notifications={notificationsFeed} />
     </div>
   )
