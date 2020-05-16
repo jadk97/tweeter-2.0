@@ -215,7 +215,7 @@ const NotificationListItem = (props) => {
                   color="#17bf63"
                   className="notification-icon"
                 />
-                <img className="notification-avatar" src={"https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg"} />
+                {avatars.map((avatar) => <img className="notification-avatar" src={avatar} />)}
               </div>
             )
           }
