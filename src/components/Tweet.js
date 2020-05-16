@@ -298,7 +298,7 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
 
 
       <div className={`tweet-container ${focusedView ? "__focused" : ""} ${tweet.replies && tweet.replies.length > 0 ? "__replied" : ""}`} onClick={(event) => clickHandler(event)}>
-        {retweetIndicator && (
+        {retweetIndicator && tweet.creatorHandle !== userProfile.creatorHandle && (
           <div className="tweet-retweeted">
             <FontAwesomeIcon
               icon={faRetweet}

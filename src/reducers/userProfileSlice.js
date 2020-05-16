@@ -29,7 +29,23 @@ export const slice = createSlice({
       mentions: [],
       retweetedBy: ["AtlasShrugged"],
       likedBy: ["AtlasShrugged"],
-      replies: []
+      replies: [{
+        id: "tweet19",
+        type: "reply",
+        content: "Hello World!",
+        posted_at: Date.now(),
+        creatorName: "Ayn Rand",
+        creatorHandle: "AtlasShrugged",
+        avatar: "https://www.deccanherald.com/sites/dh/files/styles/article_detail/public/article_images/2017/04/04/604513.jpg?itok=FqqfYOfA",
+        replyCount: 0,
+        retweets: 1,
+        likes: 1,
+        mentions: ["@JohnDoe"],
+        retweetedBy: [],
+        likedBy: [],
+        replies: [],
+        replyingTo: ["tweet16"]
+      }]
     },
     {
       id: "tweet16",
@@ -82,42 +98,74 @@ export const slice = createSlice({
     following: [],
     followers: [
       {
-      creatorName: "Ayn Rand",
-      creatorHandle: "AtlasShrugged",
-      avatar: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg",
-      bio: "I wrote The Fountainhead and Atlas Shrugged",
-      joined: Date.now(),
-      website: "https://en.wikipedia.org/wiki/Ayn_Rand",
-      location: null,
-      likedTweets: [{
-        id: "tweet4",
-        type: "parent",
-        content: "Bananas",
-        posted_at: Date.now(),
-        creatorName: "Ernest Hemingway",
-        creatorHandle: "EHemWay",
-        avatar: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/ErnestHemingway.jpg/220px-ErnestHemingway.jpg",
-        replyCount: 0,
-        retweets: 500,
-        likes: 2,
-        mentions: [],
-        retweetedBy: [],
-        replies: []
-      }],
-      tweets: [{
-        id: "tweet1",
-        type: "parent",
-        content: "What tweeterific tweet",
-        posted_at: Date.now(),
         creatorName: "Ayn Rand",
         creatorHandle: "AtlasShrugged",
         avatar: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg",
-        replyCount: 1,
-        retweets: 5,
-        likes: 120,
-        mentions: [],
-        retweetedBy: [],
-        replies: [{
+        bio: "I wrote The Fountainhead and Atlas Shrugged",
+        joined: Date.now(),
+        website: "https://en.wikipedia.org/wiki/Ayn_Rand",
+        location: null,
+        likedTweets: [{
+          id: "tweet4",
+          type: "parent",
+          content: "Bananas",
+          posted_at: Date.now(),
+          creatorName: "Ernest Hemingway",
+          creatorHandle: "EHemWay",
+          avatar: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/ErnestHemingway.jpg/220px-ErnestHemingway.jpg",
+          replyCount: 0,
+          retweets: 500,
+          likes: 2,
+          mentions: [],
+          retweetedBy: [],
+          replies: []
+        }],
+        tweets: [{
+          id: "tweet1",
+          type: "parent",
+          content: "What tweeterific tweet",
+          posted_at: Date.now(),
+          creatorName: "Ayn Rand",
+          creatorHandle: "AtlasShrugged",
+          avatar: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg",
+          replyCount: 1,
+          retweets: 5,
+          likes: 120,
+          mentions: [],
+          retweetedBy: [],
+          replies: [{
+            id: "tweet3",
+            type: "child",
+            content: "Oranges.",
+            posted_at: Date.now(),
+            creatorName: "Ayn Rand",
+            creatorHandle: "AtlasShrugged",
+            avatar: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg",
+            replyCount: 0,
+            retweets: 500,
+            likes: 2,
+            mentions: ["AtlasShrugged"],
+            retweetedBy: [],
+            replies: [],
+            replyingTo: ["tweet1"]
+          }]
+        },
+        {
+          id: "tweet2",
+          type: "parent",
+          content: "I LIKE APPPLES AND APPLES AND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND",
+          posted_at: Date.now(),
+          creatorName: "Ayn Rand",
+          creatorHandle: "AtlasShrugged",
+          avatar: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg",
+          replyCount: 0,
+          retweets: 500,
+          likes: 2,
+          mentions: [],
+          retweetedBy: [],
+          replies: []
+        },
+        {
           id: "tweet3",
           type: "child",
           content: "Oranges.",
@@ -132,41 +180,9 @@ export const slice = createSlice({
           retweetedBy: [],
           replies: [],
           replyingTo: ["tweet1"]
-        }]
-      },
-      {
-        id: "tweet2",
-        type: "parent",
-        content: "I LIKE APPPLES AND APPLES AND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND",
-        posted_at: Date.now(),
-        creatorName: "Ayn Rand",
-        creatorHandle: "AtlasShrugged",
-        avatar: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg",
-        replyCount: 0,
-        retweets: 500,
-        likes: 2,
-        mentions: [],
-        retweetedBy: [],
-        replies: []
-      },
-      {
-        id: "tweet3",
-        type: "child",
-        content: "Oranges.",
-        posted_at: Date.now(),
-        creatorName: "Ayn Rand",
-        creatorHandle: "AtlasShrugged",
-        avatar: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg",
-        replyCount: 0,
-        retweets: 500,
-        likes: 2,
-        mentions: ["AtlasShrugged"],
-        retweetedBy: [],
-        replies: [],
-        replyingTo: ["tweet1"]
-      }
-      ]
-    }]
+        }
+        ]
+      }]
   },
   reducers: {
     getUser: state => state,
@@ -180,7 +196,7 @@ export const slice = createSlice({
 
     },
     removeLikedTweet: (state, action) => {
-      if (action.payload.creatorHandle === state.creatorHandle){
+      if (action.payload.creatorHandle === state.creatorHandle) {
         let pathToTweet = findPath(action.payload.id, state.tweets).split(".");
         pathToTweet[pathToTweet.length - 1] = "likes";
         _.set(state.tweets, pathToTweet, _.get(state.tweets, pathToTweet) - 1);
