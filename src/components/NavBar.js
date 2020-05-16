@@ -24,8 +24,9 @@ const NavBar = (props) => {
   useEffect(() => {
     let likedNotifications = findKeys(userProfile.tweets, "likedBy");
     let retweetedNotifications = findKeys(userProfile.tweets, "retweetedBy");
-
-    console.log(likedNotifications);
+    let repliedNotifications = findKeys(userProfile.tweets, "mentions");
+    console.log("Reply notifs", repliedNotifications);
+  
     console.log("useEffect ran");
     setNotificationsCount(likedNotifications.length + retweetedNotifications.length);
     // console.log(notificationsCount);

@@ -151,13 +151,18 @@ const NotificationListItem = (props) => {
   ];
 
 
-  const notificationTextFormatter = (notifType) => {
+  const notificationTextFormatter = (notifUsers, notifType) => {
     let notifChain;
-    if (notifType.length > 1) {
-      notifChain = notifType.map((notif, i) => {
-        if (i === notifType.length - 1) {
+    const messageEnder = {
+      like: "liked your tweet.",
+      retweet: "retweeted your tweet.",
+      reply: "replied to your tweet.",
+    }
+    if (notifUsers.length > 1) {
+      notifChain = notifUsers.map((notif, i) => {
+        if (i === notifUsers.length - 1) {
           // console.log("last index", mention);
-          return <span>and <span className="notification-link">{notif}</span></span>
+          return <span>and <span className="notification-link">{notif + " " + messageEnder[notifType]}</span></span>
         }
         else {
           return <span><span className="notification-link">{notif}</span>, </span>
@@ -165,8 +170,10 @@ const NotificationListItem = (props) => {
       })
     }
     else {
-      notifChain = <span className="notification-link">{notifType[0]}</span>
+      notifChain = <span className="notification-link">{notifUsers[0] + " " + messageEnder[notifType]} </span>
     }
+
+    
     return notifChain;
   }
 
@@ -221,7 +228,7 @@ const NotificationListItem = (props) => {
           }
         </div>
         <div className="notification-text">
-          <p>{notificationTextFormatter(props.notifUsers)}</p>
+          <p>{notificationTextFormatter(props.notifUsers, props.notifType)}</p>
           <p className="notification-tweet-text">{props.text}</p>
         </div>
       </div>
