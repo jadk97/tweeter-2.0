@@ -19,7 +19,7 @@ const Notifications = (props) => {
   //   }
 
   // });
-
+  let viewMode = location.pathname.split("/");
   const getInteractions = [...userProfile.tweets];
 
 
@@ -40,6 +40,10 @@ const Notifications = (props) => {
     else{
       notificationsFeed.push({notifType: "reply", ...interaction})
     }
+  }
+
+  if(viewMode[viewMode.length - 1] === "mentions"){
+    notificationsFeed = notificationsFeed.filter((notif) => notif.notifType === "reply");
   }
   console.log(notificationsFeed);
   return (
