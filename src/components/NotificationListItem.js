@@ -171,15 +171,15 @@ const NotificationListItem = (props) => {
       notifChain = notifUsers.map((notif, i) => {
         if (i === notifUsers.length - 1) {
           // console.log("last index", mention);
-          return <span>and <span className="notification-link" onClick={clickHandler}>{notif}</span>{messageEnder[notifType]}</span>
+          return <span>and <span className="notification-link" onClick={(event) => clickHandler(event, notif)}>{notif.creatorName}</span>{messageEnder[notifType]}</span>
         }
         else {
-          return <span><span className="notification-link" onClick={clickHandler}>{notif}</span>, </span>
+          return <span><span className="notification-link" onClick={(event) => clickHandler(event, notif)}>{notif.creatorName}</span>, </span>
         }
       })
     }
     else {
-      notifChain = <span><span className="notification-link" onClick={clickHandler}>{notifUsers[0]}</span>{messageEnder[notifType]}</span>
+      notifChain = <span><span className="notification-link" onClick={(event) => clickHandler(event, notifUsers[0])}>{notifUsers[0].creatorName}</span>{messageEnder[notifType]}</span>
     }
 
 
@@ -193,14 +193,14 @@ const NotificationListItem = (props) => {
     let clickedElement = e.currentTarget.classList;
     console.log(clickedElement);
 
-    if (clickedElement[0] === "notification-avatar"){
+    if (clickedElement[0] === "notification-avatar" || clickedElement[0] === "notification-link" ){
       // history.push
       history.push(`/${user.creatorHandle}`);
     }
-    if (clickedElement[0] === "notification-link") {
-      let creatorLink = e.currentTarget.innerText;
-      history.push(`/${creatorLink}`);
-    }
+    // if (clickedElement[0] === "notification-link") {
+    //   let creatorLink = e.currentTarget.innerText;
+    //   history.push(`/${creatorLink}`);
+    // }
     if (clickedElement[0] === "notification-container") {
       history.push(`/${props.tweetID}/status/${props.tweetID}`);
     }
@@ -246,7 +246,7 @@ const NotificationListItem = (props) => {
           }
         </div>
         <div className="notification-text">
-          <p>{notificationTextFormatter(props.notifUsers, props.notifType)}</p>
+          <p>{notificationTextFormatter(users, props.notifType)}</p>
           <p className="notification-tweet-text">{props.text}</p>
         </div>
       </div>
