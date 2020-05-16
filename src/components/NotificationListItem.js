@@ -3,6 +3,8 @@ import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRetweet, faHeart } from "@fortawesome/free-solid-svg-icons";
 import "./NotificationListItem.css";
+import { useHistory } from "react-router-dom";
+
 const NotificationListItem = (props) => {
   let userList = [
     {
@@ -150,6 +152,7 @@ const NotificationListItem = (props) => {
     }
   ];
 
+  let history = useHistory();
 
   const notificationTextFormatter = (notifUsers, notifType) => {
     let notifChain;
@@ -177,26 +180,25 @@ const NotificationListItem = (props) => {
     return notifChain;
   }
 
-  // const renderAvatars = (notifType) => {
-  //   userList.filter(())
-  // }
+  const clickHandler = (e) => {
+    e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
+
+    let clickedElement = e.currentTarget.classList;
+    console.log(clickedElement);
+    if (clickedElement[0] === "notification-container"){
+      history.push(`/${props.tweetID}/status/${props.tweetID}`);
+    }
+  }
+
   let avatars = [];
   for (let likers of props.notifUsers){
     avatars.push(userList.filter((user) => user.creatorHandle === likers)[0].avatar);
   }
-  // if(props.notifType === "like"){
 
-  // }
-  // else{
-  //   for (let retweeters of props.retweetedBy){
-  //     avatars.push(userList.filter((user) =>user))
-  //   }
-  // }
-
-  console.log(avatars);
-  // let isPlural = (tweet.retweetedBy.length - 2) > 1;
+  
   return (
-    <div className="notification-container">
+    <div className="notification-container" onClick={clickHandler}>
       <div className="notification-content">
         {props.notifType === "like" &&
           (

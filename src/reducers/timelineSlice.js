@@ -291,7 +291,7 @@ export const slice = createSlice({
         replyCount: 0,
         retweets: 1,
         likes: 1,
-        mentions: [],
+        mentions: ["JohnDoe"],
         retweetedBy: ["AtlasShrugged"],
         likedBy: ["AtlasShrugged", "EHemWay"],
         replies: [],

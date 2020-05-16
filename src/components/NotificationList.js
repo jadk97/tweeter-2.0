@@ -11,6 +11,7 @@ const NotificationList = (props) => {
             text={notification.content}
             notifType={notification.notifType}
             notifUsers={notification.likedBy}
+            tweetID={notification.id}
           />
         )
       }
@@ -20,6 +21,7 @@ const NotificationList = (props) => {
           text={notification.content}
           notifType={notification.notifType}
           notifUsers={notification.retweetedBy}
+          tweetID={notification.id}
         />
         )
       }
