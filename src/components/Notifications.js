@@ -3,7 +3,7 @@ import Header from "./Header";
 import flattenTweets from "../helpers/flattenTweets";
 import { useSelector } from "react-redux";
 import { selectUserProfile } from "../reducers/userProfileSlice";
-import { useRouteMatch } from "react-router-dom";
+import { useRouteMatch, useLocation } from "react-router-dom";
 
 import HorizontalNavBar from "./HorizontalNavBar";
 import NotificationList from "./NotificationList";
@@ -11,14 +11,16 @@ const Notifications = (props) => {
 
   const userProfile = useSelector(selectUserProfile);
   let match = useRouteMatch();
+  let location = useLocation();
 
+  // const getInteractions = (userProfile.tweets || []).map((tweet) => {
+  //   if (tweet.likedBy.length > 0 || tweet.retweetedBy.length > 0 || (tweet.type === "child" && tweet.creatorHandle !== userProfile.creatorHandle)) {
+  //     return tweet;
+  //   }
 
-  const getInteractions = (userProfile.tweets || []).map((tweet) => {
-    if (tweet.likedBy.length > 0 || tweet.retweetedBy.length > 0 || (tweet.type === "child" && tweet.creatorHandle !== userProfile.creatorHandle)) {
-      return tweet;
-    }
+  // });
 
-  });
+  const getInteractions = [...userProfile.tweets];
 
 
   let flattenedInteractions = [...flattenTweets(getInteractions)];
