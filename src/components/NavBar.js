@@ -9,7 +9,7 @@ import ComposeTweet from "./ComposeTweet";
 import { useSelector } from "react-redux";
 import { selectUserProfile } from "../reducers/userProfileSlice";
 import findKeys from "../helpers/findKeys";
-
+import flattenTweets from "../helpers/flattenTweets";
 const NavBar = (props) => {
 
   const [showModal, setShowModal] = useState(false);
@@ -24,11 +24,14 @@ const NavBar = (props) => {
   useEffect(() => {
     let likedNotifications = findKeys(userProfile.tweets, "likedBy");
     let retweetedNotifications = findKeys(userProfile.tweets, "retweetedBy");
-    let repliedNotifications = findKeys(userProfile.tweets, "mentions");
-    console.log("Reply notifs", repliedNotifications);
   
+    let getInteractions = [...userProfile.tweets];
+    let flattenedInteractions = [...flattenTweets(getInteractions)];
+    // This doesn't account for the possibility of retweets yet, be mindful of that.
+    let repliedNotifications = flattenedInteractions.filter((tweet) => tweet.type === "child" && tweet.creatorHandle !== userProfile.creatorHandle);
+    console.log("reply Notifs", repliedNotifications);
     console.log("useEffect ran");
-    setNotificationsCount(likedNotifications.length + retweetedNotifications.length);
+    setNotificationsCount(likedNotifications.length + retweetedNotifications.length + repliedNotifications.length);
     // console.log(notificationsCount);
   }, []);
   const handleNotificationsClick = () => {
@@ -80,10 +83,10 @@ const NavBar = (props) => {
           <NavLink to="/notifications" activeClassName="__selected" onClick={handleNotificationsClick}  >
             <FontAwesomeIcon icon={faBell} size={"lg"} listItem />
             <span>Notifications</span>
-              {notificationsCount > 0 && 
-                <div className="badge">{notificationsCount}</div>
-              }
-            
+            {notificationsCount > 0 &&
+              <div className="badge">{notificationsCount}</div>
+            }
+
           </NavLink>
         </li>
         <li>

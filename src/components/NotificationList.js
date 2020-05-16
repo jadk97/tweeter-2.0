@@ -1,6 +1,6 @@
 import React from "react";
 import NotificationListItem from "./NotificationListItem";
-
+import Tweet from "./Tweet";
 const NotificationList = (props) => {
 
   return (
@@ -20,6 +20,15 @@ const NotificationList = (props) => {
           text={notification.content}
           notifType={notification.notifType}
           notifUsers={notification.retweetedBy}
+        />
+        )
+      }
+      else if (notification.notifType === "reply"){
+        return (
+          <Tweet
+          key={notification.id}
+          tweet={notification}
+          showMentions={true}
         />
         )
       }
