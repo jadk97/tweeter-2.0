@@ -148,7 +148,7 @@ export default class TweetInput extends Component {
       <div className="compose-tweet">
         <form onSubmit={this.handleSubmit}>
         <div className="tweet-box">
-        <img className="avatar" src={"https://www.deccanherald.com/sites/dh/files/styles/article_detail/public/article_images/2017/04/04/604513.jpg?itok=FqqfYOfA"} onClick={this.props.handleAvatarClick}/>
+        <img className="avatar" src={this.props.avatar} onClick={this.props.handleAvatarClick}/>
         <div className={editorStyles.editor} onClick={this.focus}>
           <Editor
             editorState={this.state.editorState}

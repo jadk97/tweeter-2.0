@@ -174,6 +174,7 @@ const oldComposeTweet = (
     handleAvatarClick={handleAvatarClick}
     handleInputSubmit={handleInputSubmit}
     buttonType={props.mode}
+    avatar={userProfile.avatar}
     />
 
   )
