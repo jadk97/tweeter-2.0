@@ -121,8 +121,10 @@ export default class TweetInput extends Component {
   // This will get the hashtags out of the Editor
   extractHashTags = () => {
     let currentTweet = this.state.editorState.getCurrentContent().getPlainText('\u0001');
-    let hashTags = currentTweet.split(' ').filter(v => v.startsWith('#'))
-    return hashTags;
+    let hashTags = currentTweet.split(' ').filter(v => v.startsWith('#'));
+    // .map(s => s.slice(1));
+    let hashTagSet = [...new Set(hashTags)];
+    return hashTagSet;
   }
 
   focus = () => {
@@ -141,8 +143,11 @@ export default class TweetInput extends Component {
     let mentionSet = [...new Set(mentionArray)];
     // let html = stateToHTML(this.state.editorState);
     // console.log(html);
-    
-    this.props.handleInputSubmit(currentTweet, mentionSet);
+    console.log(this.extractHashTags());
+    let hashtags = this.extractHashTags();
+    this.props.handleInputSubmit(currentTweet, mentionSet, hashtags);
+
+
     const editorState = EditorState.push(this.state.editorState, ContentState.createFromText(''));
     this.setState({ editorState });
   }

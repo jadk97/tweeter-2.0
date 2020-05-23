@@ -15,6 +15,7 @@ const ComposeTweet = (props) => {
   const [tweet, setTweet] = useState("");
   const [usersMentioned, setUsersMentioned] = useState([]);
   const [submitting, setSubmitting] = useState(false);
+  const [hashtags, setHashtags] = useState([]);
   // const tweet = useRef("");
   const userProfile = useSelector(selectUserProfile);
   // const timeline = useSelector(selectTimeline);
@@ -40,10 +41,11 @@ const ComposeTweet = (props) => {
   }
 
   
-  const handleInputSubmit = (tweets, mentions) => {
+  const handleInputSubmit = (tweets, mentions, hashtags) => {
     console.log(mentions);
     setTweet(tweets);
     setUsersMentioned(mentions);
+    setHashtags(hashtags);
     // setUsersMentioned(mentions);
     setSubmitting(true);
     // handleSubmit();
@@ -55,6 +57,7 @@ const ComposeTweet = (props) => {
   const handleSubmit = () => {
 
     console.log(usersMentioned);
+    console.log(hashtags);
     // console.log(timeline)
     // e.preventDefault();
     // console.log("This is props.replyingTo:", props.replyingTo);
