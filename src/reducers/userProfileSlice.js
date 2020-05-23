@@ -29,6 +29,7 @@ export const slice = createSlice({
       mentions: [],
       retweetedBy: ["AtlasShrugged"],
       likedBy: ["AtlasShrugged"],
+      hashtags: [],
       replies: [{
         id: "tweet19",
         type: "child",
@@ -43,6 +44,7 @@ export const slice = createSlice({
         mentions: ["JohnDoe"],
         retweetedBy: [],
         likedBy: [],
+        hashtags: [],
         replies: [],
         replyingTo: ["tweet15"]
       }]
@@ -61,6 +63,7 @@ export const slice = createSlice({
       mentions: [],
       retweetedBy: ["AtlasShrugged"],
       likedBy: ["AtlasShrugged"],
+      hashtags: [],
       replies: [{
         id: "tweet17",
         type: "child",
@@ -75,6 +78,7 @@ export const slice = createSlice({
         mentions: ["JohnDoe"],
         retweetedBy: ["AtlasShrugged"],
         likedBy: ["AtlasShrugged", "EHemWay"],
+        hashtags: [],
         replies: [],
         replyingTo: ["tweet16"]
       }]
@@ -93,6 +97,7 @@ export const slice = createSlice({
       mentions: [],
       retweetedBy: ["AtlasShrugged", "EHemWay"],
       likedBy: [],
+      hashtags: [],
       replies: []
     }],
     following: [],
@@ -118,6 +123,7 @@ export const slice = createSlice({
           likes: 2,
           mentions: [],
           retweetedBy: [],
+          hashtags: [],
           replies: []
         }],
         tweets: [{
@@ -133,6 +139,7 @@ export const slice = createSlice({
           likes: 120,
           mentions: [],
           retweetedBy: [],
+          hashtags: [],
           replies: [{
             id: "tweet3",
             type: "child",
@@ -146,6 +153,7 @@ export const slice = createSlice({
             likes: 2,
             mentions: ["AtlasShrugged"],
             retweetedBy: [],
+            hashtags: [],
             replies: [],
             replyingTo: ["tweet1"]
           }]
@@ -163,6 +171,7 @@ export const slice = createSlice({
           likes: 2,
           mentions: [],
           retweetedBy: [],
+          hashtags: [],
           replies: []
         },
         {
@@ -178,6 +187,7 @@ export const slice = createSlice({
           likes: 2,
           mentions: ["AtlasShrugged"],
           retweetedBy: [],
+          hashtags: [],
           replies: [],
           replyingTo: ["tweet1"]
         }
