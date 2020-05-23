@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./ComposeTweet.css";
 import TextareaAutosize from 'react-textarea-autosize';
 import Button from "./Button";
@@ -12,15 +12,23 @@ import { v4 as uuid } from "uuid";
 import { useHistory } from "react-router-dom";
 
 
+import { EditorState } from 'draft-js';
+import Editor from 'draft-js-plugins-editor';
+import createMentionPlugin, { defaultSuggestionsFilter } from 'draft-js-mention-plugin';
+
+
 const ComposeTweet = (props) => {
   const [tweet, setTweet] = useState("");
+  // const tweet = useRef("");
   const userProfile = useSelector(selectUserProfile);
   // const timeline = useSelector(selectTimeline);
   const dispatch = useDispatch();
   let history = useHistory();
   const handleChange = (e) => {
     setTweet(e.target.value);
+  
   }
+
   const handleAvatarClick = () => {
     history.push(`/${userProfile.creatorHandle}`);
   }
@@ -119,13 +127,15 @@ const ComposeTweet = (props) => {
       <form onSubmit={handleSubmit}>
         <div className="tweet-box">
           <img className="avatar" src={"https://www.deccanherald.com/sites/dh/files/styles/article_detail/public/article_images/2017/04/04/604513.jpg?itok=FqqfYOfA"} onClick={handleAvatarClick} />
-          <TextareaAutosize
-            value={tweet}
-            className={`tweet-input${tweet.length > 0 ? " __filled" : ""}`}
-            placeholder="What's on your mind?"
-            onChange={handleChange}
-          ></TextareaAutosize>
-
+          {
+            <TextareaAutosize
+              value={tweet}
+              className={`tweet-input${tweet.length > 0 ? " __filled" : ""}`}
+              placeholder="What's on your mind?"
+              onChange={handleChange}
+            ></TextareaAutosize>
+          }
+         
         </div>
         <div className="tweet-submit-options">
           <div className="tweet-submit-image-icon">
