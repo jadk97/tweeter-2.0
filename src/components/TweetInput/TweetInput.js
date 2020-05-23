@@ -121,8 +121,8 @@ export default class TweetInput extends Component {
   // This will get the hashtags out of the Editor
   extractHashTags = () => {
     let currentTweet = this.state.editorState.getCurrentContent().getPlainText('\u0001');
-    let hashTags = currentTweet.split(' ').filter(v => v.startsWith('#'));
-    // .map(s => s.slice(1));
+    // let hashTags = currentTweet.split(' ').filter(v => v.startsWith('#'));
+    let hashTags = currentTweet.split(' ').filter(v => v.startsWith('#')).map(s => s.slice(1));
     let hashTagSet = [...new Set(hashTags)];
     return hashTagSet;
   }
