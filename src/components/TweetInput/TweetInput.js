@@ -66,9 +66,11 @@ export default class TweetInput extends Component {
 
   constructor(props) {
     super(props);
-    this.props.setTweetText.bind(this);
+    // this.props.setTweetText.bind(this);
     // this.props.setUsersMentionedArray.bind(this);
+    this.props.handleInputSubmit.bind(this);
     this.props.handleAvatarClick.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.hashtagPlugin = createHashtagPlugin({ theme: hashtagStyles });
     this.mentionPlugin = createMentionPlugin({
       mentions,
@@ -88,14 +90,21 @@ export default class TweetInput extends Component {
     this.setState({
       editorState,
     });
-    let currentTweet = editorState.getCurrentContent().getPlainText('\u0001');
-    this.props.setTweetText(currentTweet);
+    // let currentTweet = editorState.getCurrentContent().getPlainText('\u0001');
+    // this.props.setTweetText(currentTweet);
 
-    const rawEditorContent = convertToRaw(editorState.getCurrentContent());
-    const entityMap = rawEditorContent.entityMap;
+    // const rawEditorContent = convertToRaw(editorState.getCurrentContent());
+    // const entityMap = rawEditorContent.entityMap;
     
+    // const rawEditorContent = convertToRaw(this.state.editorState.getCurrentContent());
+    // const entityMap = rawEditorContent.entityMap;
+    // let mentionArray = Object.values(entityMap).map(entity => {
+    //   return entity.data.mention.name;
+    // });
+    // let mentionSet = [...new Set(mentionArray)];
+    // this.props.setUsersMentionedArray(mentionSet);
+
     // console.log(mentionArray);
-    // this.props.setUsersMentionedArray(entityMap);
   };
 
   onSearchChange = ({ value }) => {
@@ -121,6 +130,7 @@ export default class TweetInput extends Component {
   };
 
   handleSubmit = (e) => {
+    console.log("handle submit called");
     e.preventDefault();
     let currentTweet = this.state.editorState.getCurrentContent().getPlainText('\u0001');
     const rawEditorContent = convertToRaw(this.state.editorState.getCurrentContent());
@@ -128,9 +138,10 @@ export default class TweetInput extends Component {
     let mentionArray = Object.values(entityMap).map(entity => {
       return entity.data.mention.name;
     });
+    let mentionSet = [...new Set(mentionArray)];
     // let html = stateToHTML(this.state.editorState);
     // console.log(html);
-    this.props.handleInputSubmit(currentTweet, mentionArray);
+    this.props.handleInputSubmit(currentTweet, mentionSet);
   }
 
   render() {
@@ -146,7 +157,7 @@ export default class TweetInput extends Component {
     // console.log()
     return (
       <div className="compose-tweet">
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={(event) => this.handleSubmit(event)}>
         <div className="tweet-box">
         <img className="avatar" src={this.props.avatar} onClick={this.props.handleAvatarClick}/>
         <div className={editorStyles.editor} onClick={this.focus}>
