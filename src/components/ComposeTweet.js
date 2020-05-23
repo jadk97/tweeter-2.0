@@ -81,6 +81,7 @@ const ComposeTweet = (props) => {
         replyCount: 0,
         retweetedBy: [],
         likedBy: [],
+        hashtags: [...hashtags],
         replies: [],
         retweets: 0,
         likes: 0,
@@ -100,6 +101,7 @@ const ComposeTweet = (props) => {
         replies: [],
         retweetedBy: [],
         likedBy: [],
+        hashtags: [...hashtags],
         retweets: 0,
         likes: 0,
         mentions: [...props.mentions],
@@ -121,6 +123,7 @@ const ComposeTweet = (props) => {
         mentions: [...usersMentioned],
         retweetedBy: [],
         likedBy: [],
+        hashtags: [...hashtags],
         replies: [],
         retweets: 0,
         likes: 0
@@ -138,6 +141,7 @@ const ComposeTweet = (props) => {
         mentions: [...usersMentioned],
         retweetedBy: [],
         likedBy: [],
+        hashtags: [...hashtags],
         replies: [],
         retweets: 0,
         likes: 0
@@ -146,6 +150,7 @@ const ComposeTweet = (props) => {
     
     setTweet("");
     setUsersMentioned([])
+    setHashtags([]);
     setSubmitting(false);
   }
 
