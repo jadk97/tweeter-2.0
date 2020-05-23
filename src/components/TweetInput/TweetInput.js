@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
+import { EditorState, convertToRaw, convertFromRaw, ContentState } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
 import createMentionPlugin, { defaultSuggestionsFilter } from 'draft-js-mention-plugin';
 import editorStyles from './editorStyles.module.css';
@@ -141,7 +141,10 @@ export default class TweetInput extends Component {
     let mentionSet = [...new Set(mentionArray)];
     // let html = stateToHTML(this.state.editorState);
     // console.log(html);
+    
     this.props.handleInputSubmit(currentTweet, mentionSet);
+    const editorState = EditorState.push(this.state.editorState, ContentState.createFromText(''));
+    this.setState({ editorState });
   }
 
   render() {
