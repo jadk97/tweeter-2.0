@@ -190,7 +190,7 @@ export const slice = createSlice({
       type: "parent",
       content: "But also pineapples.",
       posted_at: Date.now(),
-      creatorName: "ErnestHemingway",
+      creatorName: "Ernest Hemingway",
       creatorHandle: "EHemWay",
       avatar: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/ErnestHemingway.jpg/220px-ErnestHemingway.jpg",
       replyCount: 0,
