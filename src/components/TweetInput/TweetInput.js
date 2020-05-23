@@ -11,7 +11,7 @@ import 'draft-js/dist/Draft.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImages } from '@fortawesome/free-solid-svg-icons';
 import Button from "../Button";
-import {stateToHTML} from 'draft-js-export-html';
+
 const Entry = (props) => {
   const {
     mention,

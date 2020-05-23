@@ -10,31 +10,43 @@ import { selectUserProfile, addTweet } from '../reducers/userProfileSlice';
 import { submitTweet, replyTweet, selectTimeline } from "../reducers/timelineSlice";
 import { v4 as uuid } from "uuid";
 import { useHistory } from "react-router-dom";
-
-
-import { EditorState } from 'draft-js';
-import Editor from 'draft-js-plugins-editor';
-import createMentionPlugin, { defaultSuggestionsFilter } from 'draft-js-mention-plugin';
-
-
+import TweetInput from "./TweetInput/TweetInput";
 const ComposeTweet = (props) => {
   const [tweet, setTweet] = useState("");
+  const [usersMentioned, setUsersMentioned] = useState();
   // const tweet = useRef("");
   const userProfile = useSelector(selectUserProfile);
   // const timeline = useSelector(selectTimeline);
   const dispatch = useDispatch();
   let history = useHistory();
-  const handleChange = (e) => {
-    setTweet(e.target.value);
-  
+  const setTweetText = (text) => {
+    setTweet(text);
+
+  }
+  const setUsersMentionedArray = (mentions) => {
+    let rawMentions = mentions;
+    let mentionArray = Object.values(rawMentions).map(entity => {
+      return entity.data.mention.name;
+    });
+    // let mentionSet = [...new Set(mentions)];
+    setUsersMentioned(mentionArray);
+    // console.log(usersMentioned);
   }
 
   const handleAvatarClick = () => {
     history.push(`/${userProfile.creatorHandle}`);
   }
-  const handleSubmit = (e) => {
+
+  const handleInputSubmit = (tweets, mentions) => {
+    setTweet(tweets);
+    setUsersMentioned(mentions);
+    handleSubmit();
+  }
+  
+  const handleSubmit = () => {
+    
     // console.log(timeline)
-    e.preventDefault();
+    // e.preventDefault();
     // console.log("This is props.replyingTo:", props.replyingTo);
     if (props.mode === "reply") {
       if (props.type === "child") {
@@ -120,38 +132,50 @@ const ComposeTweet = (props) => {
       setTweet("");
     }
   }
+const oldComposeTweet = (
+  <div className="compose-tweet">
+  <form onSubmit={handleSubmit}>
+    <div className="tweet-box">
+      <img className="avatar" src={"https://www.deccanherald.com/sites/dh/files/styles/article_detail/public/article_images/2017/04/04/604513.jpg?itok=FqqfYOfA"} onClick={handleAvatarClick} />
+      {
+        // <TextareaAutosize
+        //   value={tweet}
+        //   className={`tweet-input${tweet.length > 0 ? " __filled" : ""}`}
+        //   placeholder="What's on your mind?"
+        //   onChange={handleChange}
+        // ></TextareaAutosize>
+      }
+
+
+
+    </div>
+    <div className="tweet-submit-options">
+      <div className="tweet-submit-image-icon">
+        <FontAwesomeIcon icon={faImages} size="lg" color="#1da1f2" />
+      </div>
+      <div className="tweet-submit-button">
+        <div className={`character-counter ${tweet.length > 140 ? "__limit-reached" : " "}`}>
+          <p>
+            {140 - tweet.length}
+          </p>
+        </div>
+        <Button disabled={tweet.length === 0 || (tweet.length > 140)}>{props.type === "reply" ? "Reply" : "Tweet"}</Button>
+      </div>
+    </div>
+  </form>
+</div>
+);
 
 
   return (
-    <div className="compose-tweet">
-      <form onSubmit={handleSubmit}>
-        <div className="tweet-box">
-          <img className="avatar" src={"https://www.deccanherald.com/sites/dh/files/styles/article_detail/public/article_images/2017/04/04/604513.jpg?itok=FqqfYOfA"} onClick={handleAvatarClick} />
-          {
-            <TextareaAutosize
-              value={tweet}
-              className={`tweet-input${tweet.length > 0 ? " __filled" : ""}`}
-              placeholder="What's on your mind?"
-              onChange={handleChange}
-            ></TextareaAutosize>
-          }
-         
-        </div>
-        <div className="tweet-submit-options">
-          <div className="tweet-submit-image-icon">
-            <FontAwesomeIcon icon={faImages} size="lg" color="#1da1f2" />
-          </div>
-          <div className="tweet-submit-button">
-            <div className={`character-counter ${tweet.length > 140 ? "__limit-reached" : " "}`}>
-              <p>
-                {140 - tweet.length}
-              </p>
-            </div>
-            <Button disabled={tweet.length === 0 || (tweet.length > 140)}>{props.type === "reply" ? "Reply" : "Tweet"}</Button>
-          </div>
-        </div>
-      </form>
-    </div>
+    <TweetInput 
+    setTweetText={setTweetText} 
+    setUsersMentionedArray={setUsersMentionedArray} 
+    handleAvatarClick={handleAvatarClick}
+    handleInputSubmit={handleInputSubmit}
+    buttonType={props.mode}
+    />
+
   )
 }
 
