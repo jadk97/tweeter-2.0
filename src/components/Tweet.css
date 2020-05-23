@@ -292,6 +292,13 @@ text-align: right;
   }
 
 
+  .replying-to-link{
+    color: #1da1f2;
+  }
+
+  .tweet-hashtag{
+    color: #1da1f2;
+  }
   .replying-to-link:hover{
     text-decoration: underline;
     text-decoration-thickness: 1px;

@@ -17,6 +17,7 @@ import { Link } from "react-router-dom";
 
 import DropDown from "./Dropdown";
 import ImageModal from "./ImageModal";
+import reactStringReplace from "react-string-replace";
 
 const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
   const userProfile = useSelector(selectUserProfile);
@@ -103,6 +104,7 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
   // usersRepliedTo.add(tweet.creatorHandle);
   // console.log(usersRepliedTo);
 
+
   const tweetChain = (tweet.replies || []).map((tweet, i) => {
     return <Tweet key={tweet.id} tweet={tweet} type="child" showMentions={true} />
   })
@@ -161,6 +163,16 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
 
   // console.log("THIS IS THE TWEETCHAIN:", abridgedTweetChain);
 
+  let formattedTweet;
+
+  formattedTweet = reactStringReplace(tweet.content, /@(\w+)/g, (match, i) => (
+    <span key={match + i} className="replying-to-link" onClick={(event) => clickHandler(event)}>@{match}</span>
+  ));
+  
+  formattedTweet = reactStringReplace(formattedTweet, /#(\w+)/g, (match, i) => (
+    <span key={match + i} className="tweet-hashtag">#{match}</span>
+  ));
+
   return (
     <React.Fragment>
       <Modal
@@ -199,7 +211,7 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
               <span className="creator-handle"> @{tweet.creatorHandle}</span>
               <span className="time-tweeted"> - {new Date(tweet.posted_at).toDateString()}</span>
             </div>
-            <div>{tweet.content}</div>
+            <div>{formattedTweet}</div>
             <div className="replying-to">Replying to <span>@{tweet.creatorHandle}</span></div>
           </div>
 
@@ -331,7 +343,7 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
             </div>
             {tweet.type === "child" && <div className="tweet-mentions">Replying To {mentionsChain}</div>}
             <div className="tweet-body">
-              {tweet.content}
+              {formattedTweet}
               {tweet.image && <div className="tweet-image-focused" onClick={clickHandler}>
                 <img src={tweet.image} />
               </div>}
@@ -367,7 +379,7 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
                 </div>
                 {showMentions && <div className="tweet-mentions">Replying To {mentionsChain}</div>}
                 <div className="tweet-body">
-                  {tweet.content}
+                  {formattedTweet}
 
                 </div>
                 {tweet.image && <div className="tweet-image" onClick={clickHandler}>
