@@ -30,6 +30,9 @@ function App() {
         <Route path="/home">
           <Home />
         </Route>
+        <Route exact path="/interaction">
+          <InteractionView />
+        </Route>
         <Route path="/explore">
         <Explore/>
         </Route>
@@ -47,9 +50,6 @@ function App() {
         </Route>
         <Route path="/:creatorHandle">
           <Profile />
-        </Route>
-        <Route path="/interaction">
-          <InteractionView />
         </Route>
       </Switch>
     </MainNavigation>
