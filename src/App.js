@@ -15,7 +15,7 @@ import Bookmarks from "./components/Bookmarks";
 import Profile from "./components/Profile";
 import { selectUserProfile } from './reducers/userProfileSlice';
 import FocusedView from "./components/FocusedView";
-
+import InteractionView from "./components/InteractionView";
 function App() {
   // const [timeline, handleTweetSubmit, userProfile] = useTweetInteract();
   const userProfile = useSelector(selectUserProfile);
@@ -47,6 +47,9 @@ function App() {
         </Route>
         <Route path="/:creatorHandle">
           <Profile />
+        </Route>
+        <Route path="/interaction">
+          <InteractionView />
         </Route>
       </Switch>
     </MainNavigation>
