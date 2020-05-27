@@ -6,159 +6,13 @@ import "./NotificationListItem.css";
 import { useHistory } from "react-router-dom";
 
 const NotificationListItem = (props) => {
-  let userList = [
-    {
-      creatorName: "Ayn Rand",
-      creatorHandle: "AtlasShrugged",
-      avatar: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg",
-      bio: "I wrote The Fountainhead and Atlas Shrugged",
-      joined: Date.now(),
-      website: "https://en.wikipedia.org/wiki/Ayn_Rand",
-      location: null,
-      likedTweets: [{
-        id: "tweet4",
-        type: "parent",
-        content: "Bananas",
-        posted_at: Date.now(),
-        creatorName: "Ernest Hemingway",
-        creatorHandle: "EHemWay",
-        avatar: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/ErnestHemingway.jpg/220px-ErnestHemingway.jpg",
-        replyCount: 0,
-        retweets: 500,
-        likes: 2,
-        mentions: [],
-        retweetedBy: [],
-        replies: []
-      }],
-      tweets: [{
-        id: "tweet1",
-        type: "parent",
-        content: "What tweeterific tweet",
-        posted_at: Date.now(),
-        creatorName: "Ayn Rand",
-        creatorHandle: "AtlasShrugged",
-        avatar: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg",
-        replyCount: 1,
-        retweets: 5,
-        likes: 120,
-        mentions: [],
-        retweetedBy: [],
-        replies: [{
-          id: "tweet3",
-          type: "child",
-          content: "Oranges.",
-          posted_at: Date.now(),
-          creatorName: "Ayn Rand",
-          creatorHandle: "AtlasShrugged",
-          avatar: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg",
-          replyCount: 0,
-          retweets: 500,
-          likes: 2,
-          mentions: ["AtlasShrugged"],
-          retweetedBy: [],
-          replies: [],
-          replyingTo: ["tweet1"]
-        }]
-      },
-      {
-        id: "tweet2",
-        type: "parent",
-        content: "I LIKE APPPLES AND APPLES AND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND APPLESAND",
-        posted_at: Date.now(),
-        creatorName: "Ayn Rand",
-        creatorHandle: "AtlasShrugged",
-        avatar: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg",
-        replyCount: 0,
-        retweets: 500,
-        likes: 2,
-        mentions: [],
-        retweetedBy: [],
-        replies: []
-      },
-      {
-        id: "tweet3",
-        type: "child",
-        content: "Oranges.",
-        posted_at: Date.now(),
-        creatorName: "Ayn Rand",
-        creatorHandle: "AtlasShrugged",
-        avatar: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg",
-        replyCount: 0,
-        retweets: 500,
-        likes: 2,
-        mentions: ["AtlasShrugged"],
-        retweetedBy: [],
-        replies: [],
-        replyingTo: ["tweet1"]
-      }
-      ]
-    },
-    {
-      creatorName: "Ernest Hemingway",
-      creatorHandle: "EHemWay",
-      avatar: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/ErnestHemingway.jpg/220px-ErnestHemingway.jpg",
-      bio: "I wrote For Whom the Bell Tolls",
-      joined: Date.now(),
-      website: null,
-      location: "Oak Park, Illinois, U.S.",
-      likedTweets: [],
-      tweets: [{
-        id: "tweet4",
-        type: "parent",
-        content: "Bananas",
-        posted_at: Date.now(),
-        creatorName: "Ernest Hemingway",
-        creatorHandle: "EHemWay",
-        avatar: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/ErnestHemingway.jpg/220px-ErnestHemingway.jpg",
-        replyCount: 0,
-        retweets: 500,
-        likes: 2,
-        mentions: [],
-        retweetedBy: [],
-        replies: [],
-        replyingTo: []
-      },
-      {
-        id: "tweet5",
-        type: "parent",
-        content: "But also pineapples.",
-        posted_at: Date.now(),
-        creatorName: "ErnestHemingway",
-        creatorHandle: "EHemWay",
-        avatar: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/ErnestHemingway.jpg/220px-ErnestHemingway.jpg",
-        replyCount: 1,
-        retweets: 500,
-        likes: 2,
-        mentions: [],
-        retweetedBy: [],
-        replies: [{
-          id: "tweet6",
-          type: "child",
-          content: "Oranges.",
-          posted_at: Date.now(),
-          creatorName: "Ayn Rand",
-          creatorHandle: "AtlasShrugged",
-          avatar: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg",
-          replyCount: 0,
-          retweets: 500,
-          likes: 2,
-          mentions: ["EHemWay"],
-          retweetedBy: [],
-          replies: [],
-          replyingTo: ["tweet5"]
-        }],
-        replyingTo: []
-      }]
-    }
-  ];
-
   let history = useHistory();
-
-  let users = [];
-  for (let likers of props.notifUsers) {
-    // console.log(userList.filter((user) => user.creatorHandle === likers)[0]);
-    users.push(userList.filter((user) => user.creatorHandle === likers)[0]);
-  }
+  // console.log(props.notifUsers);
+  // let users = [];
+  // for (let likers of props.notifUsers) {
+  //   // console.log(userList.filter((user) => user.creatorHandle === likers)[0]);
+  //   users.push(likers);
+  // }
 
   const notificationTextFormatter = (notifUsers, notifType) => {
     let notifChain;
@@ -226,7 +80,7 @@ const NotificationListItem = (props) => {
                 className="notification-icon"
               />
 
-              {users.map((user) => <img className="notification-avatar" src={user.avatar} onClick={(event) => clickHandler(event, user)} />)}
+              {props.notifUsers.map((user) => <img className="notification-avatar" src={user.avatar} onClick={(event) => clickHandler(event, user)} />)}
             </div>
           )
         }
@@ -240,13 +94,13 @@ const NotificationListItem = (props) => {
                   color="#17bf63"
                   className="notification-icon"
                 />
-                {users.map((user) => <img className="notification-avatar" src={user.avatar} onClick={(event) => clickHandler(event, user)} />)}
+                {props.notifUsers.map((user) => <img className="notification-avatar" src={user.avatar} onClick={(event) => clickHandler(event, user)} />)}
               </div>
             )
           }
         </div>
         <div className="notification-text">
-          <p>{notificationTextFormatter(users, props.notifType)}</p>
+          <p>{notificationTextFormatter(props.notifUsers, props.notifType)}</p>
           <p className="notification-tweet-text">{props.text}</p>
         </div>
       </div>
