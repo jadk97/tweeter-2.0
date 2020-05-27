@@ -24,13 +24,14 @@ const NavBar = (props) => {
   useEffect(() => {
     let likedNotifications = findKeys(userProfile.tweets, "likedBy");
     let retweetedNotifications = findKeys(userProfile.tweets, "retweetedBy");
-  
+    // console.log("retweet Notifs", retweetedNotifications);
     let getInteractions = [...userProfile.tweets];
     let flattenedInteractions = [...flattenTweets(getInteractions)];
     // This doesn't account for the possibility of retweets yet, be mindful of that.
-    let repliedNotifications = flattenedInteractions.filter((tweet) => tweet.type === "child" && tweet.creatorHandle !== userProfile.creatorHandle);
-    console.log("reply Notifs", repliedNotifications);
-    console.log("useEffect ran");
+    // console.log("These are the flattened interactions", flattenedInteractions);
+    let repliedNotifications = flattenedInteractions.filter((tweet) => tweet.type === "child" && tweet.creatorHandle !== userProfile.creatorHandle && tweet.mentions.includes(userProfile.creatorHandle));
+    // console.log("reply Notifs", repliedNotifications);
+    // console.log("useEffect ran");
     setNotificationsCount(likedNotifications.length + retweetedNotifications.length + repliedNotifications.length);
     // console.log(notificationsCount);
   }, []);
