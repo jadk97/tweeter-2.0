@@ -58,12 +58,33 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
     if (clickedElement[1] === "heart-button") {
       setHeartClicked((prev) => !prev);
       if (!heartClicked) {
-        dispatch(likeTweet({ ...tweet, likedBy: [...tweet.likedBy, userProfile.creatorHandle] }));
-        dispatch(addLikedTweet({ ...tweet, likedBy: [...tweet.likedBy, userProfile.creatorHandle] }));
+        dispatch(likeTweet({
+          ...tweet, likedBy: [...tweet.likedBy, {
+            creatorName: userProfile.creatorName,
+            creatorHandle: userProfile.creatorHandle,
+            avatar: userProfile.avatar,
+            bio: userProfile.bio
+          }]
+        }));
+        dispatch(addLikedTweet({
+          ...tweet, likedBy: [...tweet.likedBy, {
+            creatorName: userProfile.creatorName,
+            creatorHandle: userProfile.creatorHandle,
+            avatar: userProfile.avatar,
+            bio: userProfile.bio
+          }]
+        }));
 
       }
       else {
-        dispatch(unlikeTweet({ ...tweet, likedBy: [userProfile.likedBy] }))
+        dispatch(unlikeTweet({
+          ...tweet, likedBy: [{
+            creatorName: userProfile.creatorName,
+            creatorHandle: userProfile.creatorHandle,
+            avatar: userProfile.avatar,
+            bio: userProfile.bio
+          }]
+        }))
         dispatch(removeLikedTweet({ ...tweet }));
       }
       // heartClicked ? dispatch(unlikeTweet({ ...tweet })) : dispatch(likeTweet({ ...tweet }));
@@ -76,12 +97,26 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
     if (clickedElement[1] === "retweet-button") {
       setRetweetClicked((prev) => !prev);
       if (!retweetClicked) {
-        let tweetToRetweet = { ...tweet, retweetedBy: [...tweet.retweetedBy, userProfile.creatorHandle] };
+        let tweetToRetweet = {
+          ...tweet, retweetedBy: [...tweet.retweetedBy, {
+            creatorName: userProfile.creatorName,
+            creatorHandle: userProfile.creatorHandle,
+            avatar: userProfile.avatar,
+            bio: userProfile.bio
+          }]
+        };
         dispatch(retweetTweet(tweetToRetweet));
         dispatch(addRetweet(tweetToRetweet));
       }
       else {
-        let tweetToUnretweet = { ...tweet, retweetedBy: [userProfile.creatorHandle] };
+        let tweetToUnretweet = {
+          ...tweet, retweetedBy: [{
+            creatorName: userProfile.creatorName,
+            creatorHandle: userProfile.creatorHandle,
+            avatar: userProfile.avatar,
+            bio: userProfile.bio
+          }]
+        };
 
         // console.log("index of retweet to remove", tweetIndex);
         // tweetToUnretweet.retweetedBy.splice(tweetIndex, 1);
@@ -122,16 +157,18 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
   })
 
   let retweetIndicator;
-  if (tweet.retweetedBy.length > 0) {
-    if (tweet.retweetedBy.includes(userProfile.creatorHandle)) {
+  let usersRetweeted = tweet.retweetedBy.map((user) => user.creatorHandle);
+  // console.log(usersRetweeted);
+  if (usersRetweeted.length > 0) {
+    if (usersRetweeted.includes(userProfile.creatorHandle)) {
       retweetIndicator = "You retweeted this";
     }
-    else if (tweet.retweetedBy.length === 1 && !tweet.retweetedBy.includes(userProfile.creatorHandle)) {
-      retweetIndicator = `${tweet.retweetedBy[0]} Retweeted`;
+    else if (usersRetweeted.length === 1 && !usersRetweeted.includes(userProfile.creatorHandle)) {
+      retweetIndicator = `${usersRetweeted[0]} Retweeted`;
     }
     else {
-      let isPlural = (tweet.retweetedBy.length - 2) > 1;
-      tweet.retweetedBy.length > 2 ? retweetIndicator = `${tweet.retweetedBy.slice(-2).join(", ")} & ${tweet.retweetedBy.length - 2} ${isPlural ? "others Retweeted" : "other Retweeted"}` : retweetIndicator = `${tweet.retweetedBy.join(" & ")} Retweeted`;
+      let isPlural = (usersRetweeted.length - 2) > 1;
+      usersRetweeted.length > 2 ? retweetIndicator = `${usersRetweeted.slice(-2).join(", ")} & ${usersRetweeted.length - 2} ${isPlural ? "others Retweeted" : "other Retweeted"}` : retweetIndicator = `${usersRetweeted.join(" & ")} Retweeted`;
     }
   }
 
@@ -168,7 +205,7 @@ const Tweet = ({ tweet, focusedView, childTweetToFocus, showMentions }) => {
   formattedTweet = reactStringReplace(tweet.content, /@(\w+)/g, (match, i) => (
     <span key={match + i} className="replying-to-link" onClick={(event) => clickHandler(event)}>@{match}</span>
   ));
-  
+
   formattedTweet = reactStringReplace(formattedTweet, /#(\w+)/g, (match, i) => (
     <span key={match + i} className="tweet-hashtag">#{match}</span>
   ));
