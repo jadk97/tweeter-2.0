@@ -15,7 +15,8 @@ const Notifications = (props) => {
   let location = useLocation();
   let viewMode = location.pathname.split("/");
 
-  let notificationsFeed = fetchInteractions(userProfile);  
+  let notificationsFeed = fetchInteractions(userProfile);
+  console.log("notifications", notificationsFeed)  
   if (viewMode[viewMode.length - 1] === "mentions") {
     notificationsFeed = notificationsFeed.filter((notif) => notif.notifType === "reply");
   }
