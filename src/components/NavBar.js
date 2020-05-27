@@ -8,8 +8,9 @@ import "./NavBar.css";
 import ComposeTweet from "./ComposeTweet";
 import { useSelector } from "react-redux";
 import { selectUserProfile } from "../reducers/userProfileSlice";
-import findKeys from "../helpers/findKeys";
-import flattenTweets from "../helpers/flattenTweets";
+// import findKeys from "../helpers/findKeys";
+// import flattenTweets from "../helpers/flattenTweets";
+import fetchInteractions from "../helpers/fetchInteractions";
 const NavBar = (props) => {
 
   const [showModal, setShowModal] = useState(false);
@@ -22,19 +23,10 @@ const NavBar = (props) => {
 
 
   useEffect(() => {
-    let likedNotifications = findKeys(userProfile.tweets, "likedBy");
-    let retweetedNotifications = findKeys(userProfile.tweets, "retweetedBy");
-    // console.log("retweet Notifs", retweetedNotifications);
-    let getInteractions = [...userProfile.tweets];
-    let flattenedInteractions = [...flattenTweets(getInteractions)];
-    // This doesn't account for the possibility of retweets yet, be mindful of that.
-    // console.log("These are the flattened interactions", flattenedInteractions);
-    let repliedNotifications = flattenedInteractions.filter((tweet) => tweet.type === "child" && tweet.creatorHandle !== userProfile.creatorHandle && tweet.mentions.includes(userProfile.creatorHandle));
-    // console.log("reply Notifs", repliedNotifications);
-    // console.log("useEffect ran");
-    setNotificationsCount(likedNotifications.length + retweetedNotifications.length + repliedNotifications.length);
-    // console.log(notificationsCount);
+    let getInteractions = fetchInteractions(userProfile);
+    setNotificationsCount(getInteractions.length);
   }, []);
+  
   const handleNotificationsClick = () => {
     console.log("handleNoticationsClick");
     setNotificationsCount(0);
