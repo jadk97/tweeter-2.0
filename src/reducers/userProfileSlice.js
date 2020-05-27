@@ -7,28 +7,131 @@ export const slice = createSlice({
   name: "userProfile",
   initialState: {
     creatorName: "John Doe",
-    avatar: "https://www.deccanherald.com/sites/dh/files/styles/article_detail/public/article_images/2017/04/04/604513.jpg?itok=FqqfYOfA",
+    avatar: "https://merriam-webster.com/assets/mw/images/article/art-wap-landing-mp-lg/egg-3442-4c317615ec1fd800728672f2c168aca5@1x.jpg",
     creatorHandle: "JohnDoe",
     bio: "I am but a simple test user",
     joined: Date.now(),
     location: null,
     website: null,
     likedTweets: [],
-    retweetedTweets: [],
+    retweetedTweets: [{
+      id: "tweet5",
+      type: "parent",
+      content: "But also pineapples.",
+      posted_at: Date.now(),
+      creatorName: "Ernest Hemingway",
+      creatorHandle: "EHemWay",
+      avatar: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/ErnestHemingway.jpg/220px-ErnestHemingway.jpg",
+      replyCount: 1,
+      retweets: 500,
+      likes: 2,
+      mentions: [],
+      retweetedBy: [
+        {
+          creatorName: "John Doe",
+          creatorHandle: "JohnDoe",
+          avatar: "https://merriam-webster.com/assets/mw/images/article/art-wap-landing-mp-lg/egg-3442-4c317615ec1fd800728672f2c168aca5@1x.jpg",
+          bio: "I am but a simple test user"
+        },
+        {
+          creatorName: "Ayn Rand",
+          creatorHandle: "AtlasShrugged",
+          avatar: "https://i.insider.com/4f3aae4869beddff2a00004f?width=400&format=jpeg",
+          bio: "I wrote The Fountainhead and Atlas Shrugged"
+        }
+      ],
+      likedBy: [],
+      hashtags: [],
+      replies: [{
+        id: "tweet13",
+        type: "child",
+        content: "Oranges.",
+        posted_at: Date.now(),
+        creatorName: "Ayn Rand",
+        creatorHandle: "AtlasShrugged",
+        avatar: "https://i.insider.com/4f3aae4869beddff2a00004f?width=400&format=jpeg",
+        replyCount: 0,
+        retweets: 500,
+        likes: 2,
+        hashtags: [],
+        replies: [],
+        mentions: ["EHemWay"],
+        retweetedBy: [],
+        likedBy: [],
+        replyingTo: ["tweet5"]
+      }]
+    }],
     tweets: [{
+      id: "tweet5",
+      type: "parent",
+      content: "But also pineapples.",
+      posted_at: Date.now(),
+      creatorName: "Ernest Hemingway",
+      creatorHandle: "EHemWay",
+      avatar: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/ErnestHemingway.jpg/220px-ErnestHemingway.jpg",
+      replyCount: 1,
+      retweets: 500,
+      likes: 2,
+      mentions: [],
+      retweetedBy: [
+        {
+          creatorName: "John Doe",
+          creatorHandle: "JohnDoe",
+          avatar: "https://merriam-webster.com/assets/mw/images/article/art-wap-landing-mp-lg/egg-3442-4c317615ec1fd800728672f2c168aca5@1x.jpg",
+          bio: "I am but a simple test user"
+        },
+        {
+          creatorName: "Ayn Rand",
+          creatorHandle: "AtlasShrugged",
+          avatar: "https://i.insider.com/4f3aae4869beddff2a00004f?width=400&format=jpeg",
+          bio: "I wrote The Fountainhead and Atlas Shrugged"
+        }
+      ],
+      likedBy: [],
+      hashtags: [],
+      replies: [{
+        id: "tweet13",
+        type: "child",
+        content: "Oranges.",
+        posted_at: Date.now(),
+        creatorName: "Ayn Rand",
+        creatorHandle: "AtlasShrugged",
+        avatar: "https://i.insider.com/4f3aae4869beddff2a00004f?width=400&format=jpeg",
+        replyCount: 0,
+        retweets: 500,
+        likes: 2,
+        hashtags: [],
+        replies: [],
+        mentions: ["EHemWay"],
+        retweetedBy: [],
+        likedBy: [],
+        replyingTo: ["tweet5"]
+      }]
+    },
+    {
       id: "tweet15",
       type: "parent",
       content: "Hello World!",
       posted_at: Date.now(),
       creatorName: "John Doe",
       creatorHandle: "JohnDoe",
-      avatar: "https://www.deccanherald.com/sites/dh/files/styles/article_detail/public/article_images/2017/04/04/604513.jpg?itok=FqqfYOfA",
+      avatar: "https://merriam-webster.com/assets/mw/images/article/art-wap-landing-mp-lg/egg-3442-4c317615ec1fd800728672f2c168aca5@1x.jpg",
       replyCount: 0,
       retweets: 1,
       likes: 1,
       mentions: [],
-      retweetedBy: ["AtlasShrugged"],
-      likedBy: ["AtlasShrugged"],
+      retweetedBy: [{
+        creatorName: "Ayn Rand",
+        creatorHandle: "AtlasShrugged",
+        avatar: "https://i.insider.com/4f3aae4869beddff2a00004f?width=400&format=jpeg",
+        bio: "I wrote The Fountainhead and Atlas Shrugged"
+      }],
+      likedBy: [{
+        creatorName: "Ayn Rand",
+        creatorHandle: "AtlasShrugged",
+        avatar: "https://i.insider.com/4f3aae4869beddff2a00004f?width=400&format=jpeg",
+        bio: "I wrote The Fountainhead and Atlas Shrugged"
+      }],
       hashtags: [],
       replies: [{
         id: "tweet19",
@@ -37,7 +140,7 @@ export const slice = createSlice({
         posted_at: Date.now(),
         creatorName: "Ayn Rand",
         creatorHandle: "AtlasShrugged",
-        avatar: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg",
+        avatar: "https://i.insider.com/4f3aae4869beddff2a00004f?width=400&format=jpeg",
         replyCount: 0,
         retweets: 1,
         likes: 1,
@@ -56,13 +159,23 @@ export const slice = createSlice({
       posted_at: Date.now(),
       creatorName: "John Doe",
       creatorHandle: "JohnDoe",
-      avatar: "https://www.deccanherald.com/sites/dh/files/styles/article_detail/public/article_images/2017/04/04/604513.jpg?itok=FqqfYOfA",
+      avatar: "https://merriam-webster.com/assets/mw/images/article/art-wap-landing-mp-lg/egg-3442-4c317615ec1fd800728672f2c168aca5@1x.jpg",
       replyCount: 1,
       retweets: 1,
       likes: 1,
       mentions: [],
-      retweetedBy: ["AtlasShrugged"],
-      likedBy: ["AtlasShrugged"],
+      retweetedBy: [{
+        creatorName: "Ayn Rand",
+        creatorHandle: "AtlasShrugged",
+        avatar: "https://i.insider.com/4f3aae4869beddff2a00004f?width=400&format=jpeg",
+        bio: "I wrote The Fountainhead and Atlas Shrugged"
+      }],
+      likedBy: [{
+        creatorName: "Ayn Rand",
+        creatorHandle: "AtlasShrugged",
+        avatar: "https://i.insider.com/4f3aae4869beddff2a00004f?width=400&format=jpeg",
+        bio: "I wrote The Fountainhead and Atlas Shrugged"
+      }],
       hashtags: [],
       replies: [{
         id: "tweet17",
@@ -71,13 +184,29 @@ export const slice = createSlice({
         posted_at: Date.now(),
         creatorName: "John Doe",
         creatorHandle: "JohnDoe",
-        avatar: "https://www.deccanherald.com/sites/dh/files/styles/article_detail/public/article_images/2017/04/04/604513.jpg?itok=FqqfYOfA",
+        avatar: "https://merriam-webster.com/assets/mw/images/article/art-wap-landing-mp-lg/egg-3442-4c317615ec1fd800728672f2c168aca5@1x.jpg",
         replyCount: 0,
         retweets: 1,
         likes: 1,
         mentions: ["JohnDoe"],
-        retweetedBy: ["AtlasShrugged"],
-        likedBy: ["AtlasShrugged", "EHemWay"],
+        retweetedBy: [{
+          creatorName: "Ayn Rand",
+          creatorHandle: "AtlasShrugged",
+          avatar: "https://i.insider.com/4f3aae4869beddff2a00004f?width=400&format=jpeg",
+          bio: "I wrote The Fountainhead and Atlas Shrugged"
+        }],
+        likedBy: [{
+          creatorName: "Ayn Rand",
+          creatorHandle: "AtlasShrugged",
+          avatar: "https://i.insider.com/4f3aae4869beddff2a00004f?width=400&format=jpeg",
+          bio: "I wrote The Fountainhead and Atlas Shrugged"
+        },
+        {
+          creatorName: "Ernest Hemingway",
+          creatorHandle: "EHemWay",
+          avatar: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/ErnestHemingway.jpg/220px-ErnestHemingway.jpg",
+          bio: "I wrote For Whom the Bell Tolls"
+        }],
         hashtags: [],
         replies: [],
         replyingTo: ["tweet16"]
@@ -90,12 +219,23 @@ export const slice = createSlice({
       posted_at: Date.now(),
       creatorName: "John Doe",
       creatorHandle: "JohnDoe",
-      avatar: "https://www.deccanherald.com/sites/dh/files/styles/article_detail/public/article_images/2017/04/04/604513.jpg?itok=FqqfYOfA",
+      avatar: "https://merriam-webster.com/assets/mw/images/article/art-wap-landing-mp-lg/egg-3442-4c317615ec1fd800728672f2c168aca5@1x.jpg",
       replyCount: 0,
       retweets: 1,
       likes: 1,
       mentions: [],
-      retweetedBy: ["AtlasShrugged", "EHemWay"],
+      retweetedBy: [{
+        creatorName: "Ayn Rand",
+        creatorHandle: "AtlasShrugged",
+        avatar: "https://i.insider.com/4f3aae4869beddff2a00004f?width=400&format=jpeg",
+        bio: "I wrote The Fountainhead and Atlas Shrugged"
+      },
+      {
+        creatorName: "Ernest Hemingway",
+        creatorHandle: "EHemWay",
+        avatar: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/ErnestHemingway.jpg/220px-ErnestHemingway.jpg",
+        bio: "I wrote For Whom the Bell Tolls"
+      }],
       likedBy: [],
       hashtags: [],
       replies: []
@@ -105,7 +245,7 @@ export const slice = createSlice({
       {
         creatorName: "Ayn Rand",
         creatorHandle: "AtlasShrugged",
-        avatar: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg",
+        avatar: "https://i.insider.com/4f3aae4869beddff2a00004f?width=400&format=jpeg",
         bio: "I wrote The Fountainhead and Atlas Shrugged",
         joined: Date.now(),
         website: "https://en.wikipedia.org/wiki/Ayn_Rand",
@@ -133,7 +273,7 @@ export const slice = createSlice({
           posted_at: Date.now(),
           creatorName: "Ayn Rand",
           creatorHandle: "AtlasShrugged",
-          avatar: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg",
+          avatar: "https://i.insider.com/4f3aae4869beddff2a00004f?width=400&format=jpeg",
           replyCount: 1,
           retweets: 5,
           likes: 120,
@@ -147,7 +287,7 @@ export const slice = createSlice({
             posted_at: Date.now(),
             creatorName: "Ayn Rand",
             creatorHandle: "AtlasShrugged",
-            avatar: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg",
+            avatar: "https://i.insider.com/4f3aae4869beddff2a00004f?width=400&format=jpeg",
             replyCount: 0,
             retweets: 500,
             likes: 2,
@@ -165,7 +305,7 @@ export const slice = createSlice({
           posted_at: Date.now(),
           creatorName: "Ayn Rand",
           creatorHandle: "AtlasShrugged",
-          avatar: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg",
+          avatar: "https://i.insider.com/4f3aae4869beddff2a00004f?width=400&format=jpeg",
           replyCount: 0,
           retweets: 500,
           likes: 2,
@@ -181,7 +321,7 @@ export const slice = createSlice({
           posted_at: Date.now(),
           creatorName: "Ayn Rand",
           creatorHandle: "AtlasShrugged",
-          avatar: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Ayn_Rand_by_Talbot_1943.jpg/220px-Ayn_Rand_by_Talbot_1943.jpg",
+          avatar: "https://i.insider.com/4f3aae4869beddff2a00004f?width=400&format=jpeg",
           replyCount: 0,
           retweets: 500,
           likes: 2,
