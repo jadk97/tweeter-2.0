@@ -14,9 +14,11 @@ const Notifications = (props) => {
   let location = useLocation();
   let viewMode = location.pathname.split("/");
 
-  let retweetCheck = userProfile.tweets.filter((tweet) => tweet.retweetedBy.indexOf(userProfile.creatorHandle) > - 1 && tweet.replyCount > 0);
+  // check for retweets with children (might need to also implement a check for if the logged in user exists in retweetedBy)
+  let retweetCheck = userProfile.tweets.filter((tweet) => tweet.retweetedBy.findIndex((user) => user.creatorHandle === userProfile.creatorHandle) > -1 && tweet.replyCount > 0);
+  
   let getInteractions = [...userProfile.tweets];
-
+  console.log("retweetCheck", retweetCheck);
   if(retweetCheck.length > 0){
     for (let retweet of retweetCheck){
       let tweetIndex = getInteractions.findIndex((tweet) => retweet.id === tweet.id);
