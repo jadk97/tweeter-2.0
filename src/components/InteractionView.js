@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "./Header";
+import Tweet from "./Tweet";
 import { useLocation, Redirect, useHistory } from "react-router-dom";
 
 const InteractionView = (props) => {
@@ -29,11 +30,14 @@ const InteractionView = (props) => {
   return (
     <div className="center-view">
       {location.state && (
+        <React.Fragment>
         <Header
           navButton={true}
           title={location.state.notifType === "like" ? "Liked" : "Retweeted"}
           subtitle={formattedSubtitle}
         />
+        <Tweet id={location.state.tweetID} tweet={location.state.tweet} focusedView={true}/>
+        </React.Fragment>
       )}
 
     </div>

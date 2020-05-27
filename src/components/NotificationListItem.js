@@ -57,7 +57,7 @@ const NotificationListItem = (props) => {
     // }
     if (clickedElement[0] === "notification-container") {
       // history.push(`/${props.creatorHandle}/status/${props.tweetID}`);
-      history.push("/interaction", {notifType: props.notifType, notifUsers: props.notifUsers})
+      history.push("/interaction", {notifType: props.notifType, notifUsers: props.notifUsers, tweet: props.tweet, tweetID: props.tweetID})
     }
   }
 

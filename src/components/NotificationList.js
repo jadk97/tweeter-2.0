@@ -13,6 +13,7 @@ const NotificationList = (props) => {
             notifUsers={notification.likedBy}
             tweetID={notification.id}
             creatorHandle={notification.creatorHandle}
+            tweet={notification}
           />
         )
       }
@@ -24,6 +25,7 @@ const NotificationList = (props) => {
           notifUsers={notification.retweetedBy}
           tweetID={notification.id}
           creatorHandle={notification.creatorHandle}
+          tweet={notification}
         />
         )
       }
