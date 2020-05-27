@@ -1,25 +1,41 @@
 import React from "react";
 import Header from "./Header";
-import { useLocation } from "react-router-dom";
+import { useLocation, Redirect, useHistory } from "react-router-dom";
+
 const InteractionView = (props) => {
 
   const location = useLocation();
-  console.log(location.state);
-  let formattedSubtitle;
-  let userNames = location.state.notifUsers.map((user) => user.creatorName);
-  if(userNames.length > 2){
-    formattedSubtitle = `By ${userNames[0]} and ${userNames.length - 1} others`;
-  }
-  else{
-    formattedSubtitle = "By " + userNames.join(" and ");
-  }
+  const history = useHistory();
+
   
+  const subtitleFormatter = (notifUsers) => {
+    let userNames = notifUsers.map((user) => user.creatorName);
+    if (userNames.length > 2) {
+      return `By ${userNames[0]} and ${userNames.length - 1} others`;
+    }
+    else {
+       return "By " + userNames.join(" and ");
+    }
+  }
+
+  let formattedSubtitle;
+  if (location.state) {
+    formattedSubtitle = subtitleFormatter(location.state.notifUsers);
+  }
+  else {
+    history.push("/home");
+  }
+
   return (
     <div className="center-view">
-     <Header 
-     title={location.state.notifType === "like" ? "Liked" : "Retweeted"}
-     subtitle={formattedSubtitle}
-     />
+      {location.state && (
+        <Header
+          navButton={true}
+          title={location.state.notifType === "like" ? "Liked" : "Retweeted"}
+          subtitle={formattedSubtitle}
+        />
+      )}
+
     </div>
   )
 }
