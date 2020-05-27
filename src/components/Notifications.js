@@ -23,8 +23,8 @@ const Notifications = (props) => {
   console.log(notificationsFeed);
   return (
     <div className="center-view">
-      <Header title={"Notifications"} noBorder={true} />
-      <HorizontalNavBar headings={[{ title: "All", path: `${match.url}` }, { title: "Mentions", path: `${match.url}/mentions` }]} />
+      <Header title={"Notifications"} noBorder={true}/>
+      <HorizontalNavBar sticky={true} headings={[{ title: "All", path: `${match.url}` }, { title: "Mentions", path: `${match.url}/mentions` }]} />
       <NotificationList notifications={notificationsFeed} />
     </div>
   )

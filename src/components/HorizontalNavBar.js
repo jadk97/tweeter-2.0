@@ -5,7 +5,7 @@ const HorizontalNavBar = (props) => {
 
 
   return (
-    <div className="horizontal-navbar">
+    <div className={`horizontal-navbar ${props.sticky ? "__sticky" : ""}`}>
       {props.headings.map((heading) => (
       
           <NavLink exact to={heading.path} activeClassName="__selected">
