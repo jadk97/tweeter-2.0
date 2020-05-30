@@ -3,13 +3,30 @@ import "./UserListItem.css";
 import Button from "./Button";
 import { selectUserProfile, followUser, unfollowUser } from '../reducers/userProfileSlice';
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 const UserListItem = (props) => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const userProfile = useSelector(selectUserProfile);
   let isFollowed = userProfile.following.filter((user) => user.creatorHandle === props.creatorHandle).length > 0;
   let followsYou = !!userProfile.followers.find((user) => user.creatorHandle === props.creatorHandle);
   const [hover, setHover] = useState(false);
+
+
+  const clickHandler = (e) => {
+    e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
+    let clickedElement = e.currentTarget.classList;
+    console.log(clickedElement);
+    if(clickedElement[0] === "creator-credentials" || clickedElement[0] === "user-container" || clickedElement[0] === "user-avatar"){
+      history.push(`/${props.creatorHandle}`)
+    }
+    if(clickedElement[0] === "button"){
+       followHandler();
+    }
+  }
+
 
   const followHandler = () => {
     if (!isFollowed) {
@@ -25,10 +42,10 @@ const UserListItem = (props) => {
     setHover((prev) => !prev);
   }
   return (
-    <div className="user-container">
+    <div className="user-container" onClick={clickHandler}>
 
-      <div className="user-details">
-        <div className="user-avatar">
+      <div className="user-details"  >
+        <div className="user-avatar" onClick={clickHandler}>
           <img className="avatar" src={props.avatar} />
         </div>
 
@@ -40,7 +57,7 @@ const UserListItem = (props) => {
               </span>
         
             <div className="user-follow-button">
-              <Button onClick={followHandler}
+              <Button onClick={clickHandler}
                 danger={isFollowed && hover}
 
                 onMouseEnter={toggleHover} onMouseLeave={toggleHover}>

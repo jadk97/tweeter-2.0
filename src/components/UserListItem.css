@@ -7,6 +7,11 @@
   
 }
 
+.user-container:hover{
+  background-color: #253341;
+  transition: all 0.2s;
+}
+
 .user-details{
   display:flex;
   flex-direction: column;
@@ -26,9 +31,6 @@
   padding-top: 1%;
 }
 
-.user-follow-button{
-
-}
 
 .user-text .creator-details{
   display: flex;
