@@ -1,8 +1,10 @@
 .user-container{
   border-bottom: 1px solid lightslategray;
-  padding: 15px 15px 0px 15px;
+  padding: 15px 15px 20px 15px;
   text-align: left;
   cursor: pointer;
+
+  
 }
 
 .user-details{
@@ -11,7 +13,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   max-height: 100px;
-  margin-bottom: 20px;
+
 }
 
 .user-text{
@@ -22,4 +24,26 @@
 
 .user-bio{
   padding-top: 1%;
+}
+
+.user-follow-button{
+
+}
+
+.user-text .creator-details{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.user-follows-you{
+  font-size: 14px;
+  margin-left: 4%;
+  background-color: #253341;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 5px;
+  white-space: nowrap;
 }
