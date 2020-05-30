@@ -7,6 +7,7 @@ import _ from "lodash";
 import findPath from "../helpers/findPath";
 import { useSelector } from "react-redux";
 import { selectUserProfile } from '../reducers/userProfileSlice';
+import "./InteractionView.css";
 const InteractionView = (props) => {
 
   const location = useLocation();
@@ -48,8 +49,11 @@ const InteractionView = (props) => {
             title={location.state.notifType === "like" ? "Liked" : "Retweeted"}
             subtitle={formattedSubtitle}
           />
+          <div className="interaction-view">
           <Tweet id={location.state.tweetID} tweet={tweetToFocus} />
+          <div className="divider"/>
           <UserList notifUsers={location.state.notifUsers} />
+          </div>
         </React.Fragment>
       )}
 
