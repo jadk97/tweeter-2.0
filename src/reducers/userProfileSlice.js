@@ -430,14 +430,33 @@ export const slice = createSlice({
       }
     },
     addRetweet: (state, action) => {
-      state.tweets.unshift(action.payload);
-      state.retweetedTweets.unshift(action.payload);
+      // consider adding some logic that shifts the retweet to the top of the profile page
+      // unshifting the tweet again if it already exists in state causes problems with React because of duplicate keys
+      if (action.payload.creatorHandle === state.creatorHandle) {
+        let pathToTweet = findPath(action.payload.id, state.tweets).split(".");
+        pathToTweet[pathToTweet.length - 1] = "retweets";
+        _.set(state.tweets, pathToTweet, _.get(state.tweets, pathToTweet) + 1);
+        state.retweetedTweets.unshift(action.payload);
+      }
+      else {
+        state.tweets.unshift(action.payload);
+        state.retweetedTweets.unshift(action.payload);
+      }
     },
     removeRetweet: (state, action) => {
-      let retweetToRemove = state.retweetedTweets.findIndex((tweet) => tweet.id === action.payload.id);
-      state.retweetedTweets.splice(retweetToRemove, 1);
-      retweetToRemove = state.tweets.findIndex((tweet) => tweet.id === action.payload.id);
-      state.tweets.splice(retweetToRemove, 1);
+      if (action.payload.creatorHandle === state.creatorHandle) {
+        let pathToTweet = findPath(action.payload.id, state.tweets).split(".");
+        pathToTweet[pathToTweet.length - 1] = "retweets";
+        _.set(state.tweets, pathToTweet, _.get(state.tweets, pathToTweet) - 1);
+        let retweetToRemove = state.retweetedTweets.findIndex((tweet) => tweet.id === action.payload.id);
+        state.retweetedTweets.splice(retweetToRemove, 1);
+      }
+      else {
+        let retweetToRemove = state.retweetedTweets.findIndex((tweet) => tweet.id === action.payload.id);
+        state.retweetedTweets.splice(retweetToRemove, 1);
+        retweetToRemove = state.tweets.findIndex((tweet) => tweet.id === action.payload.id);
+        state.tweets.splice(retweetToRemove, 1);
+      }
     },
     followUser: (state, action) => {
       state.following.push(action.payload);
