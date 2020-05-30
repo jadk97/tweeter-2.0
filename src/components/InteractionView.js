@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./Header";
 import Tweet from "./Tweet";
 import { useLocation, Redirect, useHistory } from "react-router-dom";
-
+import UserList from "./UserList";
 const InteractionView = (props) => {
 
   const location = useLocation();
@@ -37,6 +37,7 @@ const InteractionView = (props) => {
           subtitle={formattedSubtitle}
         />
         <Tweet id={location.state.tweetID} tweet={location.state.tweet} focusedView={true}/>
+        <UserList notifUsers={location.state.notifUsers} />
         </React.Fragment>
       )}
 

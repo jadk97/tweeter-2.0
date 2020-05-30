@@ -1,0 +1,25 @@
+.user-container{
+  border-bottom: 1px solid lightslategray;
+  padding: 15px 15px 0px 15px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.user-details{
+  display:flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-height: 100px;
+  margin-bottom: 20px;
+}
+
+.user-text{
+  width: 92%;
+  margin-left: 2%;
+}
+
+
+.user-bio{
+  padding-top: 1%;
+}
