@@ -8,7 +8,7 @@ span.logo{
 nav {
   width: 30%;
   order: 1;
-  
+  padding-right: 1%;
 }
 
 nav ul {
